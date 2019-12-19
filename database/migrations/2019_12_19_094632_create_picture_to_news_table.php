@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreatePictureToNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('picture_to_news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('uuid');
-            $table->string('head');
-            $table->text('body');
-            $table->string('preview_picture');
+            $table->bigInteger('news_id')->unsigned();
+            $table->string('picture');
             $table->timestamps();
+
+            $table->foreign('news_id')->references('id')->on('news');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('picture_to_news');
     }
 }

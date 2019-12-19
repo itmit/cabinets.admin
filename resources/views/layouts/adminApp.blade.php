@@ -94,6 +94,14 @@
                         <ul class="nav navbar-nav navbar-left" style="width: 100%">
         
                             <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Новости</a></li>
+
+                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Клиенты</a></li>
+
+                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Кабинеты</a></li>
+
+                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Календарь</a></li>
+
+                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Уведомления</a></li>
         
                         </ul>
                     </div>

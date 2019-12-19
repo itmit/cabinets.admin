@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class PictureToNews extends Model
 {
     /**
      * @var array
@@ -14,5 +14,5 @@ class News extends Model
     /**
      * @var string
      */
-    protected $table = 'news';
+    protected $table = 'picture_to_news';
 }
