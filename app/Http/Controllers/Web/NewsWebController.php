@@ -87,6 +87,18 @@ class NewsWebController extends Controller
         return redirect()->route('auth.news.index');
     }
 
+    public function show($id)
+    {
+        $news = News::where('id', '=', $id)->first();
+        $pictures = PictureToNews::where('news_id', '=', $id)->get();
+        return view('news.newsDetail', [
+            'title' => $news->head,
+            'body' => $news->body,
+            'preview' => $news->preview_picture,
+            'pics' => $pictures
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
