@@ -7,25 +7,25 @@
         <div class="col-md-12">
             <h2>{{ $title }}</h2>
             <a href="{{ route('auth.news.create') }}" class="btn btn-primary">Добавить новость</a>
+            @foreach($news as $item)
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>{{ $item->head }}<i class="material-icons delete-news" style="cursor: pointer" data-id="{{ $item->id }}">delete</i></h1>
+                    <div class="row">
+                    <div class="col-4 col-sm-12">
+                        <img src="{{ $item->preview_picture }}" alt="{{ $item->head }}" width="35%" style="float:left; margin: 7px 7px 7px 0;">
+                        {!! htmlspecialchars_decode($item->body) !!}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            @endforeach
         </div>
     </div>
 </div> 
 
-    {{-- @foreach($news as $newsItem)
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>{{ $newsItem->head }}<i class="material-icons delete-news" style="cursor: pointer" data-id="{{ $newsItem->id }}">delete</i></h1>
-            <div class="row">
-            <div class="col-4 col-sm-12">
-                <img src="{{ $newsItem->picture }}" alt="{{ $newsItem->head }}" width="35%" style="float:left; margin: 7px 7px 7px 0;">
-                {!! htmlspecialchars_decode($newsItem->body) !!}
-            </div>
-            </div>
-        </div>
-    </div>
-    
-    @endforeach --}}
 <script>
 
 // $(document).on('click', '.delete-news', function() {
