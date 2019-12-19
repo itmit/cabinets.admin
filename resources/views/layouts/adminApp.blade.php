@@ -91,7 +91,7 @@
                         </ul>
         
                         <!-- Right Side Of Navbar -->
-                        <ul class="nav navbar-nav navbar-left">
+                        <ul class="nav navbar-nav navbar-left" style="width: 100%">
         
                             <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Новости</a></li>
         
