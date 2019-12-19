@@ -20,9 +20,10 @@ class AuthApiController extends ApiBaseController
 
     private $name;
     private $email;
-    private $type;
+    private $phone;
     private $password;
     private $user;
+    private $birthday;
     private $device_token;
 
     public function register(Request $request)
@@ -46,7 +47,8 @@ class AuthApiController extends ApiBaseController
 
         $this->name = $request->name;
         $this->email = $request->email;
-        $this->type = $request->type;
+        $this->phone = $request->phone;
+        $this->birthday = $request->birthday;
         $this->password = $request->password;
         $this->device_token = $request->device_token;
 
@@ -55,7 +57,8 @@ class AuthApiController extends ApiBaseController
                 'uuid' => Str::uuid(),
                 'name' => $this->name,
                 'email' => $this->email,
-                'type' => $this->type,
+                'phone' => $this->phone,
+                'birthday' => $this->birthday,
                 'password' => Hash::make($this->password),
             ]);
 
