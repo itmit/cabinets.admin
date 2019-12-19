@@ -29,7 +29,7 @@ class AuthApiController extends ApiBaseController
     {
         $validator = Validator::make($request->all(), [ 
             'email' => 'required|unique:clients|email|max:191',
-            'phone' => 'required|unique:clients|max:18|regex:/(01)[0-9]{9}/',
+            'phone' => 'required|unique:clients|max:18|regex:/+?([0-9]{2})-?([0-9]{3})-?([0-9]{6,7})/',
             'name' => 'required|max:191|min:2',
             'birthday' => 'required',
             'password' => 'required|confirmed',
