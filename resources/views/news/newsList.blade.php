@@ -16,8 +16,8 @@
                         <div class="col-4 col-sm-12">
                             <img src="{{ $item->preview_picture }}" alt="{{ $item->head }}" width="35%" style="float:left; margin: 7px 7px 7px 0;">
                             {!! htmlspecialchars_decode($item->body) !!}
-                            <a href="news/{{ $item->id }}" class="btn btn-primary" style="float:right; margin: 7px 7px 7px 0;">подробнее</a>
                         </div>
+                        <a href="news/{{ $item->id }}" class="btn btn-primary" style="float:right; margin: 7px 7px 7px 0;">подробнее</a>
                     </div>
                 </div>
             </div>
