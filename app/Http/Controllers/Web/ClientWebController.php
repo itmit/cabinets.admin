@@ -19,7 +19,7 @@ class ClientWebController extends Controller
      */
     public function index()
     {
-        return view('news.newsList', [
+        return view('clients.clientsList', [
             'title' => 'Клиенты',
             'clients' => Client::all()->sortByDesc('created_at')
         ]);
@@ -32,8 +32,8 @@ class ClientWebController extends Controller
      */
     public function create()
     {
-        return view('news.newsCreate', [
-            'title' => 'Добавить новость'
+        return view('clients.clientsCreate', [
+            'title' => 'Добавить клиента'
         ]);
     }
 
