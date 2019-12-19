@@ -7,9 +7,10 @@
         <div class="col-md-12">
             <h2>{{ $title }}</h2>
 
-            <img src="{{ $preview }}"style="width:100%">
+            
 
             <p>
+                <img src="{{ $preview }}"style="width:30%">
                 {{ $body }}
             </p>
 
