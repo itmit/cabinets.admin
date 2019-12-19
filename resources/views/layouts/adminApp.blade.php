@@ -80,7 +80,7 @@
         </div>
     </nav>
 
-    <div class="container" style="width: 90% !important">
+    <div class="container" style="width: 99% !important">
         <div class="row">
             <div class="col-sm-3 left-menu">
 
