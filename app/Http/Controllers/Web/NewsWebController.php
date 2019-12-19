@@ -21,7 +21,7 @@ class NewsWebController extends Controller
     {
         return view('news.newsList', [
             'title' => 'Новости',
-            'news' => News::all()->sortByDesc('created_at')
+            // 'news' => News::all()->sortByDesc('created_at')
         ]);
     }
 
