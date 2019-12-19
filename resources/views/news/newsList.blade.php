@@ -1,10 +1,15 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    
-    <a href="{{ route('auth.news.create') }}" class="btn btn-primary">Добавить новость</a>
 
-    <br>
+<div class="col-sm-12 tabs-content">
+    <div class="row justify-content-center cont-m">
+        <div class="col-md-12">
+            <h2>{{ $title }}</h2>
+            <a href="{{ route('auth.news.create') }}" class="btn btn-primary">Добавить новость</a>
+        </div>
+    </div>
+</div> 
 
     {{-- @foreach($news as $newsItem)
 
