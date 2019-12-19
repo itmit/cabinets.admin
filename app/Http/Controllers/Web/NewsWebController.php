@@ -63,7 +63,7 @@ class NewsWebController extends Controller
                 ->withInput();
         }
 
-        $path = $request->file('news_picture')->store('public/newsPicturePreview');
+        $path = $request->file('news_picture_preview')->store('public/newsPicturePreview');
         $url = Storage::url($path);
 
         $news = News::create([
