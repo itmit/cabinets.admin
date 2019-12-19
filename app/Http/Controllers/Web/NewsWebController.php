@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Models\PictureToNews;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -52,7 +53,7 @@ class NewsWebController extends Controller
         $validator = Validator::make($request->all(), [
             'news_head' => 'required|min:3|max:100|string',
             'news_body' => 'required|min:3|max:20000',
-            'news_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'news_picture_preview' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         if ($validator->fails()) {
@@ -62,17 +63,26 @@ class NewsWebController extends Controller
                 ->withInput();
         }
 
-        // return $request->news_body . ' ' . $request->news_head;
-
-        $path = $request->file('news_picture')->store('public/newsPictures');
+        $path = $request->file('news_picture')->store('public/newsPicturePreview');
         $url = Storage::url($path);
 
-        News::create([
+        $news = News::create([
             'uuid' => Str::uuid(),
             'head' => $request->input('news_head'),
             'body' => $request->input('news_body'),
-            'picture' => $url,
+            'preview_picture' => $url,
         ]);
+
+        foreach($request->file('news_picture') as $file)
+        {
+            $path = $file->storeAs('public/newsPictures', $file->getClientOriginalName());
+            $url = Storage::url($path);
+
+            PictureToNews::create([
+                'news_id' => $news->id,
+                'picture' => $url,
+            ]);
+        }
 
         return redirect()->route('auth.news.index');
     }
