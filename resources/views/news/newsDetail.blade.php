@@ -10,7 +10,7 @@
             
 
             <p>
-                <img src="{{ $preview }}"style="width:30%">
+                <img src="{{ $preview }}"style="width:30%"  style="float:left; margin: 7px 7px 7px 0;">
                 {{ $body }}
             </p>
 
