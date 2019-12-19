@@ -40,6 +40,38 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="form-group{{ $errors->has('news_picture_preview') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="news_picture_preview" class=" control-label text-tc">Превью</label>
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-10">
+                        <input type="file" name="news_picture_preview" id="news_picture_preview" class="form-control-file" accept="image/*" required>
+            
+                        @if ($errors->has('news_picture_preview'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('news_picture_preview') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('news_picture') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="news_picture" class=" control-label text-tc">Картинки</label>
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-10">
+                        <input type="file" name="news_picture[]" id="news_picture_preview" class="form-control-file" accept="image/*" multiple>
+            
+                        @if ($errors->has('news_picture'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('news_picture') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
             
                 <div class="form-group">
                     <div class="col-sm-12">
