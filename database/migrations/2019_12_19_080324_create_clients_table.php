@@ -20,9 +20,10 @@ class CreateClientsTable extends Migration
             $table->date('birthday');
             $table->string('phone');
             $table->string('email');
+            // $table->boolean('blacklist');
             $table->string('password');
             $table->rememberToken();
-            $table->string('device_token')->unique();
+            $table->string('device_token')->unique()->nullable();
             $table->timestamps();
         });
     }
