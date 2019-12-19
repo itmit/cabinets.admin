@@ -16,6 +16,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'Web\NewsWebController@index']);
 
     Route::resource('news', 'Web\NewsWebController');
+
+    Route::resource('clients', 'Web\ClientWebController');
     
 });
 
