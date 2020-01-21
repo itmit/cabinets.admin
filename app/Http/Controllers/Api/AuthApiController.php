@@ -33,7 +33,7 @@ class AuthApiController extends ApiBaseController
             'phone' => 'required|unique:clients|max:18|regex:/\+?([0-9]{2})-?([0-9]{3})-?([0-9]{6,7})/',
             'name' => 'required|max:191|min:2',
             'birthday' => 'required',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:6',
         ]);
         
         if ($validator->fails()) { 

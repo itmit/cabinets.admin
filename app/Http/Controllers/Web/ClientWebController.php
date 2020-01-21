@@ -45,57 +45,42 @@ class ClientWebController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->news_head = trim($request->news_head);
-        $request->news_body = trim($request->news_body);
-
         $validator = Validator::make($request->all(), [
-            'news_head' => 'required|min:3|max:100|string',
-            'news_body' => 'required|min:3|max:20000',
-            'news_picture_preview' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'name' => 'required|min:3|max:191|string',
+            'birthday' => 'required',
+            'phone' => 'required|unique:clients|max:18|regex:/\+?([0-9]{2})-?([0-9]{3})-?([0-9]{6,7})/',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         if ($validator->fails()) {
             return redirect()
-                ->route('auth.news.create')
+                ->route('auth.clients.create')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $path = $request->file('news_picture_preview')->store('public/newsPicturePreview');
-        $url = Storage::url($path);
+        try {
+            DB::transaction(function () use ($request) {
 
-        $news = News::create([
-            'uuid' => Str::uuid(),
-            'head' => $request->input('news_head'),
-            'body' => $request->input('news_body'),
-            'preview_picture' => $url,
-        ]);
-
-        foreach($request->file('news_picture') as $file)
-        {
-            $path = $file->storeAs('public/newsPictures', $file->getClientOriginalName());
-            $url = Storage::url($path);
-
-            PictureToNews::create([
-                'news_id' => $news->id,
-                'picture' => $url,
-            ]);
+                Client::create([
+                    'uuid' => Str::uuid(),
+                    'name' => $request->name,
+                    'birthday' => $request->birthday,
+                    'phone' => $request->birthday,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->birthday),
+                ]);
+    
+            });
+        } catch (\Throwable $th) {
+            return 'error';
         }
 
-        return redirect()->route('auth.news.index');
-    }
+        
 
-    public function show($id)
-    {
-        $news = News::where('id', '=', $id)->first();
-        $pictures = PictureToNews::where('news_id', '=', $id)->get();
-        return view('news.newsDetail', [
-            'title' => $news->head,
-            'body' => $news->body,
-            'preview' => $news->preview_picture,
-            'pics' => $pictures
-        ]);
+        
+
+        return redirect()->route('auth.clients.index');
     }
 
     /**

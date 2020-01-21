@@ -15,7 +15,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required maxlength="191">
+                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required maxlength="191" placeholder=" Иванов Иван">
             
                         @if ($errors->has('name'))
                             <span class="help-block">
