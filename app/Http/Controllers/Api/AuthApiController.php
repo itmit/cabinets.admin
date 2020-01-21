@@ -107,7 +107,7 @@ class AuthApiController extends ApiBaseController
     public function login(Request $request) { 
 
         $validator = Validator::make($request->all(), [ 
-            'email' => 'required|email',
+            'phone' => 'required',
             'password' => 'required|min:6',
         ]);
         
@@ -115,12 +115,12 @@ class AuthApiController extends ApiBaseController
             return response()->json(['errors'=>$validator->errors()], 401);            
         }
 
-        if(!Client::where('email', '=', $request->email)->exists())
+        if(!Client::where('phone', '=', $request->phone)->exists())
         {
             return response()->json(['error'=>'Такого пользователя не существует'], 401); 
         }       
 
-        $client = Client::where('email', '=', $request->email)->first();
+        $client = Client::where('phone', '=', $request->phone)->first();
 
         if(Hash::check($request->password, $client->password))
         {

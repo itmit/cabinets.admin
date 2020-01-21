@@ -59,11 +59,11 @@
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">
-                    <label for="email" class="control-label text-tc">E-mail (не обязательно)</label>
+                    <label for="email" class="control-label text-tc">E-mail</label>
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" maxlength="191">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required maxlength="191">
             
                         @if ($errors->has('email'))
                             <span class="help-block">

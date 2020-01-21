@@ -50,6 +50,7 @@ class ClientWebController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:191|string',
             'birthday' => 'required',
+            'email' => 'required|unique:clients|email',
             'phone' => 'required|unique:clients|max:18|unique:clients',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -77,10 +78,6 @@ class ClientWebController extends Controller
         } catch (\Throwable $th) {
             return $th;
         }
-
-        
-
-        
 
         return redirect()->route('auth.clients.index');
     }
