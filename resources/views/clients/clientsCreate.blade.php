@@ -95,7 +95,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" required maxlength="191">
+                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="" required maxlength="191">
             
                         @if ($errors->has('password_confirmation'))
                             <span class="help-block">

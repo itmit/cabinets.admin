@@ -48,7 +48,7 @@ class ClientWebController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:191|string',
             'birthday' => 'required',
-            'phone' => 'required|unique:clients|max:18|regex:/\+?([0-9]{2})-?([0-9]{3})-?([0-9]{6,7})/',
+            'phone' => 'required|unique:clients|max:18',
             'password' => 'required|confirmed|min:6',
         ]);
 
