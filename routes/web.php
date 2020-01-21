@@ -18,6 +18,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::resource('news', 'Web\NewsWebController');
 
     Route::resource('clients', 'Web\ClientWebController');
+
+    Route::resource('cabinets', 'Web\CabinetWebController');
     
 });
 

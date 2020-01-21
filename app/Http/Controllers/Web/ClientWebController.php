@@ -69,9 +69,9 @@ class ClientWebController extends Controller
                     'uuid' => Str::uuid(),
                     'name' => $request->name,
                     'birthday' => $request->birthday,
-                    'phone' => $request->birthday,
+                    'phone' => $request->phone,
                     'email' => $request->email,
-                    'password' => Hash::make($request->birthday),
+                    'password' => Hash::make($request->password),
                 ]);
     
             });

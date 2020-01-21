@@ -97,7 +97,7 @@
 
                             <li style="width: 100%"><a href="{{ route('auth.clients.index') }}">Клиенты</a></li>
 
-                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Кабинеты</a></li>
+                            <li style="width: 100%"><a href="{{ route('auth.cabinets.index') }}">Кабинеты</a></li>
 
                             <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Календарь</a></li>
 
