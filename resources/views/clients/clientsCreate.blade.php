@@ -9,17 +9,97 @@
             <form class="form-horizontal" method="POST" action="{{ route('auth.clients.store') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
             
-                <div class="form-group{{ $errors->has('news_head') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">
-                    <label for="news_head" class="control-label text-tc">ФИО</label>
+                    <label for="name" class="control-label text-tc">Фамилия имя</label>
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="news_head" type="text" class="form-control" name="news_head" value="{{ old('news_head') }}" required maxlength="191">
+                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required maxlength="191">
             
-                        @if ($errors->has('news_head'))
+                        @if ($errors->has('name'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('news_head') }}</strong>
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="birthday" class="control-label text-tc">Дата рождения</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="birthday" type="date" class="form-control" name="birthday" value="{{ old('birthday') }}" required maxlength="191">
+            
+                        @if ($errors->has('birthday'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('birthday') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="phone" class="control-label text-tc">Номер телефона</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required maxlength="191">
+            
+                        @if ($errors->has('phone'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('phone') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="email" class="control-label text-tc">E-mail (не обязательно)</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" maxlength="191">
+            
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="password" class="control-label text-tc">Пароль</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required maxlength="191">
+            
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="password_confirmation" class="control-label text-tc">Повторите пароль</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" required maxlength="191">
+            
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password_confirmation') }}</strong>
                             </span>
                         @endif
                     </div>
