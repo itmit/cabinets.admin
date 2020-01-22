@@ -93,15 +93,15 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="nav navbar-nav navbar-left" style="width: 100%">
         
-                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Новости</a></li>
+                            <li style="width: 100%" name="news"><a href="{{ route('auth.news.index') }}">Новости</a></li>
 
-                            <li style="width: 100%"><a href="{{ route('auth.clients.index') }}">Клиенты</a></li>
+                            <li style="width: 100%" name="clients"><a href="{{ route('auth.clients.index') }}">Клиенты</a></li>
 
-                            <li style="width: 100%"><a href="{{ route('auth.cabinets.index') }}">Кабинеты</a></li>
+                            <li style="width: 100%" name="cabinets"><a href="{{ route('auth.cabinets.index') }}">Кабинеты</a></li>
 
-                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Календарь</a></li>
+                            <li style="width: 100%" name="calendar"><a href="{{ route('auth.news.index') }}">Календарь</a></li>
 
-                            <li style="width: 100%"><a href="{{ route('auth.news.index') }}">Уведомления</a></li>
+                            <li style="width: 100%" name="notifications"><a href="{{ route('auth.news.index') }}">Уведомления</a></li>
         
                         </ul>
                     </div>
@@ -114,5 +114,37 @@
 </div>
 
 <!-- Scripts -->
+<script>
+    $(document).ready(function() {
+
+        let pathname = window.location.pathname;
+
+        switch(pathname.split('/')[1]) {
+        case '':
+            $( "li[name='news']" ).addClass( "active" );
+            break;
+
+        case 'news':
+            $( "li[name='news']" ).addClass( "active" );
+            break;
+
+        case 'clients':
+            $( "li[name='clients']" ).addClass( "active" );
+            break;
+
+        case 'cabinets':
+            $( "li[name='cabinets']" ).addClass( "active" );
+            break;
+
+        case 'calendar':
+            $( "li[name='calendar']" ).addClass( "active" );
+            break;
+
+        case 'notifications':
+            $( "li[name='notifications']" ).addClass( "active" );
+            break;
+        }
+    })
+</script>
 </body>
 </html>
