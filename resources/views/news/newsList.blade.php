@@ -29,28 +29,29 @@
 
 <script>
 
-// $(document).on('click', '.delete-news', function() {
-//     let isDelete = confirm("Удалить новость? Данное действие невозможно отменить!");
+$(document).on('click', '.delete-news', function() {
+    let isDelete = confirm("Удалить новость? Данное действие невозможно отменить!");
 
-//     if(isDelete)
-//     {
-//         let id = $(this).data('id');
-//         $.ajax({
-//             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-//             dataType: "json",
-//             data    : { id: id },
-//             url     : 'news/delete',
-//             method    : 'delete',
-//             success: function (response) {
-//                 $(this).closest('.row').remove();
-//                 console.log('Удалено!');
-//             },
-//             error: function (xhr, err) { 
-//                 console.log("Error: " + xhr + " " + err);
-//             }
-//         });
-//     }
-// });
+    if(isDelete)
+    {
+        let id = $(this).data('id');
+        let item = $(this).closest('div .row');
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            data    : { id: id },
+            url     : 'news/delete',
+            method    : 'delete',
+            success: function (response) {
+                item.remove();
+                console.log('Удалено!');
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
+    }
+});
 
 </script>
 @endsection
