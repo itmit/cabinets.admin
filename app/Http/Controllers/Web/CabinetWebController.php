@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cabinets;
+use App\Models\PhotosToCabinet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class CabinetWebController extends Controller
     {
         return view('cabinets.cabinetsList', [
             'title' => 'Кабинеты',
-            // 'cabinets' => Cabinets::all()->sortByDesc('created_at')
+            'cabinets' => Cabinets::all()->sortByDesc('created_at')
         ]);
     }
 
