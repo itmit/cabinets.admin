@@ -15,7 +15,12 @@ class CreateCabinetsTable extends Migration
     {
         Schema::create('cabinets', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->integer('capacity')->unsigned();
+            $table->float('area', 10, 2);
+            $table->text('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

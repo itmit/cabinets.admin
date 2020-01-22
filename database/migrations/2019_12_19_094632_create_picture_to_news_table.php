@@ -18,6 +18,7 @@ class CreatePictureToNewsTable extends Migration
             $table->bigInteger('news_id')->unsigned();
             $table->string('picture');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('news_id')->references('id')->on('news');
         });

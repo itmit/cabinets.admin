@@ -109,6 +109,7 @@ class NewsWebController extends Controller
     public function destroy(Request $request)
     {
         News::where('id', '=', $request->id)->delete();
+        PictureToNews::where('news_id', '=', $request->id)->delete();
         return response()->json(['succses'=>'Удалено'], 200); 
     }
 }

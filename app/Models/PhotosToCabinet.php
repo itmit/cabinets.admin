@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PictureToNews extends Model
+class PhotosToCabinet extends Model
 {
     use SoftDeletes;
 
@@ -17,5 +16,5 @@ class PictureToNews extends Model
     /**
      * @var string
      */
-    protected $table = 'picture_to_news';
+    protected $table = 'photos_to_cabinets';
 }

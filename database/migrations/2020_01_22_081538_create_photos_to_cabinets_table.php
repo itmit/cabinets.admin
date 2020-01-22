@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreatePhotosToCabinetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('photos_to_cabinets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('uuid');
-            $table->string('head');
-            $table->text('body');
-            $table->string('preview_picture');
+            $table->bigInteger('cabinet_id')->unsigned();
+            $table->string('photo');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('cabinet_id')->references('id')->on('cabinets');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('photos_to_cabinets');
     }
 }
