@@ -31,7 +31,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="area" type="text" type="number" step="0.1" min="1" max="9999" class="form-control" name="area" value="{{ old('area') }}" required maxlength="191">
+                        <input id="area" type="number" step="0.1" min="1" max="9999" class="form-control" name="area" value="{{ old('area') }}" required maxlength="191">
             
                         @if ($errors->has('area'))
                             <span class="help-block">
