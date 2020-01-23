@@ -103,6 +103,53 @@ class CabinetWebController extends Controller
         ]);
     }
 
+    public function edit($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:191|string',
+            'area' => 'required|numeric',
+            'capacity' => 'required|numeric',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.cabinets.show')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        try {
+            DB::transaction(function () use ($request) {
+
+                $cabinet = Cabinets::where('id', '=', $id)->update([
+                    'uuid' => Str::uuid(),
+                    'name' => $request->name,
+                    'area' => $request->area,
+                    'capacity' => $request->capacity,
+                    'description' => $request->description,
+                ]);
+
+                foreach($request->file('photos') as $file)
+                {
+                    $path = $file->store('public/cabinets');
+                    $url = Storage::url($path);
+
+                    PhotosToCabinet::create([
+                        'cabinet_id' => $cabinet->id,
+                        'photo' => $url,
+                    ]);
+                }
+    
+            });
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        $cabinet = Cabinets::where('id', '=', $id)->first();
+        $photos = PhotosToCabinet::where('cabinet_id', '=', $id)->get();
+        return redirect()->route('auth.cabinets.index');    
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -111,7 +158,7 @@ class CabinetWebController extends Controller
      */
     public function destroy(Request $request)
     {
-        News::where('id', '=', $request->id)->delete();
-        return response()->json(['succses'=>'Удалено'], 200); 
+        // News::where('id', '=', $request->id)->delete();
+        // return response()->json(['succses'=>'Удалено'], 200); 
     }
 }
