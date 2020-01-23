@@ -12,7 +12,7 @@
                         <h1>{{ $item->name }}</h1>
                         <div class="row">
                             <div class="col-4 col-sm-12">
-                                <img src="{{ $item->cabinetPreviewPhoto()->id }}" alt="{{ $item->name }}" width="35%" style="float:left; margin: 7px 7px 7px 0;">
+                                <img src="{{ $item->cabinetPreviewPhoto()->photo }}" alt="{{ $item->name }}" width="35%" style="float:left; margin: 7px 7px 7px 0;">
                                 {!! htmlspecialchars_decode($item->description) !!}
                             </div>
                             <a href="cabinets/{{ $item->id }}" class="btn btn-primary" style="float:right; margin: 7px 7px 7px 0;">редактировать</a>
