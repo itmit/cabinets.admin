@@ -14,7 +14,13 @@
 
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <span><i class="material-icons">clear</i></span>
+                        <span style="
+                        float: right;
+                        z-index: 100;
+                        position: absolute;
+                        right: 20px;
+                        cursor: pointer;
+                    " data-photo="{{ $item->id }}"><i class="material-icons">clear</i></span>
                         <a href="{{ $item->photo }}">
                             <img src="{{ $item->photo }}"style="width:100%">
                         </a>
