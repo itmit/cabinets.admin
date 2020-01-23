@@ -36,7 +36,7 @@ class CabinetWebController extends Controller
     public function create()
     {
         return view('cabinets.cabinetsCreate', [
-            'title' => 'Добавить клиента'
+            'title' => 'Добавить кабинет'
         ]);
     }
 
@@ -50,15 +50,15 @@ class CabinetWebController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:191|string',
-            'birthday' => 'required',
-            'email' => 'required|unique:clients|email',
-            'phone' => 'required|unique:clients|max:18|unique:clients',
-            'password' => 'required|confirmed|min:6',
+            'area' => 'required|numeric',
+            'capacity' => 'required|numeric',
+            'description' => 'required',
+            'photos' => 'required',
         ]);
 
         if ($validator->fails()) {
             return redirect()
-                ->route('auth.clients.create')
+                ->route('auth.cabinets.create')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -66,21 +66,31 @@ class CabinetWebController extends Controller
         try {
             DB::transaction(function () use ($request) {
 
-                Client::create([
+                $cabinet = Cabinets::create([
                     'uuid' => Str::uuid(),
                     'name' => $request->name,
-                    'birthday' => $request->birthday,
-                    'phone' => $request->phone,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
+                    'area' => $request->area,
+                    'capacity' => $request->capacity,
+                    'description' => $request->description,
                 ]);
+
+                foreach($request->file('news_picture') as $file)
+                {
+                    $path = $file->storeAs('public/cabinets', $file);
+                    $url = Storage::url($path);
+
+                    PhotosToCabinet::create([
+                        'cabinet_id' => $cabinet->id,
+                        'photo' => $url,
+                    ]);
+                }
     
             });
         } catch (\Throwable $th) {
             return $th;
         }
 
-        return redirect()->route('auth.clients.index');
+        return redirect()->route('auth.cabinets.index');
     }
 
     /**
