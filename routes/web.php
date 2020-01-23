@@ -19,7 +19,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::resource('clients', 'Web\ClientWebController');
 
-    Route::resource('cabinets', 'Web\CabinetWebController');
+    Route::controller('cabinets', 'Web\CabinetWebController');
     
 });
 
