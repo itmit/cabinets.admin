@@ -130,17 +130,20 @@ class CabinetWebController extends Controller
                     'description' => $request->description,
                 ]);
 
-                foreach($request->file('photos') as $file)
+                if(!$request->file('photos'))
                 {
-                    $path = $file->store('public/cabinets');
-                    $url = Storage::url($path);
-
-                    PhotosToCabinet::create([
-                        'cabinet_id' => $cabinet->id,
-                        'photo' => $url,
-                    ]);
-                }
+                    foreach($request->file('photos') as $file)
+                    {
+                        $path = $file->store('public/cabinets');
+                        $url = Storage::url($path);
     
+                        PhotosToCabinet::create([
+                            'cabinet_id' => $cabinet->id,
+                            'photo' => $url,
+                        ]);
+                    }
+                }
+
             });
         } catch (\Throwable $th) {
             return $th;
