@@ -74,7 +74,7 @@ class CabinetWebController extends Controller
                     'description' => $request->description,
                 ]);
 
-                foreach($request->file('news_picture') as $file)
+                foreach($request->file('photos') as $file)
                 {
                     $path = $file->storeAs('public/cabinets', $file);
                     $url = Storage::url($path);
