@@ -97,7 +97,7 @@ class CabinetWebController extends Controller
     {
         $cabinet = Cabinets::where('id', '=', $id)->first();
         $photos = PhotosToCabinet::where('cabinet_id', '=', $id)->get();
-        return view('news.newsDetail', [
+        return view('news.cabinetsEdit', [
             'cabinet' => $cabinet,
             'photos' => $photos
         ]);
