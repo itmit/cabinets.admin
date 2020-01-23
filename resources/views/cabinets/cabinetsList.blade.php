@@ -14,7 +14,7 @@
                             <div class="col-4 col-sm-12">
                                 <img src="{{ $item->cabinetPreviewPhoto()->photo }}" alt="{{ $item->name }}" width="25%" style="float:left; margin: 7px 7px 7px 0;">
                                 <p>{{ $item->description }}</p>
-                                <a href="cabinets/{{ $item->id }}" class="btn btn-primary" style="float:left; margin: 7px 7px 7px 0;">редактировать</a>
+                                <a href="cabinets/{{ $item->id }}/edit" class="btn btn-primary" style="float:left; margin: 7px 7px 7px 0;">редактировать</a>
                             </div>
                         </div>
                     </div>

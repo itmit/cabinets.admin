@@ -93,7 +93,7 @@ class CabinetWebController extends Controller
         return redirect()->route('auth.cabinets.index');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $cabinet = Cabinets::where('id', '=', $id)->first();
         $photos = PhotosToCabinet::where('cabinet_id', '=', $id)->get();
