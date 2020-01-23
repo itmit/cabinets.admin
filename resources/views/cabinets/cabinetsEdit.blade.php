@@ -91,6 +91,27 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="row">
+                    @foreach($photos as $item)
+    
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <span style="
+                            float: right;
+                            z-index: 100;
+                            position: absolute;
+                            right: 20px;
+                            cursor: pointer;
+                        " data-photo="{{ $item->id }}"><i class="material-icons">clear</i></span>
+                            <a href="{{ $item->photo }}">
+                                <img src="{{ $item->photo }}"style="width:100%">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    @endforeach
+                </div>
             
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -102,26 +123,16 @@
 
             </form>
 
-            <div class="row">
-                @foreach($photos as $item)
+            <hr>
 
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <span style="
-                        float: right;
-                        z-index: 100;
-                        position: absolute;
-                        right: 20px;
-                        cursor: pointer;
-                    " data-photo="{{ $item->id }}"><i class="material-icons">clear</i></span>
-                        <a href="{{ $item->photo }}">
-                            <img src="{{ $item->photo }}"style="width:100%">
-                        </a>
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-danger">
+                        Удалить кабинет
+                    </button>
                 </div>
-                
-                @endforeach
             </div>
+            
         </div>
     </div>
 </div> 
