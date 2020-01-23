@@ -16,4 +16,9 @@ class Cabinets extends Model
      * @var string
      */
     protected $table = 'cabinets';
+
+    public function cabinetPreviewPhoto()
+    {
+        return $this->hasOne(PhotosToCabinet::class, 'cabinet_id')->first();
+    }
 }
