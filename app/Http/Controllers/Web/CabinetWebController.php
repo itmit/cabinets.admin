@@ -119,8 +119,6 @@ class CabinetWebController extends Controller
                 ->withInput();
         }
 
-        return $request->photos;
-
         try {
             DB::transaction(function () use ($request, $id) {
 
@@ -132,7 +130,7 @@ class CabinetWebController extends Controller
                     'description' => $request->description,
                 ]);
 
-                foreach($request->file('photos') as $file)
+                foreach($request->photos as $file)
                 {
                     $path = $file->store('public/cabinets');
                     $url = Storage::url($path);
