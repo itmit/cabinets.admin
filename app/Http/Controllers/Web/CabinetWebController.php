@@ -119,7 +119,7 @@ class CabinetWebController extends Controller
                 ->withInput();
         }
 
-        return $request->file('photos');
+        return $request->photos;
 
         try {
             DB::transaction(function () use ($request, $id) {
