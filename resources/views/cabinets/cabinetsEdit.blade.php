@@ -14,10 +14,10 @@
 
                 <div class="col-md-4">
                     <div class="thumbnail">
-                    <a href="{{ $item->photo }}">
                         <span><i class="material-icons">clear</i></span>
-                        <img src="{{ $item->photo }}"style="width:100%">
-                    </a>
+                        <a href="{{ $item->photo }}">
+                            <img src="{{ $item->photo }}"style="width:100%">
+                        </a>
                     </div>
                 </div>
                 
