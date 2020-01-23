@@ -119,6 +119,8 @@ class CabinetWebController extends Controller
                 ->withInput();
         }
 
+        return $request->file('photos');
+
         try {
             DB::transaction(function () use ($request, $id) {
 
@@ -130,19 +132,17 @@ class CabinetWebController extends Controller
                     'description' => $request->description,
                 ]);
 
-                if(!$request->file('photos'))
+                foreach($request->file('photos') as $file)
                 {
-                    foreach($request->file('photos') as $file)
-                    {
-                        $path = $file->store('public/cabinets');
-                        $url = Storage::url($path);
-    
-                        PhotosToCabinet::create([
-                            'cabinet_id' => $cabinet->id,
-                            'photo' => $url,
-                        ]);
-                    }
+                    $path = $file->store('public/cabinets');
+                    $url = Storage::url($path);
+
+                    PhotosToCabinet::create([
+                        'cabinet_id' => $cabinet->id,
+                        'photo' => $url,
+                    ]);
                 }
+
 
             });
         } catch (\Throwable $th) {
