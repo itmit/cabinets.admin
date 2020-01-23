@@ -103,7 +103,7 @@ class CabinetWebController extends Controller
         ]);
     }
 
-    public function edit($id, Request $request)
+    public function update($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:191|string',
