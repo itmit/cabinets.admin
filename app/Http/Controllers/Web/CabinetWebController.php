@@ -120,7 +120,7 @@ class CabinetWebController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use ($request, $id) {
 
                 $cabinet = Cabinets::where('id', '=', $id)->update([
                     'uuid' => Str::uuid(),
