@@ -125,9 +125,14 @@
 
             <hr>
 
+            <small>
+                Кабинет создан: {{ $cabinet->created_at }}
+                Кабинет обновлен: {{ $cabinet->updated_at }}
+            </small>
+
             <div class="form-group">
                 <div class="col-sm-12">
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger" disabled>
                         Удалить кабинет
                     </button>
                 </div>
