@@ -45,7 +45,7 @@ class CabinetApiController extends ApiBaseController
             return response()->json(['errors'=>$validator->errors()], 401);            
         }
 
-        $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first();
+        $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first()->toArray();
         if(!$cabinet)
         {
             return response()->json(['error'=>'Нет такого кабинета'], 401);     
