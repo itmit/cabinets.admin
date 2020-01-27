@@ -30,6 +30,7 @@ class NewsApiController extends ApiBaseController
             $list['preview_picture'] = $item->area;
         }
 
+        return 'ddd';
         return $this->sendResponse($news, 'Список новостей');
     }
 
