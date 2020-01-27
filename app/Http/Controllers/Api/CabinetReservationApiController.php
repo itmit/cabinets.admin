@@ -39,11 +39,16 @@ class CabinetReservationApiController extends ApiBaseController
 
         $reservation = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get('time')->toArray();
 
+        $resTime = [];
+        foreach ($reservation as $item) {
+            $resTime[] = $item['time'];
+        }
+
         
 
         $times = self::workingTime();
 
-        return json_encode( $times );
+        return json_encode( $resTime );
 
         $freeTimes = array_diff($times, $reservation);
 
