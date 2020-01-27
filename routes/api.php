@@ -40,3 +40,4 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 
 Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
+Route::post('cabinets/makeReservation', 'Api\CabinetReservationApiController@makeReservation');
