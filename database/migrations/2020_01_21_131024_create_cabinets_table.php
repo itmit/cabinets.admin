@@ -20,6 +20,7 @@ class CreateCabinetsTable extends Migration
             $table->integer('capacity')->unsigned();
             $table->float('area', 10, 2);
             $table->text('description');
+            $table->integer('price')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

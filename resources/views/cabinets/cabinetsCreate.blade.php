@@ -73,6 +73,22 @@
                     </div>
                 </div>
 
+                <div class="row form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="price" class="control-label text-tc">Цена</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}" required>
+            
+                        @if ($errors->has('price'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('price') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group{{ $errors->has('photos') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">
                     <label for="photos" class=" control-label text-tc">Фотографии</label>

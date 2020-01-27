@@ -29,6 +29,7 @@ class CabinetApiController extends ApiBaseController
             $list['capacity'] = $item->capacity;
             $list['area'] = $item->area;
             $list['description'] = $item->description;
+            $list['price'] = $item->description;
             $list['photo'] = $item->cabinetPreviewPhoto()->photo;
         }
 

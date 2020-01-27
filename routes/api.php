@@ -33,8 +33,10 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('cabinets/index', 'Api\CabinetApiController@getListOfCabinets');
     Route::post('cabinets/show', 'Api\CabinetApiController@getCabinet');
+
+    Route::get('news/index', 'Api\NewsApiController@getNewsList');
+    Route::post('news/show', 'Api\NewsApiController@getNews');
     
 });
 
-Route::get('news/index', 'Api\NewsApiController@getNewsList');
-Route::post('news/show', 'Api\NewsApiController@getNews');
+Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
