@@ -40,33 +40,20 @@ class CabinetReservationApiController extends ApiBaseController
         $reservation = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get('time')->toArray();
 
         $resTime = [];
+        $result = [];
         foreach ($reservation as $item) {
             $resTime[] = $item['time'];
         }
 
-        
-
         $times = self::workingTime();
-
-        // return json_encode( $resTime );
 
         $freeTimes = array_diff($times, $resTime);
 
-        // foreach($times as $item => $key)
-        // {
-        //     foreach ($reservation as $free) {
-        //         if($item == $free['time'])
-        //         {
-        //             unset($item[$key]);
-        //         }
-        //         if($item != $free['time'])
-        //         {
-        //             $freeTimes[] = $key;
-        //         } 
-        //     }
-        // }
+        foreach ($freeTimes as $key => $value) {
+            $result[] = $value;
+        }
 
-        return $this->sendResponse($freeTimes, 'Свободное время для выбранного кабинета');
+        return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
     }
 
     private function workingTime()
