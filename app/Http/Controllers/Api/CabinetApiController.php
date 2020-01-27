@@ -37,7 +37,19 @@ class CabinetApiController extends ApiBaseController
 
     public function getCabinet(Request $request)
     {
+        $validator = Validator::make($request->all(), [ 
+            'uuid' => 'required|uuid',
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 401);            
+        }
+
         $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first();
+        if(!$cabinet)
+        {
+            return response()->json(['error'=>'Нет такого кабинета'], 401);     
+        }
         $cabinet['photos'] = PhotosToCabinet::where('cabinet_id', '=', $cabinet->id)->get();
 
         return $this->sendResponse($cabinet, 'Кабинет');
