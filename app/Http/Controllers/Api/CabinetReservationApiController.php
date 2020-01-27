@@ -77,13 +77,13 @@ class CabinetReservationApiController extends ApiBaseController
 
         foreach ($request->times as $key => $value)
         {
+            if(CabinetReservation::where('cabinet_id', '=', $cabinet->id)
+                ->where('date', '=', $request->date)
+                ->where('time', '=', $value)
+                ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 401);
             try {
                 DB::transaction(function () use ($request, $value, $cabinet) {
-    
-                    if(CabinetReservation::where('cabinet_id', '=', $cabinet->id)
-                    ->where('date', '=', $request->date)
-                    ->where('time', '=', $value)
-                    ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 401);   ;
+
                     CabinetReservation::create([
                         'cabinet_id' => $cabinet->id,
                         'client_id' => auth('api')->user()->id,
