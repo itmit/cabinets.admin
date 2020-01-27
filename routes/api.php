@@ -30,8 +30,11 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('messenger/send', 'Api\MessengerApiController@send');
 
     Route::get('document/index', 'Api\DocumentApiController@index');
+
+    Route::get('cabinets/index', 'Api\CabinetApiController@getListOfCabinets');
+    Route::post('cabinets/show', 'Api\CabinetApiController@getCabinet');
     
 });
 
-Route::get('cabinets/index', 'Api\CabinetApiController@getListOfCabinets');
-Route::post('cabinets/show', 'Api\CabinetApiController@getCabinet');
+Route::get('news/index', 'Api\NewsApiController@getNewsList');
+Route::post('news/show', 'Api\NewsApiController@getNews');
