@@ -32,3 +32,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('document/index', 'Api\DocumentApiController@index');
     
 });
+
+Route::get('cabinets/index', 'Api\CabinetApiController@getListOfCabinets');
