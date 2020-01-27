@@ -27,14 +27,14 @@ class CabinetReservationApiController extends ApiBaseController
         ]);
         
         if ($validator->fails()) { 
-            return response()->json(['errors'=>$validator->errors()], 401);            
+            return response()->json(['errors'=>$validator->errors()], 500);            
         }
 
         $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first();
 
         if(!$cabinet)
         {
-            return response()->json(['error'=>'Нет такого кабинета'], 401);     
+            return response()->json(['error'=>'Нет такого кабинета'], 500);     
         }
 
         $reservation = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get('time')->toArray();
@@ -65,14 +65,14 @@ class CabinetReservationApiController extends ApiBaseController
         ]);
         
         if ($validator->fails()) { 
-            return response()->json(['errors'=>$validator->errors()], 401);            
+            return response()->json(['errors'=>$validator->errors()], 500);            
         }
 
         $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first();
 
         if(!$cabinet)
         {
-            return response()->json(['error'=>'Нет такого кабинета'], 401);     
+            return response()->json(['error'=>'Нет такого кабинета'], 500);     
         }
 
         foreach ($request->times as $key => $value)
@@ -80,7 +80,7 @@ class CabinetReservationApiController extends ApiBaseController
             if(CabinetReservation::where('cabinet_id', '=', $cabinet->id)
                 ->where('date', '=', $request->date)
                 ->where('time', '=', $value)
-                ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 401);
+                ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 500);
             try {
                 DB::transaction(function () use ($request, $value, $cabinet) {
 
