@@ -37,7 +37,10 @@ class CabinetApiController extends ApiBaseController
 
     public function getCabinet(Request $request)
     {
+        $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first();
+        $cabinet['photos'] = PhotosToCabinet::where('cabinet_id', '=', $cabinet->id)->get();
 
+        return $this->sendResponse($cabinet, 'Кабинет');
     }
 
 
