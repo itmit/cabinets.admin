@@ -45,10 +45,13 @@ class CabinetReservationApiController extends ApiBaseController
         foreach($times as $item)
         {
             foreach ($reservation as $free) {
+                if($item == $free['time'])
+                {
+                    unset($item);
+                }
                 if($item != $free['time'])
                 {
                     $freeTimes[] = $item;
-                break;
                 } 
             }
         }
