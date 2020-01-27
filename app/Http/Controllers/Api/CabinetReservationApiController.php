@@ -51,7 +51,7 @@ class CabinetReservationApiController extends ApiBaseController
                 }
                 if($item != $free['time'])
                 {
-                    $freeTimes[] = $item;
+                    $freeTimes[] = $item[$key];
                 } 
             }
         }
