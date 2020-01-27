@@ -56,6 +56,42 @@ class CabinetReservationApiController extends ApiBaseController
         return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
     }
 
+    public function makeReservation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uuid' => 'required|uuid',
+            'date' => 'required|date',
+            'times' => 'required|array'
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 401);            
+        }
+
+        $cabinet = Cabinets::where('uuid', '=', $request->uuid)->first();
+
+        if(!$cabinet)
+        {
+            return response()->json(['error'=>'Нет такого кабинета'], 401);     
+        }
+
+        foreach ($request->times as $key => $value)
+        {
+            if(CabinetReservation::where('cabinet_id', '=', $cabinet->id)
+            ->where('date', '=', $request->date)
+            ->where('time', '=', $value)
+            ->exists()) continue;
+            CabinetReservation::create([
+                'cabinet_id' => $cabinet->id,
+                'client_id' => auth('api')->user()->id,
+                'date' => $request->date,
+                'time' => $value,
+            ]);
+        }
+
+        return $this->sendResponse([], 'Кабинет забронирован');
+    }
+
     private function workingTime()
     {
         $time[0] = '7.00-7.30';
