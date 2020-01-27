@@ -42,12 +42,12 @@ class CabinetReservationApiController extends ApiBaseController
         $times = self::workingTime();
         $freeTimes = [];
 
-        foreach($times as $item)
+        foreach($times as $item => $key)
         {
             foreach ($reservation as $free) {
                 if($item == $free['time'])
                 {
-                    unset($item);
+                    unset($item[$key]);
                 }
                 if($item != $free['time'])
                 {
