@@ -43,7 +43,7 @@ class CabinetReservationApiController extends ApiBaseController
 
         $times = self::workingTime();
 
-        return json_encode( $reservation, $times );
+        return json_encode( $reservation );
 
         $freeTimes = array_diff($times, $reservation);
 
