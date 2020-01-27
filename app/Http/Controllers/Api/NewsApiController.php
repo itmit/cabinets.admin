@@ -22,7 +22,6 @@ class NewsApiController extends ApiBaseController
     public function getNewsList()
     {
         $news = News::all()->sortByDesc('created_at')->toArray();
-        return $this->sendResponse($news, 'Список новостей');
 
         $list = [];
         foreach ($news as $item) {
@@ -32,7 +31,7 @@ class NewsApiController extends ApiBaseController
             $list['preview_picture'] = $item->area;
         }
 
-        return $this->sendResponse($news, 'Список новостей');
+        return $this->sendResponse($list, 'Список новостей');
     }
 
     public function getNews(Request $request)
