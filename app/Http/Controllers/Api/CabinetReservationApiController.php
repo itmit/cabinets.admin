@@ -50,7 +50,7 @@ class CabinetReservationApiController extends ApiBaseController
 
         // return json_encode( $resTime );
 
-        $freeTimes = array_diff_assoc($times, $reservation);
+        $freeTimes = array_diff($times, $resTime);
 
         // foreach($times as $item => $key)
         // {
