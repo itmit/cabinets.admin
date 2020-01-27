@@ -50,7 +50,7 @@ class CabinetApiController extends ApiBaseController
         {
             return response()->json(['error'=>'Нет такого кабинета'], 401);     
         }
-        $cabinet['photos'] = PhotosToCabinet::where('cabinet_id', '=', $cabinet['id'])->get();
+        $cabinet['photos'] = PhotosToCabinet::where('cabinet_id', '=', $cabinet['id'])->get('photo');
 
         return $this->sendResponse($cabinet, 'Кабинет');
     }
