@@ -21,7 +21,7 @@ class NewsApiController extends ApiBaseController
 
     public function getNewsList()
     {
-        $news = News::all()->sortByDesc('created_at')->toArray();
+        $news = News::all()->sortByDesc('created_at');
 
         $list = [];
         foreach ($news as $item) {
