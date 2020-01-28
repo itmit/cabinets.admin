@@ -41,16 +41,17 @@ class CabinetReservationApiController extends ApiBaseController
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get()->toArray();
 
         $resTime = [];
-        $result = [];
-
         foreach ($reservations as $key => $value) {
-            foreach ($request->times as $key2 => $time)
-            {
-                if(CabinetReservationTime::where('reservation_id', '=', $value->id)
-                ->where('time', '=', $time)
-                ->exists()) $resTime[] = $time;
+            $times = CabinetReservationTime::where('reservation_id', '=', $value->id)->get();
+            foreach ($times as $item) {
+                $resTime[] = $item->time;
             }
         }
+
+        $result = [];
+        // foreach ($reservation as $item) {
+        //     $resTime[] = $item['time'];
+        // }
 
         $times = self::workingTime();
 
