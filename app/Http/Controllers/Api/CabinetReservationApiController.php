@@ -143,7 +143,7 @@ class CabinetReservationApiController extends ApiBaseController
 
         $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->get();
         $resDetail = [
-            'cabinet' => Cabinets::where('id', '=', $value->cabinet_id)->first()
+            'cabinet' => Cabinets::where('id', '=', $reservation->cabinet_id)->first()
         ];
         $times = CabinetReservationTime::where('reservation_id', '=', $reservation->id)->get();
         foreach ($times as $key => $value) {
