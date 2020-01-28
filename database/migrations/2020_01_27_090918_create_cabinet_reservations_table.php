@@ -15,6 +15,7 @@ class CreateCabinetReservationsTable extends Migration
     {
         Schema::create('cabinet_reservations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
             $table->bigInteger('cabinet_id')->unsigned();
             $table->bigInteger('client_id')->unsigned();
             $table->date('date');

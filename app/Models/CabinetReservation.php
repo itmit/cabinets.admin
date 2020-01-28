@@ -16,4 +16,9 @@ class CabinetReservation extends Model
      * @var string
      */
     protected $table = 'cabinet_reservations';
+
+    public function getCabinet()
+    {
+        return $this->hasOne(Cabinet::class, 'cabinet_id')->first();
+    }
 }

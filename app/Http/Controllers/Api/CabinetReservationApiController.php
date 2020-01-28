@@ -85,6 +85,7 @@ class CabinetReservationApiController extends ApiBaseController
                 DB::transaction(function () use ($request, $value, $cabinet) {
 
                     CabinetReservation::create([
+                        'uuid' => Str::uuid(),
                         'cabinet_id' => $cabinet->id,
                         'client_id' => auth('api')->user()->id,
                         'date' => $request->date,
@@ -103,7 +104,11 @@ class CabinetReservationApiController extends ApiBaseController
     public function getUsersReservations()
     {
         $userReservations = CabinetReservation::where('client_id', '=', auth('api')->user()->id)->get();
-        $userReservations = $userReservations->groupBy('date');
+        $userReservations = $userReservations->groupBy('date', 'cabinet_id');
+        $result = [];
+        // foreach ($userReservations as $key => $value) {
+        //     $result[$key] = 
+        // };
         return $this->sendResponse($userReservations->toArray(), 'Кабинет забронирован');
     }
 
