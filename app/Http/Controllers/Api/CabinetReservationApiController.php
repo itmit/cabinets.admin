@@ -119,13 +119,14 @@ class CabinetReservationApiController extends ApiBaseController
     public function getUsersReservations()
     {
         $userReservations = CabinetReservation::where('client_id', '=', auth('api')->user()->id)->get();
-        $userReservations = $userReservations->groupBy('date');
+
         $result = [];
         foreach ($userReservations as $key => $value) {
-            foreach ($value as $item) {
-                $result[] = [$key, $item->cabinet_id];
-            }
-        };
+            $result[] = [
+                'uuid' => $value->uuid,
+                'date' => $value->date,
+            ];
+        }
         return $this->sendResponse($result, 'Кабинет забронирован');
     }
 
