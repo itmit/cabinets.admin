@@ -131,7 +131,7 @@ class CabinetReservationApiController extends ApiBaseController
         return $this->sendResponse($result, 'Список бронирований');
     }
 
-    public function getUsersReservationDetail()
+    public function getUsersReservationDetail(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
             'uuid' => 'required|uuid'
