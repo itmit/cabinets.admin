@@ -142,14 +142,10 @@ class CabinetReservationApiController extends ApiBaseController
         }
 
         $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->first();
-        $resDetail[] = [
-            'cabinet' => Cabinets::where('id', '=', $reservation->cabinet_id)->first()
-        ];
+        $resDetail['cabinet'] = Cabinets::where('id', '=', $reservation->cabinet_id)->first();
         $times = CabinetReservationTime::where('reservation_id', '=', $reservation->id)->get();
         foreach ($times as $key => $value) {
-            $resDetail[] = [
-                'times' => $value->time
-            ];
+            $resDetail['times'][] = $value->time;
         }
         return $this->sendResponse($resDetail, 'Информация о бронировании');
     }
