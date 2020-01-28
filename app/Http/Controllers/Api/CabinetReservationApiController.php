@@ -141,7 +141,7 @@ class CabinetReservationApiController extends ApiBaseController
             return response()->json(['errors'=>$validator->errors()], 500);            
         }
 
-        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->get();
+        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->first();
         $resDetail = [
             'cabinet' => Cabinets::where('id', '=', $reservation->cabinet_id)->first()
         ];
