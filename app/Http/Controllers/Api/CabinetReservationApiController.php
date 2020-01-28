@@ -108,7 +108,7 @@ class CabinetReservationApiController extends ApiBaseController
         $result = [];
         foreach ($userReservations as $key => $value) {
             foreach ($value as $item) {
-                $result[$key] = $item->cabinet_id;
+                $result[] = [$key, $item->cabinet_id];
             }
         };
         return $this->sendResponse($result, 'Кабинет забронирован');
