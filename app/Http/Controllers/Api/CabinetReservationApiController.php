@@ -49,9 +49,6 @@ class CabinetReservationApiController extends ApiBaseController
         }
 
         $result = [];
-        // foreach ($reservation as $item) {
-        //     $resTime[] = $item['time'];
-        // }
 
         $times = self::workingTime();
 
@@ -86,7 +83,9 @@ class CabinetReservationApiController extends ApiBaseController
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
         ->where('date', '=', $request->date)->get();
 
+        $exist = false;
         foreach ($reservations as $key => $value) {
+            if($value->cabinet_id == $cabinet->id AND $value->client_id == auth('api')->user()->id AND $value->date == $request->date) $exist = true;
             foreach ($request->times as $key2 => $time)
             {
                 if(CabinetReservationTime::where('reservation_id', '=', $value->id)
@@ -95,14 +94,11 @@ class CabinetReservationApiController extends ApiBaseController
             }
         }
 
-        return $this->sendResponse($reservations->toArray(), 'Кабинет забронирован');
+        if($exist) return response()->json(['error'=>'klass'], 200);
+        else return response()->json(['error'=>'xyeta'], 500);
 
         foreach ($request->times as $key => $value)
         {
-            if(CabinetReservation::where('cabinet_id', '=', $cabinet->id)
-                ->where('date', '=', $request->date)
-                ->where('time', '=', $value)
-                ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 500);
             try {
                 DB::transaction(function () use ($request, $value, $cabinet) {
 
