@@ -83,7 +83,7 @@ class CabinetReservationApiController extends ApiBaseController
         //     CabinetReservationTime::where('reservation_id', '=', $key)
         // }
 
-        return $this->sendResponse($reservations, 'Кабинет забронирован');
+        return $this->sendResponse($reservations->toArray(), 'Кабинет забронирован');
 
         foreach ($request->times as $key => $value)
         {
