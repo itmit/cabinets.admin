@@ -102,9 +102,9 @@ class CabinetReservationApiController extends ApiBaseController
 
     public function getUsersReservations()
     {
-        // return 'a';
-        // $userReservations = CabinetReservation::groupBy('date')->having('client_id', '=', auth('api')->user()->id);
-        return $this->sendResponse(CabinetReservation::where('client_id', '=', auth('api')->user()->id)->groupBy('date')->get()->toArray(), 'Кабинет забронирован');
+        $userReservations = CabinetReservation::where('client_id', '=', auth('api')->user()->id)->get();
+        $userReservations = $userReservations->groupBy('date');
+        return $this->sendResponse($userReservations->toArray(), 'Кабинет забронирован');
     }
 
     private function workingTime()
