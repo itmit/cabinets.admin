@@ -128,7 +128,30 @@ class CabinetReservationApiController extends ApiBaseController
                 'cabinet' => Cabinets::where('id', '=', $value->cabinet_id)->first('name')
             ];
         }
-        return $this->sendResponse($result, 'Кабинет забронирован');
+        return $this->sendResponse($result, 'Список бронирований');
+    }
+
+    public function getUsersReservationDetail()
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uuid' => 'required|uuid'
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->get();
+        $resDetail = [
+            'cabinet' => Cabinets::where('id', '=', $value->cabinet_id)->first()
+        ];
+        $times = CabinetReservationTime::where('reservation_id', '=', $reservation->id)->get();
+        foreach ($times as $key => $value) {
+            $resDetail = [
+                'times' => $value->time
+            ];
+        }
+        return $this->sendResponse($resDetail, 'Информация о бронировании');
     }
 
     private function workingTime()

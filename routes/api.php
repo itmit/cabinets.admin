@@ -43,3 +43,4 @@ Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCab
 Route::post('cabinets/makeReservation', 'Api\CabinetReservationApiController@makeReservation');
 
 Route::get('user/myReservations', 'Api\CabinetReservationApiController@getUsersReservations');
+Route::post('user/myReservations/detail', 'Api\CabinetReservationApiController@getUsersReservationDetail');
