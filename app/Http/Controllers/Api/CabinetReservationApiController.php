@@ -94,7 +94,7 @@ class CabinetReservationApiController extends ApiBaseController
             }
         }
 
-        if($exist) return response()->json(['error'=>'klass'], 200);
+        if($exist == true) return response()->json(['error'=>'klass'], 200);
         else return response()->json(['error'=>'xyeta'], 500);
 
         foreach ($request->times as $key => $value)
