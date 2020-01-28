@@ -15,4 +15,5 @@ class CabinetReservationTime extends Model
      * @var string
      */
     protected $table = 'cabinet_reservation_times';
+
 }

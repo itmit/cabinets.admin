@@ -76,6 +76,11 @@ class CabinetReservationApiController extends ApiBaseController
             return response()->json(['error'=>'Нет такого кабинета'], 500);     
         }
 
+        $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
+        ->where('date', '=', $request->date)->get();
+
+        return $this->sendResponse($reservations->getTimes()->toArray(), 'Кабинет забронирован');
+
         foreach ($request->times as $key => $value)
         {
             if(CabinetReservation::where('cabinet_id', '=', $cabinet->id)
@@ -85,7 +90,7 @@ class CabinetReservationApiController extends ApiBaseController
             try {
                 DB::transaction(function () use ($request, $value, $cabinet) {
 
-                    CabinetReservation::create([
+                    CabinetReservationTime::create([
                         'uuid' => Str::uuid(),
                         'cabinet_id' => $cabinet->id,
                         'client_id' => auth('api')->user()->id,

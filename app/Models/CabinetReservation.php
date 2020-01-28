@@ -21,4 +21,9 @@ class CabinetReservation extends Model
     {
         return $this->hasOne(Cabinet::class, 'cabinet_id')->first();
     }
+
+    public function getTimes()
+    {
+        return $this->hasMany(CabinetReservationTime::class, 'reservation_id')->get();
+    }
 }
