@@ -38,7 +38,7 @@ class CabinetReservationApiController extends ApiBaseController
             return response()->json(['error'=>'Нет такого кабинета'], 500);     
         }
 
-        $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get()->toArray();
+        $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get();
 
         $resTime = [];
         foreach ($reservations as $key => $value) {
