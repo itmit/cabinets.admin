@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCabinetReservationsTable extends Migration
+class CreateCabinetReservationTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateCabinetReservationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cabinet_reservations', function (Blueprint $table) {
+        Schema::create('cabinet_reservation_times', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
-            $table->bigInteger('cabinet_id')->unsigned();
-            $table->bigInteger('client_id')->unsigned();
-            $table->date('date');
+            $table->bigInteger('reservation_id')->unsigned();
+            $table->string('time');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('cabinet_id')->references('id')->on('cabinets');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('reservation_id')->references('id')->on('cabinet_reservations');
         });
     }
 
@@ -34,6 +32,6 @@ class CreateCabinetReservationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cabinet_reservations');
+        Schema::dropIfExists('cabinet_reservation_times');
     }
 }
