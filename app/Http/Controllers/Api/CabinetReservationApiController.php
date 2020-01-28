@@ -79,9 +79,14 @@ class CabinetReservationApiController extends ApiBaseController
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
         ->where('date', '=', $request->date)->get();
 
-        // foreach ($reservations as $key => $value) {
-        //     CabinetReservationTime::where('reservation_id', '=', $key)
-        // }
+        foreach ($reservations as $key => $value) {
+            foreach ($request->times as $key2 => $time)
+            {
+                if(CabinetReservationTime::where('reservation_id', '=', $value->id)
+                ->where('time', '=', $time)
+                ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 500);
+            }
+        }
 
         return $this->sendResponse($reservations->toArray(), 'Кабинет забронирован');
 
