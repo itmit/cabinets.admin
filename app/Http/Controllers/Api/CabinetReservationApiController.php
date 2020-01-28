@@ -107,7 +107,9 @@ class CabinetReservationApiController extends ApiBaseController
         $userReservations = $userReservations->groupBy('date');
         $result = [];
         foreach ($userReservations as $key => $value) {
-            $result[$key] = $value;
+            foreach ($value as $item) {
+                $result[$key] = $item->cabinet_id;
+            }
         };
         return $this->sendResponse($result, 'Кабинет забронирован');
     }
