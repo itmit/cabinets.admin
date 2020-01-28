@@ -125,7 +125,7 @@ class CabinetReservationApiController extends ApiBaseController
             $result[] = [
                 'uuid' => $value->uuid,
                 'date' => $value->date,
-                'cabinet' => Cabinet::where('id', '=', $value->cabinet_id)->first('name')
+                'cabinet' => Cabinets::where('id', '=', $value->cabinet_id)->first('name')
             ];
         }
         return $this->sendResponse($result, 'Кабинет забронирован');
