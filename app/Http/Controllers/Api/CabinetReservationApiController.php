@@ -122,7 +122,7 @@ class CabinetReservationApiController extends ApiBaseController
         else
         {
             try {
-                DB::transaction(function () use ($request, $value, $cabinet, $authClientId) {
+                DB::transaction(function () use ($request, $cabinet, $authClientId) {
                     $resId = CabinetReservation::create([
                         'uuid' => Str::uuid(),
                         'cabinet_id' => $cabinet->id,
