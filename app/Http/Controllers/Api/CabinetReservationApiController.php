@@ -82,7 +82,6 @@ class CabinetReservationApiController extends ApiBaseController
 
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
         ->where('date', '=', $request->date)->get();
-
         $authClientId = auth('api')->user()->id;
         $exist = false;
         $resId = 0;
@@ -99,24 +98,21 @@ class CabinetReservationApiController extends ApiBaseController
                 ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 500);
             }
         }
-
         if($exist)
         {
-            foreach ($request->times as $key => $value)
-            {
-                try {
-                    DB::transaction(function () use ($request, $resId) {
-    
+            try {
+                DB::transaction(function () use ($request, $resId) {
+                    foreach ($request->times as $key => $value)
+                    {
                         CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId,
                             'time' => $value
                         ]);
-            
-                    });
-                } catch (\Throwable $th) {
-                    return $th;
-                }
+                    }
+                });
+            } catch (\Throwable $th) {
+                return $th;
             }
         }
         else
@@ -137,14 +133,11 @@ class CabinetReservationApiController extends ApiBaseController
                             'time' => $value
                         ]);
                     }
-
                 });
             } catch (\Throwable $th) {
                 return $th;
             }
-            
         }
-
         return $this->sendResponse([], 'Кабинет забронирован');
     }
 
