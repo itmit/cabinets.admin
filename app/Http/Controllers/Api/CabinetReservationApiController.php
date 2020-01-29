@@ -83,9 +83,15 @@ class CabinetReservationApiController extends ApiBaseController
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
         ->where('date', '=', $request->date)->get();
 
+        $authClientId = auth('api')->user()->id;
         $exist = false;
+        $resId = 0;
         foreach ($reservations as $key => $value) {
-            if($value->cabinet_id == $cabinet->id AND $value->client_id == auth('api')->user()->id AND $value->date == $request->date) $exist = true;
+            if($value->cabinet_id == $cabinet->id AND $value->client_id == $authClientId AND $value->date == $request->date)
+            {
+                $exist = true;
+                $resId = $value->id;
+            };
             foreach ($request->times as $key2 => $time)
             {
                 if(CabinetReservationTime::where('reservation_id', '=', $value->id)
@@ -94,26 +100,49 @@ class CabinetReservationApiController extends ApiBaseController
             }
         }
 
-        if($exist == true) return response()->json(['error'=>'klass'], 200);
-        else return response()->json(['error'=>'xyeta'], 500);
-
-        foreach ($request->times as $key => $value)
+        if($exist)
+        {
+            foreach ($request->times as $key => $value)
+            {
+                try {
+                    DB::transaction(function () use ($request, $resId) {
+    
+                        CabinetReservationTime::create([
+                            'uuid' => Str::uuid(),
+                            'reservation_id' => $resId,
+                            'time' => auth('api')->user()->id
+                        ]);
+            
+                    });
+                } catch (\Throwable $th) {
+                    return $th;
+                }
+            }
+        }
+        else
         {
             try {
-                DB::transaction(function () use ($request, $value, $cabinet) {
-
-                    CabinetReservationTime::create([
+                DB::transaction(function () use ($request, $value, $cabinet, $authClientId) {
+                    $resId = CabinetReservation::create([
                         'uuid' => Str::uuid(),
                         'cabinet_id' => $cabinet->id,
-                        'client_id' => auth('api')->user()->id,
-                        'date' => $request->date,
-                        'time' => $value,
+                        'client_id' => $authClientId,
+                        'date' => $request->date
                     ]);
-        
+                    foreach ($request->times as $key => $value)
+                    {
+                        CabinetReservationTime::create([
+                            'uuid' => Str::uuid(),
+                            'reservation_id' => $cabinet->id,
+                            'time' => auth('api')->user()->id
+                        ]);
+                    }
+
                 });
             } catch (\Throwable $th) {
                 return $th;
             }
+            
         }
 
         return $this->sendResponse([], 'Кабинет забронирован');
