@@ -133,7 +133,7 @@ class CabinetReservationApiController extends ApiBaseController
                     {
                         CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
-                            'reservation_id' => $resId,
+                            'reservation_id' => $resId->id,
                             'time' => $value
                         ]);
                     }
