@@ -25,10 +25,12 @@ class NewsApiController extends ApiBaseController
 
         $list = [];
         foreach ($news as $item) {
-            $list['uuid'] = $item->uuid;
-            $list['head'] = $item->head;
-            $list['body'] = $item->body;
-            $list['preview_picture'] = $item->preview_picture;
+            $list[] = [
+                'uuid' => $item->uuid,
+                'head' => $item->head,
+                'body' => $item->body,
+                'preview_picture' => $item->preview_picture
+            ];
         }
 
         return $this->sendResponse($list, 'Список новостей');
