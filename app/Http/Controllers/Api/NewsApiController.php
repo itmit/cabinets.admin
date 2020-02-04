@@ -53,7 +53,7 @@ class NewsApiController extends ApiBaseController
         }
         $news['photos'] = PictureToNews::where('news_id', '=', $news['id'])->get('picture');
 
-        return $this->sendResponse($cabinet, 'Кабинет');
+        return $this->sendResponse($news, 'Кабинет');
     }
 
 }
