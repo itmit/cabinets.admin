@@ -18,6 +18,7 @@ class CreateCabinetReservationTimesTable extends Migration
             $table->uuid('uuid');
             $table->bigInteger('reservation_id')->unsigned();
             $table->string('time');
+            $table->integer('price')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 

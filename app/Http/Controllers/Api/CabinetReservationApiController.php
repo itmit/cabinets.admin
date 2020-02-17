@@ -55,7 +55,10 @@ class CabinetReservationApiController extends ApiBaseController
         $freeTimes = array_diff($times, $resTime);
 
         foreach ($freeTimes as $key => $value) {
-            $result[] = $value;
+            $result[] = [
+                "key" => $key,
+                "value" => $value
+            ];
         }
 
         return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
@@ -119,18 +122,22 @@ class CabinetReservationApiController extends ApiBaseController
         {
             try {
                 DB::transaction(function () use ($request, $cabinet, $authClientId) {
+                    $amount = 0;
                     $resId = CabinetReservation::create([
                         'uuid' => Str::uuid(),
                         'cabinet_id' => $cabinet->id,
                         'client_id' => $authClientId,
-                        'date' => $request->date
+                        'date' => $request->date,
+                        'total_amount' => $amount
                     ]);
                     foreach ($request->times as $key => $value)
                     {
+                        // if()
                         CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId->id,
-                            'time' => $value
+                            'time' => $value,
+                            // 'price' =>
                         ]);
                     }
                 });
@@ -177,7 +184,7 @@ class CabinetReservationApiController extends ApiBaseController
 
     private function workingTime()
     {
-        $time[0] = '7.00-7.30';
+        $time[0] = '7.00-7.30'; // первая стоимость
         $time[1] = '7.30-8.00';
         $time[2] = '8.00-8.30';
         $time[3] = '8.30-9.00';
@@ -196,7 +203,7 @@ class CabinetReservationApiController extends ApiBaseController
         $time[15] = '15.00-15.30';
         $time[16] = '15.30-16.00';
         $time[17] = '16.00-16.30';
-        $time[18] = '16.30-17.00';
+        $time[18] = '16.30-17.00'; // вторая стоимость
         $time[19] = '17.00-17.30';
         $time[20] = '17.30-18.00';
         $time[21] = '18.00-18.30';

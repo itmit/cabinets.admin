@@ -108,7 +108,8 @@ class AuthApiController extends ApiBaseController
     public function login(Request $request) { 
 
         $validator = Validator::make($request->all(), [ 
-            'phone' => 'required|max:18|min:18',
+            // 'phone' => 'required|max:18|min:18',
+            'phone' => 'required',
             'password' => 'required|min:6',
         ]);
         
