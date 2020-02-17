@@ -120,7 +120,7 @@ class CabinetReservationApiController extends ApiBaseController
         }
         else
         {
-            // try {
+            try {
                 DB::transaction(function () use ($request, $cabinet, $authClientId) {
                     $amount = 0;
                     $resId = CabinetReservation::create([
@@ -128,7 +128,7 @@ class CabinetReservationApiController extends ApiBaseController
                         'cabinet_id' => $cabinet->id,
                         'client_id' => $authClientId,
                         'date' => $request->date,
-                        'total_amount' => $amount
+                        'total_amount' => 0
                     ]);
                     foreach ($request->times as $key => $value)
                     {
@@ -155,9 +155,9 @@ class CabinetReservationApiController extends ApiBaseController
                         ]);
                     }
                 });
-            // } catch (\Throwable $th) {
-            //     return $th;
-            // }
+            } catch (\Throwable $th) {
+                return $th;
+            }
         }
         return $this->sendResponse([], 'Кабинет забронирован');
     }
