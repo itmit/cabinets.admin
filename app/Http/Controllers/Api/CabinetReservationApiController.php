@@ -120,8 +120,8 @@ class CabinetReservationApiController extends ApiBaseController
         }
         else
         {
-            // try {
-            //     DB::transaction(function () use ($request, $cabinet, $authClientId) {
+            try {
+                DB::transaction(function () use ($request, $cabinet, $authClientId) {
                     $amount = 0;
                     $resId = CabinetReservation::create([
                         'uuid' => Str::uuid(),
@@ -150,19 +150,19 @@ class CabinetReservationApiController extends ApiBaseController
 
                         CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
-                            'reservation_id' => $resId->id,
+                            'reservation_id' => $resId,
                             'time' => $value,
                             'price' => intdiv($price, 2)
                         ]);
 
-                        CabinetReservation::where('id', $resId->id)->update([
+                        CabinetReservation::where('id', $resId)->update([
                             'total_amount' => $amount
                         ]);
                     }
-            //     });
-            // } catch (\Throwable $th) {
-            //     return $th;
-            // }
+                });
+            } catch (\Throwable $th) {
+                return $th;
+            }
         }
         return $this->sendResponse([], 'Кабинет забронирован');
     }
