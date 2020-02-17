@@ -132,12 +132,26 @@ class CabinetReservationApiController extends ApiBaseController
                     ]);
                     foreach ($request->times as $key => $value)
                     {
-                        // if()
+                        if($key <= 18)
+                        {
+                            $price = $cabinet->price_morning;
+                        }
+                        if($key > 18)
+                        {
+                            $price = $cabinet->price_evening;
+                        }
+
+                        $amount = $amount + intdiv($price, 2);
+
                         CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId->id,
                             'time' => $value,
-                            // 'price' =>
+                            'price' => intdiv($price, 2)
+                        ]);
+
+                        $resId = CabinetReservation::where('id', $resId->id)->update([
+                            'total_amount' => $amount
                         ]);
                     }
                 });
