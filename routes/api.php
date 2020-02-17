@@ -42,7 +42,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
 Route::post('cabinets/makeReservation', 'Api\CabinetReservationApiController@makeReservation');
 Route::post('cabinets/cancelReservation', 'Api\CabinetReservationApiController@cancelReservation');
-Route::post('cabinets/getAmount', 'Api\CabinetReservationApiController@getAmount');
+
 
 Route::get('user/myReservations', 'Api\CabinetReservationApiController@getUsersReservations');
 Route::post('user/myReservations/detail', 'Api\CabinetReservationApiController@getUsersReservationDetail');
+Route::get('user/getAmount', 'Api\CabinetReservationApiController@getAmount');

@@ -105,6 +105,22 @@
                     </div>
                 </div>
 
+                <div class="row form-group{{ $errors->has('color') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="color" class="control-label text-tc">Цвет</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="color" type="color" class="form-control" name="color" value="{{ old('color') }}" required>
+            
+                        @if ($errors->has('color'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('color') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group{{ $errors->has('photos') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">
                     <label for="photos" class=" control-label text-tc">Фотографии</label>

@@ -22,6 +22,7 @@ class CreateCabinetsTable extends Migration
             $table->text('description');
             $table->integer('price_morning')->unsigned();
             $table->integer('price_evening')->unsigned();
+            $table->string('color')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

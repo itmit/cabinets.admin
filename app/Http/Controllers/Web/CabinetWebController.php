@@ -55,6 +55,7 @@ class CabinetWebController extends Controller
             'description' => 'required',
             'price_morning' => 'required|numeric',
             'price_evening' => 'required|numeric',
+            'color' => 'required',
             'photos' => 'required',
         ]);
 
@@ -76,6 +77,7 @@ class CabinetWebController extends Controller
                     'description' => $request->description,
                     'price_morning' => $request->price_morning,
                     'price_evening' => $request->price_evening,
+                    'color' => $request->color,
                 ]);
 
                 foreach($request->file('photos') as $file)
