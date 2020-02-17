@@ -217,8 +217,14 @@ class CabinetReservationApiController extends ApiBaseController
             return response()->json(['error'=>'нет такого бронирования'], 500);        
         }
 
-        CabinetReservationTime::where('reservation_id', $reservation->id)->delete();
-        CabinetReservation::where('uuid', '=', $request->uuid)->delete();
+        try {
+            DB::transaction(function () use ($reservation, $request) {
+                CabinetReservationTime::where('reservation_id', $reservation->id)->delete();
+                CabinetReservation::where('uuid', '=', $request->uuid)->delete();
+            });
+        } catch (\Throwable $th) {
+            return $th;
+        }
 
         return $this->sendResponse([], 'Бронирование удалено');
     }
