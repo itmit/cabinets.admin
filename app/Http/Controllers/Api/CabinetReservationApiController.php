@@ -198,6 +198,7 @@ class CabinetReservationApiController extends ApiBaseController
         foreach ($times as $key => $value) {
             $resDetail['times'][] = $value->time;
         }
+        $resDetail['amout'] = $reservation->total_amount;
         return $this->sendResponse($resDetail, 'Информация о бронировании');
     }
 
@@ -227,6 +228,18 @@ class CabinetReservationApiController extends ApiBaseController
         }
 
         return $this->sendResponse([], 'Бронирование удалено');
+    }
+
+    public function getAmount()
+    {
+        $authClientId = auth('api')->user()->id;
+        $amount = 0;
+        $reservations = CabinetReservation::where('client_id', $authClientId)->where('is_paid', 0)->get();
+        foreach ($reservations as $item) {
+           $amount = $amount + $item->total_amount;
+        }
+
+        return $this->sendResponse([$amount], 'Бронирование удалено');
     }
 
     private function workingTime()
