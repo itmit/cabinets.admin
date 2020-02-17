@@ -127,7 +127,7 @@ class CabinetReservationApiController extends ApiBaseController
                 'date' => $request->date,
                 // 'total_amount' => 0
             ]);
-            return $resId;
+            return $resId->id;
             try {
                 DB::transaction(function () use ($request, $cabinet, $authClientId) {
                     $amount = 0;
