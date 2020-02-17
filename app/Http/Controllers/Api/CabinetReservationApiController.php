@@ -131,6 +131,8 @@ class CabinetReservationApiController extends ApiBaseController
                         // 'total_amount' => 0
                     ]);
 
+                    $resId = $resId->id;
+
                     foreach ($request->times as $key => $value)
                     {
                         if($key <= 18)
@@ -153,7 +155,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        $resId = CabinetReservation::where('id', $resId->id)->update([
+                        CabinetReservation::where('id', $resId->id)->update([
                             'total_amount' => $amount
                         ]);
                     }
