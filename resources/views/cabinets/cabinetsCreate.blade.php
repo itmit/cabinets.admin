@@ -73,17 +73,33 @@
                     </div>
                 </div>
 
-                <div class="row form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+                <div class="row form-group{{ $errors->has('price_morning') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">
-                    <label for="price" class="control-label text-tc">Цена</label>
+                    <label for="price_morning" class="control-label text-tc">Цена с 7.00 до 17.00</label>
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}" required>
+                        <input id="price_morning" type="text" class="form-control" name="price_morning" value="{{ old('price_morning') }}" required>
             
-                        @if ($errors->has('price'))
+                        @if ($errors->has('price_morning'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('price') }}</strong>
+                                <strong>{{ $errors->first('price_morning') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="row form-group{{ $errors->has('price_evening') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="price_evening" class="control-label text-tc">Цена с 17.00 до 23.00</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="price_evening" type="text" class="form-control" name="price_evening" value="{{ old('price_evening') }}" required>
+            
+                        @if ($errors->has('price_evening'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('price_evening') }}</strong>
                             </span>
                         @endif
                     </div>
