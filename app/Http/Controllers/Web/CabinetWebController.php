@@ -53,7 +53,8 @@ class CabinetWebController extends Controller
             'area' => 'required|numeric',
             'capacity' => 'required|numeric',
             'description' => 'required',
-            'price' => 'required|numeric',
+            'price_morning' => 'required|numeric',
+            'price_evening' => 'required|numeric',
             'photos' => 'required',
         ]);
 
@@ -73,7 +74,8 @@ class CabinetWebController extends Controller
                     'area' => $request->area,
                     'capacity' => $request->capacity,
                     'description' => $request->description,
-                    'price' => $request->price,
+                    'price_morning' => $request->price_morning,
+                    'price_evening' => $request->price_evening,
                 ]);
 
                 foreach($request->file('photos') as $file)
