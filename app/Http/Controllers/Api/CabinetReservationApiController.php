@@ -130,9 +130,10 @@ class CabinetReservationApiController extends ApiBaseController
                         'date' => $request->date,
                         // 'total_amount' => 0
                     ]);
-                    return $resId->id;
+
                     foreach ($request->times as $key => $value)
                     {
+                        return $resId->id . ' ' . $key . '=>' . $value;
                         if($key <= 18)
                         {
                             $price = $cabinet->price_morning;
