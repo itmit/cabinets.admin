@@ -133,7 +133,6 @@ class CabinetReservationApiController extends ApiBaseController
 
                     foreach ($request->times as $key => $value)
                     {
-                        return $resId->id . ' ' . $key . '=>' . $value;
                         if($key <= 18)
                         {
                             $price = $cabinet->price_morning;
@@ -144,6 +143,8 @@ class CabinetReservationApiController extends ApiBaseController
                         }
 
                         $amount = $amount + intdiv($price, 2);
+
+                        return $resId->id . ' ' . $key . '=>' . $value . ' amount ' . $amount;
 
                         CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
