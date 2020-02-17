@@ -128,7 +128,7 @@ class CabinetReservationApiController extends ApiBaseController
                         'cabinet_id' => $cabinet->id,
                         'client_id' => $authClientId,
                         'date' => $request->date,
-                        'total_amount' => 0
+                        // 'total_amount' => 0
                     ]);
                     foreach ($request->times as $key => $value)
                     {
