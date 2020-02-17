@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CabinetReservationTime extends Model
 {
+    use SoftDeletes;
+    
     /**
      * @var array
      */

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CabinetReservation extends Model
 {
+    use SoftDeletes;
+    
     /**
      * @var array
      */
