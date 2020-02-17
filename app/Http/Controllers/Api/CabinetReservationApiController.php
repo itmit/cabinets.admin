@@ -201,6 +201,28 @@ class CabinetReservationApiController extends ApiBaseController
         return $this->sendResponse($resDetail, 'Информация о бронировании');
     }
 
+    public function cancelReservation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uuid' => 'required|uuid'
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->first();
+        if($reservation == NULL)
+        {
+            return response()->json(['error'=>'нет такого бронирования'], 500);        
+        }
+
+        CabinetReservation::where('uuid', '=', $request->uuid)->delete();
+        CabinetReservationTime::where('reservation_id', $reservation->id)->delete();
+
+        return $this->sendResponse([], 'Бронирование удалено');
+    }
+
     private function workingTime()
     {
         $time[0] = '7.00-7.30'; // первая стоимость
