@@ -271,7 +271,7 @@ class CabinetReservationApiController extends ApiBaseController
         $authClientId = auth('api')->user()->id;
         $amount = 0;
         try {
-            DB::transaction(function () use ($request, $reservation, $cabint) {
+            DB::transaction(function () use ($request, $reservation, $cabinet) {
                 CabinetReservationTime::where('reservation_id', $reservation->id)->delete();
                 $amount = 0;
                 foreach ($request->times as $key => $value)
