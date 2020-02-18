@@ -295,6 +295,7 @@ class CabinetReservationApiController extends ApiBaseController
                     ]);
 
                     CabinetReservation::where('id', $resId)->update([
+                        'date' => $request->date,
                         'total_amount' => $amount
                     ]);
                 }
