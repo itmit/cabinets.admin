@@ -289,12 +289,12 @@ class CabinetReservationApiController extends ApiBaseController
 
                     CabinetReservationTime::create([
                         'uuid' => Str::uuid(),
-                        'reservation_id' => $resId,
+                        'reservation_id' => $reservation->id,
                         'time' => $value,
                         'price' => intdiv($price, 2)
                     ]);
 
-                    CabinetReservation::where('id', $resId)->update([
+                    CabinetReservation::where('id', $reservation->id)->update([
                         'date' => $request->date,
                         'total_amount' => $amount
                     ]);
