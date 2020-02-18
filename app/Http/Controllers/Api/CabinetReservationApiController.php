@@ -327,10 +327,16 @@ class CabinetReservationApiController extends ApiBaseController
 
         foreach ($reservations as $reservation) {
             $cabinet = $reservation->getCabinet();
-            $result['cabinte'] = [
-                'cabinet_uuid' => $cabinet->uuid,
-                'cabinet_name' => $cabinet->name
+            $result[] = [
+                'cabinet' => [
+                    'cabinet_uuid' => $cabinet->uuid,
+                    'cabinet_name' => $cabinet->name
+                ]   
             ];
+            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
+            foreach ($times as $time) {
+                $result[]['times'] = $time->time;
+            }
         }
 
         return $this->sendResponse($result, 'Забронированные кабинеты');
