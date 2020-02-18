@@ -250,8 +250,8 @@ class CabinetReservationApiController extends ApiBaseController
     public function updateReservation(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
-            'uuid_cabinet' => 'required|uuid|exists:cabinets',
-            'uuid_reservation' => 'required|uuid|exists:cabinet_reservations',
+            'uuid_cabinet' => 'required|uuid|exists:cabinets,uuid',
+            'uuid_reservation' => 'required|uuid|exists:cabinet_reservations,uuid',
             'date' => 'required|date',
             'times' => 'required|array'
         ]);
@@ -304,7 +304,7 @@ class CabinetReservationApiController extends ApiBaseController
             return $th;
         }
 
-        return $this->sendResponse([$amount], 'Бронирование удалено');
+        return $this->sendResponse([], 'Бронирование обновлено');
     }
 
     public function getAmount()
