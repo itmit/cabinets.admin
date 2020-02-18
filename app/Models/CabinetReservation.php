@@ -21,7 +21,7 @@ class CabinetReservation extends Model
 
     public function getCabinet()
     {
-        return $this->hasOne(Cabinet::class, 'cabinet_id')->first();
+        return $this->hasOne(Cabinets::class, 'cabinet_id')->first();
     }
 
     public function getTimes()
