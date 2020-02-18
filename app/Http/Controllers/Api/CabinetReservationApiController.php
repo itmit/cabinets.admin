@@ -106,7 +106,7 @@ class CabinetReservationApiController extends ApiBaseController
         if($exist)
         {
             try {
-                DB::transaction(function () use ($request, $resId, $resAmount) {
+                DB::transaction(function () use ($request, $resId, $resAmount, $cabinet) {
                     foreach ($request->times as $key => $value)
                     {
                         if($key <= 18)
