@@ -249,11 +249,58 @@ class CabinetReservationApiController extends ApiBaseController
 
     public function updateReservation()
     {
+        $validator = Validator::make($request->all(), [ 
+            'uuid_cabinet' => 'required|uuid|exists:cabinets',
+            'uuid_reservation' => 'required|uuid|exists:cabinet_reservations',
+            'date' => 'required|date',
+            'times' => 'required|array'
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $cabinet = Cabinets::where('uuid_cabinet', '=', $request->uuid)->first();
+
+        $reservation = CabinetReservation::where('uuid', '=', $request->uuid_reservation)->first();
+        if($reservation == NULL)
+        {
+            return response()->json(['error'=>'нет такого бронирования'], 500);        
+        }
+
         $authClientId = auth('api')->user()->id;
         $amount = 0;
-        $reservations = CabinetReservation::where('client_id', $authClientId)->where('is_paid', 0)->get();
-        foreach ($reservations as $item) {
-           $amount = $amount + $item->total_amount;
+        try {
+            DB::transaction(function () use ($request, $reservation, $cabint) {
+                CabinetReservationTime::where('reservation_id', $reservation->id)->delete();
+                $amount = 0;
+                foreach ($request->times as $key => $value)
+                {
+                    if($key <= 18)
+                    {
+                        $price = $cabinet->price_morning;
+                    }
+                    if($key > 18)
+                    {
+                        $price = $cabinet->price_evening;
+                    }
+
+                    $amount = $amount + intdiv($price, 2);
+
+                    CabinetReservationTime::create([
+                        'uuid' => Str::uuid(),
+                        'reservation_id' => $resId,
+                        'time' => $value,
+                        'price' => intdiv($price, 2)
+                    ]);
+
+                    CabinetReservation::where('id', $resId)->update([
+                        'total_amount' => $amount
+                    ]);
+                }
+            });
+        } catch (\Throwable $th) {
+            return $th;
         }
 
         return $this->sendResponse([$amount], 'Бронирование удалено');
@@ -268,7 +315,7 @@ class CabinetReservationApiController extends ApiBaseController
            $amount = $amount + $item->total_amount;
         }
 
-        return $this->sendResponse([$amount], 'Бронирование удалено');
+        return $this->sendResponse([$amount], 'Сумма к оплате');
     }
 
     private function workingTime()
