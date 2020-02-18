@@ -247,7 +247,7 @@ class CabinetReservationApiController extends ApiBaseController
         return $this->sendResponse([], 'Бронирование удалено');
     }
 
-    public function updateReservation()
+    public function updateReservation(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
             'uuid_cabinet' => 'required|uuid|exists:cabinets',
