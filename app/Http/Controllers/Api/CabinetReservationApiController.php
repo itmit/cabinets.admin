@@ -88,11 +88,13 @@ class CabinetReservationApiController extends ApiBaseController
         $authClientId = auth('api')->user()->id;
         $exist = false;
         $resId = 0;
+        $resAmount = 0;
         foreach ($reservations as $key => $value) {
             if($value->cabinet_id == $cabinet->id AND $value->client_id == $authClientId AND $value->date == $request->date)
             {
                 $exist = true;
                 $resId = $value->id;
+                $resAmount = $value->total_amount;
             };
             foreach ($request->times as $key2 => $time)
             {
@@ -104,15 +106,30 @@ class CabinetReservationApiController extends ApiBaseController
         if($exist)
         {
             try {
-                DB::transaction(function () use ($request, $resId) {
+                DB::transaction(function () use ($request, $resId, $resAmount) {
                     foreach ($request->times as $key => $value)
                     {
-                        CabinetReservationTime::create([
+                        if($key <= 18)
+                        {
+                            $price = $cabinet->price_morning;
+                        }
+                        if($key > 18)
+                        {
+                            $price = $cabinet->price_evening;
+                        }
+
+                        $resAmount = $resAmount + intdiv($price, 2);
+
+                        $resId = CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId,
-                            'time' => $value
+                            'time' => $value,
+                            'price' => intdiv($price, 2)
                         ]);
                     }
+                    CabinetReservation::where('id', $resId->id)->update([
+                        'total_amount' => $resAmount
+                    ]);
                 });
             } catch (\Throwable $th) {
                 return $th;
@@ -228,6 +245,18 @@ class CabinetReservationApiController extends ApiBaseController
         }
 
         return $this->sendResponse([], 'Бронирование удалено');
+    }
+
+    public function updateReservation()
+    {
+        $authClientId = auth('api')->user()->id;
+        $amount = 0;
+        $reservations = CabinetReservation::where('client_id', $authClientId)->where('is_paid', 0)->get();
+        foreach ($reservations as $item) {
+           $amount = $amount + $item->total_amount;
+        }
+
+        return $this->sendResponse([$amount], 'Бронирование удалено');
     }
 
     public function getAmount()
