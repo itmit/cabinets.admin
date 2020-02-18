@@ -339,12 +339,8 @@ class CabinetReservationApiController extends ApiBaseController
             foreach ($times as $time) {
                 $resultTimes[] = $time->time;
             }
-            $result[] = [
-                'cabient' => $cab
-            ];
-            $result[] = [
-                'times' => $resultTimes
-            ];
+            $result[]['cabient'] = $cab;
+            $result[]['times'] = $resultTimes;
         }
 
         return $this->sendResponse($result, 'Забронированные кабинеты');
