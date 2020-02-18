@@ -307,6 +307,35 @@ class CabinetReservationApiController extends ApiBaseController
         return $this->sendResponse([], 'Бронирование обновлено');
     }
 
+    public function getBusyCabinetsByDate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'date' => 'required|date',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $reservations = CabinetReservation::where('date', '=', $request->date)->get();
+        if($reservations == NULL)
+        {
+            return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
+        }
+
+        $result = [];
+
+        foreach ($reservations as $reservation) {
+            $cabinet = $reservation->getCabinet();
+            $result['cabinte'] = [
+                'cabinet_uuid' => $cabinet->uuid,
+                'cabinet_name' => $cabinet->name
+            ];
+        }
+
+        return $this->sendResponse($result, 'Забронированные кабинеты');
+    }
+
     public function getAmount()
     {
         $authClientId = auth('api')->user()->id;
