@@ -329,7 +329,7 @@ class CabinetReservationApiController extends ApiBaseController
             $resTimes = [];
             $cab = [];
             $cabinet = $reservation->getCabinet();
-            $cab[] = [
+            $cab = [
                     'cabinet' => [
                         'cabinet_uuid' => $cabinet->uuid,
                         'cabinet_name' => $cabinet->name
