@@ -328,7 +328,7 @@ class CabinetReservationApiController extends ApiBaseController
         foreach ($reservations as $reservation) {
             $cabinet = $reservation->getCabinet();
             $result[] = [
-                    'cabinet' = [
+                    'cabinet' => [
                         'cabinet_uuid' => $cabinet->uuid,
                         'cabinet_name' => $cabinet->name
                 ]
