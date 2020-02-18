@@ -335,11 +335,11 @@ class CabinetReservationApiController extends ApiBaseController
             ];
             $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
             foreach ($times as $time) {
-                $resultTimes[] = $time->time;
+                $resTimes[] = $time->time;
             }
             $result[] = [
                 'cabinet' => $cab,
-                'times' => $resultTimes
+                'times' => $resTimes
             ];
         }
 
@@ -355,7 +355,7 @@ class CabinetReservationApiController extends ApiBaseController
            $amount = $amount + $item->total_amount;
         }
 
-        return $this->sendResponse([$amount], 'Сумма к оплате');
+        return $this->sendResponse(['amount' => $amount], 'Сумма к оплате');
     }
 
     private function workingTime()
