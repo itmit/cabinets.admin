@@ -24,13 +24,15 @@ class CabinetApiController extends ApiBaseController
         $cabinets = Cabinets::all()->sortByDesc('created_at');
         $list = [];
         foreach ($cabinets as $item) {
-            $list['uuid'] = $item->uuid;
-            $list['name'] = $item->name;
-            $list['capacity'] = $item->capacity;
-            $list['area'] = $item->area;
-            $list['description'] = $item->description;
-            $list['price'] = $item->description;
-            $list['photo'] = $item->cabinetPreviewPhoto()->photo;
+            $list[] = [
+                'uuid' => $item->uuid,
+                'name' => $item->name,
+                'capacity' => $item->capacity,
+                'area' => $item->area,
+                'description' => $item->description,
+                'price' => $item->price,
+                'photo' => $item->cabinetPreviewPhoto()->photo
+            ];
         }
 
         return $this->sendResponse($list, 'Список кабинетов');
