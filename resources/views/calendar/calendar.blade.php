@@ -68,18 +68,11 @@
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
-                    // let result = '';
-                    // for(var i = 0; i < response.length; i++) {
-                    //     result += '<tr>';
-                    //     result += '<td><a href="bidForSale/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
-                    //     result += '<td>' + response[i]['floor'] + '</td>';
-                    //     result += '<td>' + response[i]['row'] + '</td>';
-                    //     result += '<td>' + response[i]['place'] + '</td>';
-                    //     result += '<td>' + response[i]['name'] + '</td>';
-                    //     result += '<td>' + response[i]['phone'] + '</td>';
-                    //     result += '</tr>';
-                    // }
-                    // $('tbody').html(result);
+                    let result = '';
+                    for(var i = 0; i < response.length; i++) {
+                        result += 'Кабинет <b>' + response[i]['cabinet']['name'] + '</b> забронирован ' + response[i]['client']['name'];
+                    }
+                    $('.col-sm-12 main').html(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);

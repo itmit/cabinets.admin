@@ -54,6 +54,7 @@ class CalendarController extends Controller
             $resTimes = [];
             $cab = [];
             $cabinet = $reservation->getCabinet();
+            $client = $reservation->getClient();
             $cab = [
                 'uuid' => $cabinet->uuid,
                 'name' => $cabinet->name   
@@ -64,7 +65,8 @@ class CalendarController extends Controller
             }
             $result[] = [
                 'cabinet' => $cab,
-                'times' => $resTimes
+                'times' => $resTimes,
+                'client' => $client
             ];
         }
 

@@ -24,6 +24,11 @@ class CabinetReservation extends Model
         return $this->belongsTo(Cabinets::class, 'cabinet_id')->first();
     }
 
+    public function getClient()
+    {
+        return $this->belongsTo(Client::class, 'client_id')->first();
+    }
+
     public function getTimes()
     {
         return $this->hasMany(CabinetReservationTime::class, 'reservation_id')->get();
