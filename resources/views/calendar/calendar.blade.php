@@ -68,13 +68,13 @@
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
-                    // let result = '';
-                    // for(var i = 0; i < response.length; i++) {
-                    //     result += '<p>';
-                    //     result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b> забронирован <a href="/clients/'+response[i]['client']['id']+'">' + response[i]['client']['name'] + '</a>';
-                    //     result += '</p>';
-                    // }
-                    // $('.list').html(result);
+                    let result = '';
+                    for(var i = 0; i < response.length; i++) {
+                        result += '<p>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>;
+                        result += '</p>';
+                    }
+                    $('.list').html(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
