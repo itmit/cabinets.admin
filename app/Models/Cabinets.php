@@ -22,8 +22,8 @@ class Cabinets extends Model
         return $this->hasOne(PhotosToCabinet::class, 'cabinet_id')->first();
     }
 
-    public function getReservations()
+    public function getReservations($date)
     {
-        return $this->hasMane(CabinetReservation::class, 'cabinet_id')->get();
+        return $this->hasMane(CabinetReservation::class, 'cabinet_id')->where('date', $date)->get();
     }
 }

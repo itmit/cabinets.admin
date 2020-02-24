@@ -39,9 +39,25 @@ class CalendarController extends Controller
 
         $cabinets = Cabinets::get();
 
-        return response()->json($cabinets);
-
         $result = [];
+
+        foreach ($cabinets as $cabinet) {
+            $reservations = $cabinet->getReservations($request->date);
+            $res = [];
+            foreach ($reservations as $reservation) {
+                $client = $reservation->getClient();
+                $res[] = [
+                    'client' => $reservation->getClient(),
+                    'times' => CabinetReservationTime::where('reservation_id', $reservation->id)->get()
+                ];
+            };
+            $result[] = [
+                'cabinet' => $cabinet,
+                'reservations' => $res
+            ];
+        }
+
+        return response()->json($result);
 
         // $times = self::workingTime();
 
