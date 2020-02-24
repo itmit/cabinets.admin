@@ -47,6 +47,7 @@
                 $('input[name="onedaypick"]').val('');
                 $('input[name="firstdaypick"]').val('');
                 $('input[name="lastdaypick"]').val('');
+                $('.list').html('Для начала выберите дату!');
             };
             if(type == 'fewdays')
             {
@@ -55,6 +56,7 @@
                 $('input[name="onedaypick"]').val('');
                 $('input[name="firstdaypick"]').val('');
                 $('input[name="lastdaypick"]').val('');
+                $('.list').html('Для начала выберите дату!');
             };
         });
 
