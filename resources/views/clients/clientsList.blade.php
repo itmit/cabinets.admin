@@ -23,7 +23,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->phone }}</td>
-                        <td></td>
+                        <td>{{ $item->getReservationCount() }}</td>
                         <td></td>
                     </tr>
                 @endforeach
