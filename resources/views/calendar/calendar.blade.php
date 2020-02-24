@@ -17,11 +17,10 @@
                     </div>
                     <div class="fewdays" style="display: none">
                         <div class="col-sm-6">
-                            <input type="date" name="firstdaypick" class="form-control" style="width: 50%">
+                            <input type="date" name="firstdaypick" class="form-control">
                         </div>
-                        -
                         <div class="col-sm-6">
-                            <input type="date" name="lastdaypick" class="form-control" style="width: 50%">
+                            <input type="date" name="lastdaypick" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -38,44 +37,24 @@
     $(document).ready(function()
     {
         $('#myTab li').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-        let type = $(this).data('type');
-        if(type == 'oneday')
-        {
-            $('.oneday').show();
-            $('.fewdays').hide();
-        }
-        if(type == 'fewdays')
-        {
-            $('.oneday').hide();
-            $('.fewdays').show();
-        }
-        // $.ajax({
-        //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        //     dataType: "json",
-        //     data: {type: type, pathname: pathname},
-        //     url     : 'questions/selectByType',
-        //     method    : 'post',
-        //     success: function (response) {
-        //         let result = '';
-        //             for(var i = 0; i < response.length; i++) {
-        //                 result += '<tr>';
-        //                 result += '<td><a href="'+response[i]['path']+'/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
-        //                 result += '<td>' + response[i]['floor'] + '</td>';
-        //                 result += '<td>' + response[i]['row'] + '</td>';
-        //                 result += '<td>' + response[i]['place'] + '</td>';
-        //                 result += '<td>' + response[i]['name'] + '</td>';
-        //                 result += '<td>' + response[i]['phone'] + '</td>';
-        //                 result += '</tr>';
-        //             }
-        //             $('tbody').html(result);
-        //     },
-        //     error: function (xhr, err) { 
-        //         console.log(err + " " + xhr);
-        //     }
-        // });
-    })
+            e.preventDefault();
+            $(this).tab('show');
+            let type = $(this).data('type');
+            if(type == 'oneday')
+            {
+                $('.oneday').show();
+                $('.fewdays').hide();
+            };
+            if(type == 'fewdays')
+            {
+                $('.oneday').hide();
+                $('.fewdays').show();
+            };
+        });
+
+        $('input[name="onedaypick"]').change(function () {
+            console.log($(this).val());
+        });
 
     });
 </script>
