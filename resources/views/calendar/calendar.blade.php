@@ -17,8 +17,8 @@
                     </div>
                     <div class="fewdays" style="display: none">
                         <div class="row">
-                            <input type="date" name="firstdaypick" class="form-control">
-                            <input type="date" name="lastdaypick" class="form-control">
+                            <input type="date" name="firstdaypick" class="form-control" style="width: 50%">
+                            <input type="date" name="lastdaypick" class="form-control" style="width: 50%">
                         </div>
                     </div>
                     <div class="col-sm-12">
