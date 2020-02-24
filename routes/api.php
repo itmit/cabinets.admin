@@ -19,32 +19,20 @@ Route::post('logout', 'Api\AuthApiController@logout');
 
 Route::group(['middleware' => 'auth:api'], function(){
 
-    Route::get('events/getEventsByDate/{date}', 'Api\EventApiController@getEventsByDate');
-    Route::post('events/registerOnEvent', 'Api\EventApiController@registerOnEvent');
-
-    Route::get('news/index/{limit}/{offset}', 'Api\NewsApiController@index');
-
-    Route::get('cases/index/{limit}/{offset}', 'Api\CaseApiController@index');
-
-    Route::get('messenger/index', 'Api\MessengerApiController@index');
-    Route::post('messenger/send', 'Api\MessengerApiController@send');
-
-    Route::get('document/index', 'Api\DocumentApiController@index');
-
     Route::get('cabinets/index', 'Api\CabinetApiController@getListOfCabinets');
     Route::post('cabinets/show', 'Api\CabinetApiController@getCabinet');
+    Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
+    Route::post('cabinets/makeReservation', 'Api\CabinetReservationApiController@makeReservation');
+    Route::post('cabinets/cancelReservation', 'Api\CabinetReservationApiController@cancelReservation');
+    Route::post('cabinets/updateReservation', 'Api\CabinetReservationApiController@updateReservation');
+    Route::post('cabinets/getBusyCabinetsByDate', 'Api\CabinetReservationApiController@getBusyCabinetsByDate');
+
+    Route::get('user/myReservations', 'Api\CabinetReservationApiController@getUsersReservations');
+    Route::post('user/myReservations/detail', 'Api\CabinetReservationApiController@getUsersReservationDetail');
+    Route::get('user/getAmount', 'Api\CabinetReservationApiController@getAmount');
 
     Route::get('news/index', 'Api\NewsApiController@getNewsList');
     Route::post('news/show', 'Api\NewsApiController@getNews');
     
 });
 
-Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
-Route::post('cabinets/makeReservation', 'Api\CabinetReservationApiController@makeReservation');
-Route::post('cabinets/cancelReservation', 'Api\CabinetReservationApiController@cancelReservation');
-Route::post('cabinets/updateReservation', 'Api\CabinetReservationApiController@updateReservation');
-Route::post('cabinets/getBusyCabinetsByDate', 'Api\CabinetReservationApiController@getBusyCabinetsByDate');
-
-Route::get('user/myReservations', 'Api\CabinetReservationApiController@getUsersReservations');
-Route::post('user/myReservations/detail', 'Api\CabinetReservationApiController@getUsersReservationDetail');
-Route::get('user/getAmount', 'Api\CabinetReservationApiController@getAmount');

@@ -170,5 +170,22 @@ class AuthApiController extends ApiBaseController
             return $this->sendResponse($error);
         }
     }
+
+    public function updateDeviceToken(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'device_token' => 'required',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 401);            
+        }
+
+        Client::where('id', auth('api')->user()->id)->update([
+            'device_token' => $request->device_token
+        ]);
+
+        return $this->sendResponse([], 'Девайс токен обновлен');
+    }
     
 }
