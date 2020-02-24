@@ -5,8 +5,7 @@
 <div class="col-sm-12 tabs-content">
     <div class="row justify-content-center cont-m">
         <div class="col-md-12">
-            <h2>{{ $title }}</h2>
-            <a href="{{ route('auth.clients.create') }}" class="btn btn-primary">Добавить клиена</a>
+            <h2>{{ $title }}<a href="{{ route('auth.clients.create') }}"><i class="material-icons">add_box</i></a></h2>
             <table class="table policy-table">
                 <thead>
                 <tr>

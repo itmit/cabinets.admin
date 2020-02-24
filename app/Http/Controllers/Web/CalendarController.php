@@ -31,11 +31,15 @@ class CalendarController extends Controller
 
     public function getOneDay(Request $request)
     {
-        $reservations = CabinetReservation::where('date', '=', $request->date)->get();
-        if($reservations == NULL)
-        {
-            return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
-        }
+        // $reservations = CabinetReservation::where('date', '=', $request->date)->get();
+        // if($reservations == NULL)
+        // {
+        //     return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
+        // }
+
+        $cabinets = Cabinet::get();
+
+        return response()->json($cabinets);
 
         $result = [];
 
