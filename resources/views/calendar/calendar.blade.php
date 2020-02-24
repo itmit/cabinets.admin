@@ -23,7 +23,7 @@
                             <input type="date" name="lastdaypick" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 main">
                         <p>
                             Для начала выберите дату!
                         </p>
@@ -44,11 +44,17 @@
             {
                 $('.oneday').show();
                 $('.fewdays').hide();
+                $('input[name="onedaypick"]').val('');
+                $('input[name="firstdaypick"]').val('');
+                $('input[name="lastdaypick"]').val('');
             };
             if(type == 'fewdays')
             {
                 $('.oneday').hide();
                 $('.fewdays').show();
+                $('input[name="onedaypick"]').val('');
+                $('input[name="firstdaypick"]').val('');
+                $('input[name="lastdaypick"]').val('');
             };
         });
 
