@@ -77,6 +77,7 @@
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
+                            result += 'Клиент ' + response[i]['reservations'][y]['client']['name'];
                             result += '</li>';
                         }
                         result += '</ul>';
