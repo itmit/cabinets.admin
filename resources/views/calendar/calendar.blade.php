@@ -12,7 +12,18 @@
                     <li data-type="fewdays"><a href="#">Промежуток</a></li>
                 </ul>
                 <div class="col-sm-12">
-                    <input type="date" name="" class="form-control">
+                    <div class="oneday" style="display: block">
+                        <input type="date" name="onedaypick" class="form-control">
+                    </div>
+                    <div class="fewdays" style="display: none">
+                        <input type="date" name="firstdaypick" class="form-control">
+                        <input type="date" name="lastdaypick" class="form-control">
+                    </div>
+                    <div class="col-sm-12">
+                        <p>
+                            Для начала выберите дату!
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,6 +36,16 @@
         e.preventDefault()
         $(this).tab('show')
         let type = $(this).data('type');
+        if(type == 'oneday')
+        {
+            $('.oneday').show();
+            $('.fewdays').hide();
+        }
+        if(type == 'fewdays')
+        {
+            $('.oneday').hide();
+            $('.fewdays').show();
+        }
         // $.ajax({
         //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         //     dataType: "json",
