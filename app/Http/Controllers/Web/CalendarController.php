@@ -37,7 +37,7 @@ class CalendarController extends Controller
         //     return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
         // }
 
-        $cabinets = Cabinet::get();
+        $cabinets = Cabinets::get();
 
         return response()->json($cabinets);
 
