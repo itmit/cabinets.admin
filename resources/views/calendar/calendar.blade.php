@@ -71,7 +71,7 @@
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>;
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>';
                         result += '</p>';
                     }
                     $('.list').html(result);
