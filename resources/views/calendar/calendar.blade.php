@@ -19,6 +19,7 @@
                         <div class="col-sm-6">
                             <input type="date" name="firstdaypick" class="form-control" style="width: 50%">
                         </div>
+                        -
                         <div class="col-sm-6">
                             <input type="date" name="lastdaypick" class="form-control" style="width: 50%">
                         </div>
