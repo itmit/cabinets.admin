@@ -2,8 +2,19 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Cabinets;
+use App\Models\CabinetReservation;
+use App\Models\CabinetReservationTime;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CalendarController extends Controller
 {
@@ -15,6 +26,42 @@ class CalendarController extends Controller
     public function index()
     {
         return view('calendar.calendar', ['title' => 'Каледарь']);
+    }
+
+    public function getOneDay(Request $request)
+    {
+        $reservations = CabinetReservation::where('date', '=', $request->date)->get();
+        if($reservations == NULL)
+        {
+            return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
+        }
+
+        $result = [];
+
+        foreach ($reservations as $reservation) {
+            $resTimes = [];
+            $cab = [];
+            $cabinet = $reservation->getCabinet();
+            $cab = [
+                'uuid' => $cabinet->uuid,
+                'name' => $cabinet->name   
+            ];
+            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
+            foreach ($times as $time) {
+                $resTimes[] = $time->time;
+            }
+            $result[] = [
+                'cabinet' => $cab,
+                'times' => $resTimes
+            ];
+        }
+
+        return response()->json($result);
+    }
+
+    public function getFewDay()
+    {
+        
     }
 
     /**

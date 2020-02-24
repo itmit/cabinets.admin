@@ -22,6 +22,9 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::resource('cabinets', 'Web\CabinetWebController');
 
     Route::resource('calendar', 'Web\CalendarController');
+
+    Route::post('calendar/getOneDay', 'Api\CalendarController@getOneDay');
+    Route::post('calendar/getFewDay', 'Api\CalendarController@getFewDay');
     
 });
 
