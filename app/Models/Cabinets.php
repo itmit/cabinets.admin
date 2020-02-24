@@ -24,6 +24,6 @@ class Cabinets extends Model
 
     public function getReservations($date)
     {
-        return $this->hasMane(CabinetReservation::class, 'cabinet_id')->where('date', $date)->get();
+        return $this->hasMany(CabinetReservation::class, 'cabinet_id')->where('date', $date)->get();
     }
 }
