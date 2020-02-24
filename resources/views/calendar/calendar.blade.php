@@ -24,9 +24,9 @@
                         </div>
                     </div>
                     <div class="col-sm-12 main">
-                        <p>
+                        <div class="list">
                             Для начала выберите дату!
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,8 +71,7 @@
                     for(var i = 0; i < response.length; i++) {
                         result += 'Кабинет <b>' + response[i]['cabinet']['name'] + '</b> забронирован ' + response[i]['client']['name'];
                     }
-                    $('.col-sm-12 main').html(result);
-                    console.log(result);
+                    $('.list').html(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
