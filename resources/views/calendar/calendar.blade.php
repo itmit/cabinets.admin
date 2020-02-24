@@ -74,6 +74,12 @@
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
                         result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += '<ul>';
+                        for(var y = 0; y < response[i]['reservations'].length; y++) {
+                            result += '<li>';
+                            result += '</li>';
+                        }
+                        result += '</ul>';
                         result += '</p>';
                     }
                     $('.list').html(result);
