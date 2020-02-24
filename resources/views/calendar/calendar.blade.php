@@ -81,7 +81,7 @@
                             result += '<ul>';
                             for(var i0 = 0; i0 < response[i]['reservations'][y]['times'].length; i0++) {
                                 result += '<li>';
-                                result += response[i]['reservations'][y]['times']['time'];
+                                result += response[i]['reservations'][y]['times'][i0]['time'];
                                 result += '</li>';
                             }
                             result += '</ul>';
