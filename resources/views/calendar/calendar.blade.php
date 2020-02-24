@@ -69,7 +69,9 @@
                 success: function (response) {
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
-                        result += 'Кабинет <b>' + response[i]['cabinet']['name'] + '</b> забронирован ' + response[i]['client']['name'];
+                        result += '<p>';
+                        result += 'Кабинет <b>' + response[i]['cabinet']['name'] + '</b> забронирован <a href="/clients/'+response[i]['client']['id']+'">' + response[i]['client']['name'] + '</a>';
+                        result += '</p>';
                     }
                     $('.list').html(result);
                 },
