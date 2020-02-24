@@ -77,7 +77,14 @@
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
-                            result += 'Клиент ' + response[i]['reservations'][y]['client']['name'];
+                            result += 'Клиент <a href="/clients/'+response[i]['reservations'][y]['client']['id']+'">' + response[i]['reservations'][y]['client']['name'];
+                            result += '<ul>';
+                            for(var i0 = 0; i0 < response[i]['reservations'][y]['times'].length; i0++) {
+                                result += '<li>';
+                                result += response[i]['reservations'][y]['times']['time'];
+                                result += '</li>';
+                            }
+                            result += '</ul>';
                             result += '</li>';
                         }
                         result += '</ul>';
