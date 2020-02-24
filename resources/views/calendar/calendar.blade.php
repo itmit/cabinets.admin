@@ -67,12 +67,12 @@
                 url     : 'calendar/getOneDay',
                 method    : 'post',
                 success: function (response) {
-                    console.log(response);
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += 'Кабинет <b>' + response[i]['cabinet']['name'] + '</b> забронирован ' + response[i]['client']['name'];
                     }
                     $('.col-sm-12 main').html(result);
+                    console.log(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
