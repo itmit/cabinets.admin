@@ -26,7 +26,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::post('calendar/getOneDay', 'Web\CalendarController@getOneDay');
     Route::post('calendar/getFewDay', 'Web\CalendarController@getFewDay');
 
-    Route::post('paid', 'Web\ClientWebController@paid');
+    Route::post('clients/paid', 'Web\ClientWebController@paid');
     
 });
 
