@@ -104,14 +104,15 @@ class ClientWebController extends Controller
     public function show($id)
     {
         $amount = 0;
-        $reservations = CabinetReservation::where('client_id', $id)->where('is_paid', 0)->get();
+        $reservations = CabinetReservation::where('client_id', $id)->get();
         foreach ($reservations as $item) {
-           $amount = $amount + $item->total_amount;
+            if($item->is_paid == 0) $amount = $amount + $item->total_amount;
         }
         return view('clients.clientDetail', [
             'title' => 'Клиент',
             'client' => Client::where('id', $id)->first(),
-            'amount' => $amount
+            'amount' => $amount,
+            'reservations' => $reservations
         ]);
     }
 }

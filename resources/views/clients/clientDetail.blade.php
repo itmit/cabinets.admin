@@ -35,6 +35,27 @@
                 <div class="col-md-6">Общая сумма к оплате</div>
                 <div class="col-md-6"><p>{{ $amount }}</p></div>
             </div>
+
+            @foreach ($reservations as $item)
+            <?
+            $cabinet = $item->getCabinet();
+            ?>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-9">
+                      <p>Бронирование кабинета {{ $cabinet->name }}<i class="material-icons" style="color: {{ $cabinet->color }}">home</i></p>
+                      <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                          Level 2: .col-xs-8 .col-sm-6
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                          Level 2: .col-xs-4 .col-sm-6
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            @endforeach
             
         </div>
     </div>
