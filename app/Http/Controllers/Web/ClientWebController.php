@@ -93,4 +93,18 @@ class ClientWebController extends Controller
         News::where('id', '=', $request->id)->delete();
         return response()->json(['succses'=>'Удалено'], 200); 
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('clients.clientDetail', [
+            'title' => 'Клиент',
+            'client' => Clients::where('id', $id)->first()
+        ]);
+    }
 }

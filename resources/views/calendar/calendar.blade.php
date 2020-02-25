@@ -73,7 +73,7 @@
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b><i class="material-icons" style="color: '+response[i]['cabinet']['color']+'">home</i>';
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
@@ -112,7 +112,7 @@
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b><i class="material-icons" style="color: '+response[i]['cabinet']['color']+'">home</i>';
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
@@ -151,7 +151,7 @@
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b><i class="material-icons" style="color: '+response[i]['cabinet']['color']+'">home</i>';
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
