@@ -30,9 +30,12 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('user/myReservations', 'Api\CabinetReservationApiController@getUsersReservations');
     Route::post('user/myReservations/detail', 'Api\CabinetReservationApiController@getUsersReservationDetail');
     Route::get('user/getAmount', 'Api\CabinetReservationApiController@getAmount');
+    Route::post('user/updateDeviceToken', 'Api\UserController@updateDeviceToken');
 
     Route::get('news/index', 'Api\NewsApiController@getNewsList');
     Route::post('news/show', 'Api\NewsApiController@getNews');
+
+    Route::post('test', 'Api\UserController@test');
     
 });
 
