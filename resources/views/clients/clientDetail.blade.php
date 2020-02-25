@@ -100,7 +100,7 @@
                 dataType: "json",
                 data: {reservation: reservation},
                 url     : 'paid',
-                method    : 'post',
+                method    : 'patch',
                 success: function (response) {
                     console.log(response);
                     // location.reload();
