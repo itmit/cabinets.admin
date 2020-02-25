@@ -79,7 +79,7 @@
                                 @endif
                             </p>
                             @if ($item->is_paid == 0)
-                                <input type="button" value="Оплатить" data-r="{{ $item->uuid }}">
+                                <input type="button" class="paid" value="Оплатить" data-r="{{ $item->uuid }}">
                             @endif
                         </div>
                       </div>
@@ -93,7 +93,7 @@
 <script>
     $(document).ready(function()
     {
-        $( "button" ).click(function() {
+        $(".paid").click(function() {
             reservation = $(this).data('r');
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
