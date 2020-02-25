@@ -11,11 +11,53 @@
             
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2">
-                <label for="name" class="control-label text-tc">Телефон</label>
+                <label class="control-label text-tc">Телефон</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
                     <p>{{ $client->phone }}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-2">
+                <label class="control-label text-tc">Эл. почта</label>
+                </div>
+        
+                <div class="col-xs-12 col-sm-10">
+                    <p>{{ $client->email }}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-2">
+                <label class="control-label text-tc">Дата рождения</label>
+                </div>
+        
+                <div class="col-xs-12 col-sm-10">
+                    <p>{{ $client->birthday }}</p>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-2">
+                <label class="control-label text-tc">Количество бронирований</label>
+                </div>
+        
+                <div class="col-xs-12 col-sm-10">
+                    <p>{{ $client->getReservationCount() }}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-2">
+                <label class="control-label text-tc">Общая сумма к оплате</label>
+                </div>
+        
+                <div class="col-xs-12 col-sm-10">
+                    <p>{{ $amount }}</p>
                 </div>
             </div>
             
