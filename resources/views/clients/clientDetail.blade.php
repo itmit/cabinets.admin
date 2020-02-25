@@ -59,10 +59,10 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="col-xs-4 col-sm-8">
+                        <div class="col-xs-4 col-sm-4">
                             <p>Стоимость: </p>
                         </div>
-                        <div class="col-xs-4 col-sm-8">
+                        <div class="col-xs-8 col-sm-8">
                             <p>
                                 {{ $item->total_amount }} рублей
                             </p>    
