@@ -39,18 +39,33 @@
             @foreach ($reservations as $item)
             <?
             $cabinet = $item->getCabinet();
+            $times = $item->getTimes();
             ?>
                 <hr>
 
                 <div class="row">
                     <div class="col-sm-9">
-                      <p>Бронирование кабинета {{ $cabinet->name }}<i class="material-icons" style="color: {{ $cabinet->color }}">home</i></p>
+                      <p>Бронирование кабинета {{ $cabinet->name }}<i class="material-icons" style="color: {{ $cabinet->color }}">home</i> ({{ $item->date }})</p>
                       <div class="row">
                         <div class="col-xs-8 col-sm-6">
-                          Level 2: .col-xs-8 .col-sm-6
+                            <p>Время: </p>
                         </div>
                         <div class="col-xs-4 col-sm-6">
-                          Level 2: .col-xs-4 .col-sm-6
+                            <ul>
+                                @foreach ($times as $time)
+                                <li>
+                                    {{ $time->time }} ({{ $time->price }} рублей)
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-xs-8 col-sm-6">
+                            <p>Стоимость: </p>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <p>
+                                {{ $item->total_amount }} рублей
+                            </p>    
                         </div>
                       </div>
                     </div>
