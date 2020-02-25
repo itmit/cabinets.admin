@@ -155,7 +155,7 @@
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
-                            result += 'Клиент <a href="/clients/'+response[i]['reservations'][y]['client']['id']+'">' + response[i]['reservations'][y]['client']['name'] + '</a>';
+                            result += 'Клиент <a href="/clients/'+response[i]['reservations'][y]['client']['id']+'">' + response[i]['reservations'][y]['client']['name'] + '</a> ('+response[i]['reservations'][y]['date']+')';
                             result += '<ul>';
                             for(var i0 = 0; i0 < response[i]['reservations'][y]['times'].length; i0++) {
                                 result += '<li>';
