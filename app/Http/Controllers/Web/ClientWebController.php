@@ -128,6 +128,6 @@ class ClientWebController extends Controller
 
         $reservation = CabinetReservation::where('uuid', $request->reservation)->update(['is_paid'=>1]);
 
-        return $this->sendResponse([], 'Оплачено');
+        return response()->json();
     }
 }
