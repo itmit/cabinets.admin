@@ -33,7 +33,7 @@
 
             <div class="row">
                 <div class="col-md-4">Общая сумма к оплате</div>
-                <div class="col-md-8"><p>{{ $amount }}</p></div>
+                <div class="col-md-8"><p>{{ $amount }} рублей</p></div>
             </div>
 
             @foreach ($reservations as $item)
