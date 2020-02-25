@@ -67,6 +67,21 @@
                                 {{ $item->total_amount }} рублей
                             </p>    
                         </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <p>Статус: </p>
+                        </div>
+                        <div class="col-xs-8 col-sm-8">
+                            <p>
+                                @if ($item->is_paid == 1)
+                                    Оплачено
+                                @else
+                                    Не оплачено
+                                @endif
+                            </p>
+                            @if ($item->is_paid == 0)
+                                <input type="button" value="Оплатить">
+                            @endif
+                        </div>
                       </div>
                     </div>
                   </div>
