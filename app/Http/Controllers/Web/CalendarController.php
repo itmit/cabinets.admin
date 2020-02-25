@@ -26,17 +26,11 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        return view('calendar.calendar', ['title' => 'Каледарь']);
+        return view('calendar.calendar', ['title' => 'Календарь']);
     }
 
     public function getOneDay(Request $request)
     {
-        // $reservations = CabinetReservation::where('date', '=', $request->date)->get();
-        // if($reservations == NULL)
-        // {
-        //     return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
-        // }
-
         $cabinets = Cabinets::get();
 
         $result = [];
@@ -58,77 +52,27 @@ class CalendarController extends Controller
         }
 
         return response()->json($result);
-
-        // $times = self::workingTime();
-
-        // $freeTimes = array_diff($times, $resTime);
-
-        // foreach ($freeTimes as $key => $value) {
-        //     $result[] = [
-        //         "key" => $key,
-        //         "value" => $value
-        //     ];
-        // }
-
-        foreach ($reservations as $reservation) {
-            $resTimes = [];
-            $cab = [];
-            $cabinet = $reservation->getCabinet();
-            $client = $reservation->getClient();
-            $cab = [
-                'uuid' => $cabinet->uuid,
-                'name' => $cabinet->name   
-            ];
-            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
-            foreach ($times as $time) {
-                $resTimes[] = $time->time;
-            }
-            $result[] = [
-                'cabinet' => $cab,
-                'times' => $resTimes,
-                'client' => $client
-            ];
-        }
-
-        return response()->json($result);
     }
 
     public function getFewDay(Request $request)
     {
-        $reservations = CabinetReservation::whereBetween('date', [$request->first_date, $request->second_date])->get();
-        if($reservations == NULL)
-        {
-            return $this->sendResponse([], 'На выбранный день нет забронированных кабинетов');
-        }
+        $cabinets = Cabinets::get();
 
         $result = [];
 
-        // $times = self::workingTime();
-
-        // $freeTimes = array_diff($times, $resTime);
-
-        // foreach ($freeTimes as $key => $value) {
-        //     $result[] = [
-        //         "key" => $key,
-        //         "value" => $value
-        //     ];
-        // }
-
-        foreach ($reservations as $reservation) {
-            $resTimes = [];
-            $cab = [];
-            $cabinet = $reservation->getCabinet();
-            $cab = [
-                'uuid' => $cabinet->uuid,
-                'name' => $cabinet->name   
-            ];
-            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
-            foreach ($times as $time) {
-                $resTimes[] = $time->time;
-            }
+        foreach ($cabinets as $cabinet) {
+            $reservations = $cabinet->getReservations($request->first_date, $request->second_date);
+            $res = [];
+            foreach ($reservations as $reservation) {
+                $client = $reservation->getClient();
+                $res[] = [
+                    'client' => $reservation->getClient(),
+                    'times' => CabinetReservationTime::where('reservation_id', $reservation->id)->get()
+                ];
+            };
             $result[] = [
-                'cabinet' => $cab,
-                'times' => $resTimes
+                'cabinet' => $cabinet,
+                'reservations' => $res
             ];
         }
 

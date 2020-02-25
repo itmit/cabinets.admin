@@ -69,7 +69,7 @@
                 url     : 'calendar/getOneDay',
                 method    : 'post',
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
@@ -108,19 +108,28 @@
                 url     : 'calendar/getFewDay',
                 method    : 'post',
                 success: function (response) {
-                    console.log(response);
-                    // let result = '';
-                    // for(var i = 0; i < response.length; i++) {
-                    //     result += '<tr>';
-                    //     result += '<td><a href="bidForSale/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
-                    //     result += '<td>' + response[i]['floor'] + '</td>';
-                    //     result += '<td>' + response[i]['row'] + '</td>';
-                    //     result += '<td>' + response[i]['place'] + '</td>';
-                    //     result += '<td>' + response[i]['name'] + '</td>';
-                    //     result += '<td>' + response[i]['phone'] + '</td>';
-                    //     result += '</tr>';
-                    // }
-                    // $('tbody').html(result);
+                    // console.log(response);
+                    let result = '';
+                    for(var i = 0; i < response.length; i++) {
+                        result += '<p>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += '<ul>';
+                        for(var y = 0; y < response[i]['reservations'].length; y++) {
+                            result += '<li>';
+                            result += 'Клиент <a href="/clients/'+response[i]['reservations'][y]['client']['id']+'">' + response[i]['reservations'][y]['client']['name'] + '</a>';
+                            result += '<ul>';
+                            for(var i0 = 0; i0 < response[i]['reservations'][y]['times'].length; i0++) {
+                                result += '<li>';
+                                result += response[i]['reservations'][y]['times'][i0]['time'];
+                                result += '</li>';
+                            }
+                            result += '</ul>';
+                            result += '</li>';
+                        }
+                        result += '</ul>';
+                        result += '</p>';
+                    }
+                    $('.list').html(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
