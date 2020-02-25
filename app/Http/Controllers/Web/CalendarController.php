@@ -66,6 +66,7 @@ class CalendarController extends Controller
             foreach ($reservations as $reservation) {
                 $client = $reservation->getClient();
                 $res[] = [
+                    'date' => $reservation->date,
                     'client' => $reservation->getClient(),
                     'times' => CabinetReservationTime::where('reservation_id', $reservation->id)->get()
                 ];

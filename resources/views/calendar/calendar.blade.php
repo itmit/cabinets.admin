@@ -73,7 +73,7 @@
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b>';
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
@@ -112,11 +112,11 @@
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b>';
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
-                            result += 'Клиент <a href="/clients/'+response[i]['reservations'][y]['client']['id']+'">' + response[i]['reservations'][y]['client']['name'] + '</a>';
+                            result += 'Клиент <a href="/clients/'+response[i]['reservations'][y]['client']['id']+'">' + response[i]['reservations'][y]['client']['name'] + '</a> ('+response[i]['reservations'][y]['date']+')';
                             result += '<ul>';
                             for(var i0 = 0; i0 < response[i]['reservations'][y]['times'].length; i0++) {
                                 result += '<li>';
@@ -147,12 +147,11 @@
                 url     : 'calendar/getFewDay',
                 method    : 'post',
                 success: function (response) {
-                    console.log(response);
                     // console.log(response);
                     let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<p>';
-                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'">' + response[i]['cabinet']['name'] + '</a></b>';
+                        result += 'Кабинет <b><a href="/cabinets/'+response[i]['cabinet']['id']+'/edit">' + response[i]['cabinet']['name'] + '</a></b>';
                         result += '<ul>';
                         for(var y = 0; y < response[i]['reservations'].length; y++) {
                             result += '<li>';
