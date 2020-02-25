@@ -10,18 +10,14 @@
                 <thead>
                 <tr>
                     <th scope="col">ФИО</th>
-                    <th scope="col">Эл. почта</th>
-                    <th scope="col">Телефон</th>
                     <th scope="col">Количество бронирований</th>
                     <th scope="col">Статус</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($clients as $item)
-                    <tr>
+                    <tr data-c="{{ $item->id }}" style="cursor: pointer">
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->phone }}</td>
                         <td>{{ $item->getReservationCount() }}</td>
                         <td></td>
                     </tr>
@@ -33,29 +29,8 @@
 </div> 
 
 <script>
-
-// $(document).on('click', '.delete-news', function() {
-//     let isDelete = confirm("Удалить новость? Данное действие невозможно отменить!");
-
-//     if(isDelete)
-//     {
-//         let id = $(this).data('id');
-//         $.ajax({
-//             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-//             dataType: "json",
-//             data    : { id: id },
-//             url     : 'news/delete',
-//             method    : 'delete',
-//             success: function (response) {
-//                 $(this).closest('.row').remove();
-//                 console.log('Удалено!');
-//             },
-//             error: function (xhr, err) { 
-//                 console.log("Error: " + xhr + " " + err);
-//             }
-//         });
-//     }
-// });
-
+$("tr").click(function() {
+    window.location.href = 'clients/'+$(this).data('c');
+});
 </script>
 @endsection
