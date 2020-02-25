@@ -115,4 +115,19 @@ class ClientWebController extends Controller
             'reservations' => $reservations
         ]);
     }
+
+    public function paid(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'reservation' => 'required|uuid|exists:cabinet_reservations,uuid',
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 401);            
+        }
+
+        $reservation = CabinetReservation::where('uuid', $request->reservation)->update(['is_paid'=>1]);
+
+        return $this->sendResponse([], 'Оплачено');
+    }
 }

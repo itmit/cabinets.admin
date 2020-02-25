@@ -79,7 +79,7 @@
                                 @endif
                             </p>
                             @if ($item->is_paid == 0)
-                                <input type="button" value="Оплатить" data-c="{{ $item->uuid }}">
+                                <input type="button" value="Оплатить" data-r="{{ $item->uuid }}">
                             @endif
                         </div>
                       </div>
@@ -90,5 +90,26 @@
         </div>
     </div>
 </div> 
-
+<script>
+    $(document).ready(function()
+    {
+        $('input[name="onedaypick"]').change(function () {
+            reservation = $(this).data('r');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {reservation: reservation},
+                url     : 'reservation/paid',
+                method    : 'post',
+                success: function (response) {
+                    console.log(response);
+                    // location.reload();
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
+        });
+    })
+</script>
 @endsection
