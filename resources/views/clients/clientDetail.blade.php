@@ -11,31 +11,31 @@
             
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2">
-                <label class="control-label text-tc">Телефон</label>
+                <label for="phone" class="control-label text-tc">Телефон</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <p>{{ $client->phone }}</p>
+                    <p id="phone">{{ $client->phone }}</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2">
-                <label class="control-label text-tc">Эл. почта</label>
+                <label for="email" class="control-label text-tc">Эл. почта</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <p>{{ $client->email }}</p>
+                    <p id="email">{{ $client->email }}</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2">
-                <label class="control-label text-tc">Дата рождения</label>
+                <label for="birthday" class="control-label text-tc">Дата рождения</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <p>{{ $client->birthday }}</p>
+                    <p id="birthday">{{ $client->birthday }}</p>
                 </div>
             </div>
 
@@ -43,21 +43,21 @@
 
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2">
-                <label class="control-label text-tc">Количество бронирований</label>
+                <label for="getReservationCount" class="control-label text-tc">Количество бронирований</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <p>{{ $client->getReservationCount() }}</p>
+                    <p id="getReservationCount">{{ $client->getReservationCount() }}</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2">
-                <label class="control-label text-tc">Общая сумма к оплате</label>
+                <label for="amount" class="control-label text-tc">Общая сумма к оплате</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <p>{{ $amount }}</p>
+                    <p id="amount">{{ $amount }} рублей</p>
                 </div>
             </div>
             
