@@ -99,7 +99,7 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
                 data: {reservation: reservation},
-                url     : 'reservation/paid',
+                url     : 'paid',
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
