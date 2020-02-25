@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('news/index', 'Api\NewsApiController@getNewsList');
     Route::post('news/show', 'Api\NewsApiController@getNews');
 
-    Route::post('test', 'Api\UserController@test');
+    
     
 });
-
+Route::get('test', 'Api\UserController@test');
