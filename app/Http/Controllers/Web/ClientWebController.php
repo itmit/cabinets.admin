@@ -104,7 +104,7 @@ class ClientWebController extends Controller
     {
         return view('clients.clientDetail', [
             'title' => 'Клиент',
-            'client' => Clients::where('id', $id)->first()
+            'client' => Client::where('id', $id)->first()
         ]);
     }
 }
