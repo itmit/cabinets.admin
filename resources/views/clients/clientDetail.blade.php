@@ -102,8 +102,8 @@
                 url     : 'paid',
                 method    : 'post',
                 success: function (response) {
-                    console.log(response);
-                    // location.reload();
+                    // console.log(response);
+                    location.reload();
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
