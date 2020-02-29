@@ -212,7 +212,8 @@ class CabinetReservationApiController extends ApiBaseController
         foreach ($times as $key => $value) {
             $resDetail['times'][] = $value->time;
         }
-        $resDetail['amout'] = $reservation->total_amount;
+        $resDetail['amount'] = $reservation->total_amount;
+        $resDetail['is_paid'] = $reservation->is_paid;
         return $this->sendResponse($resDetail, 'Информация о бронировании');
     }
 
