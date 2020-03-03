@@ -65,10 +65,7 @@ class CabinetReservationApiController extends ApiBaseController
 
         $result = [];
         foreach ($times as $key => $value) {
-            $result[] = [
-                "key" => $key,
-                "value" => $value
-            ];
+            $result[] = $value;
         };
 
         // return $this->sendResponse([$expire], 'test');
