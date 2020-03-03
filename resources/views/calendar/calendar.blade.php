@@ -203,8 +203,11 @@
                 scales: {
                     yAxes: [{
                         ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 30
+                            suggestedMin: -30,
+                            suggestedMax: 0,
+                            callback: function(value, index, values) {
+                                return '$' + value;
+                            }
                         }
                     }]
                 }
