@@ -191,11 +191,11 @@
                     borderColor: '#ff8080',
                     data: [[0, 1], [1, 2]]
                 },
-                // {
-                //     label: 'Кабинет №2',
-                //     backgroundColor: '#0000ff',
-                //     borderColor: '#0000ff',
-                //     data: [[20, 10], [-10, -20]]
+                {
+                    label: 'Кабинет №2',
+                    backgroundColor: '#0000ff',
+                    borderColor: '#0000ff',
+                    data: [[2, 3], [4, 5]]
                 }];
             // Configuration options go here
             options: {
