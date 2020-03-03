@@ -196,22 +196,20 @@
                 //     backgroundColor: '#0000ff',
                 //     borderColor: '#0000ff',
                 //     data: [[20, 10], [-10, -20]]
-                // }]
-            },
-
+                }];
             // Configuration options go here
             options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        suggestedMin: 0,
-                        suggestedMax: 30
-                    }
-                }]
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 30
+                        }
+                    }]
+                }
             }
-        }
+            },
         });
-
     });
 </script>
 @endsection
