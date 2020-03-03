@@ -189,13 +189,13 @@
                     label: 'Кабинет №1',
                     backgroundColor: '#ff8080',
                     borderColor: '#ff8080',
-                    data: [20, 30, 45]
+                    data: [20]
                 },
                 {
                     label: 'Кабинет №2',
                     backgroundColor: '#0000ff',
                     borderColor: '#0000ff',
-                    data: [0, 10, 5, 2]
+                    data: [10]
                 }]
             },
 
