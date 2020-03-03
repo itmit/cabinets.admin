@@ -189,13 +189,13 @@
                     label: 'Кабинет №1',
                     backgroundColor: '#ff8080',
                     borderColor: '#ff8080',
-                    data: [[0, 1], [1, 2]]
+                    data: [{x:'26.03.2020', y:0}, {x:'26.03.2020', y:-1}]
                 },
                 {
                     label: 'Кабинет №2',
                     backgroundColor: '#0000ff',
                     borderColor: '#0000ff',
-                    data: [[2, 3], [4, 5]]
+                    data: [{x:'26.03.2020', y:-1}, {x:'26.03.2020', y:-2}]
                 }]
             },
             // Configuration options go here
@@ -206,7 +206,7 @@
                             suggestedMin: -30,
                             suggestedMax: 0,
                             callback: function(value, index, values) {
-                                return '$' + value;
+                                return '7.00';
                             }
                         }
                     }]
