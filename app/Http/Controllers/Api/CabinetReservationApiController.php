@@ -70,6 +70,11 @@ class CabinetReservationApiController extends ApiBaseController
                 $result[] = $value;
             };
         }
+
+        if($request->date < date('Y-m-d'))
+        {
+            $result = [];
+        }
         
 
         // return $this->sendResponse([$expire], 'test');
