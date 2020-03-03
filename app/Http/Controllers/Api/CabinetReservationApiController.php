@@ -61,9 +61,9 @@ class CabinetReservationApiController extends ApiBaseController
             ];
         };
 
-        $expire = date('H:m', strtotime('+ 1 hour'));
+        $expire = date('H:i', strtotime('+ 4 hour'));
 
-        return$this->sendResponse([$expire], 'test');
+        return $this->sendResponse([$expire], 'test');
 
         return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
     }
