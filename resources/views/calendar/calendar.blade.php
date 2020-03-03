@@ -206,7 +206,7 @@
                             suggestedMin: -30,
                             suggestedMax: 0,
                             callback: function(value, index, values) {
-                                return '7.00';
+                                return value + '.00';
                             }
                         }
                     }]
