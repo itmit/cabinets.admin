@@ -189,26 +189,26 @@
                     label: 'Кабинет №1',
                     backgroundColor: '#ff8080',
                     borderColor: '#ff8080',
-                    data: [{x:'7.00', y:32}, {x:'7.30', y:31}, {x:'7.30', y:3}, {x:'8.00', y:29}]
+                    data: [[10, 5], [-5, -10]]
                 },
                 {
                     label: 'Кабинет №2',
                     backgroundColor: '#0000ff',
                     borderColor: '#0000ff',
-                    data: [{x:'10.00', y:20}, {x:'10.30', y:19}, {x:'10.30', y:18}, {x:'11.00', y:17}]
+                    data: [[20, 10], [-10, -20]]
                 }]
             },
 
             // Configuration options go here
             options: {
-                scales: {
-                    xAxes: [{
-                        stacked: true
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
+                // scales: {
+                //     xAxes: [{
+                //         stacked: true
+                //     }],
+                //     yAxes: [{
+                //         stacked: true
+                //     }]
+                // }
             }
         });
 
