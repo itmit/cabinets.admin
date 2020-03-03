@@ -63,9 +63,17 @@ class CabinetReservationApiController extends ApiBaseController
 
         $times = self::unsetExpTime($result);
 
+        $result = [];
+        foreach ($times as $key => $value) {
+            $result[] = [
+                "key" => $key,
+                "value" => $value
+            ];
+        };
+
         // return $this->sendResponse([$expire], 'test');
 
-        return $this->sendResponse($times, 'Свободное время для выбранного кабинета');
+        return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
     }
 
     public function makeReservation(Request $request)
@@ -407,10 +415,7 @@ class CabinetReservationApiController extends ApiBaseController
         
         switch ($expire) {
             case 8:
-                for($i = 0; $i < 4; $i++)
-                {
-                    unset($result[$i]);
-                }
+                for($i = 0; $i < 4; $i++) unset($result[$i]);
                 break;
 
             case 9:
