@@ -61,12 +61,16 @@ class CabinetReservationApiController extends ApiBaseController
             ];
         };
 
-        $times = self::unsetExpTime($result);
+        if($request->date == date('Y-m-d'))
+        {
+            $times = self::unsetExpTime($result);
 
-        $result = [];
-        foreach ($times as $key => $value) {
-            $result[] = $value;
-        };
+            $result = [];
+            foreach ($times as $key => $value) {
+                $result[] = $value;
+            };
+        }
+        
 
         // return $this->sendResponse([$expire], 'test');
 
