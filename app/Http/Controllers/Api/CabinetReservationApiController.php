@@ -432,39 +432,39 @@ class CabinetReservationApiController extends ApiBaseController
                 break;
 
             case 13:
-                for($i = 0; $i < 14; $i++) unset($result[$i]);
+                for($i = 0; $i < 13; $i++) unset($result[$i]);
                 break;
 
             case 14:
-                for($i = 0; $i < 16; $i++) unset($result[$i]);
+                for($i = 0; $i < 15; $i++) unset($result[$i]);
                 break;
 
             case 15:
-                for($i = 0; $i < 18; $i++) unset($result[$i]);
+                for($i = 0; $i < 17; $i++) unset($result[$i]);
                 break;
 
             case 16:
-                for($i = 0; $i < 20; $i++) unset($result[$i]);
+                for($i = 0; $i < 19; $i++) unset($result[$i]);
                 break;
 
             case 17:
-                for($i = 0; $i < 22; $i++) unset($result[$i]);
+                for($i = 0; $i < 21; $i++) unset($result[$i]);
                 break;
 
             case 18:
-                for($i = 0; $i < 24; $i++) unset($result[$i]);
+                for($i = 0; $i < 23; $i++) unset($result[$i]);
                 break;
 
             case 19:
-                for($i = 0; $i < 26; $i++) unset($result[$i]);
+                for($i = 0; $i < 25; $i++) unset($result[$i]);
                 break;
                 
             case 20:
-                for($i = 0; $i < 28; $i++) unset($result[$i]);
+                for($i = 0; $i < 27; $i++) unset($result[$i]);
                 break;
 
             case 21:
-                for($i = 0; $i < 30; $i++) unset($result[$i]);
+                for($i = 0; $i < 29; $i++) unset($result[$i]);
                 break;
 
             case 22:
