@@ -477,5 +477,8 @@ class CabinetReservationApiController extends ApiBaseController
                 # code..
                 break;
         }
+
+        return $result;
+
     }
 }
