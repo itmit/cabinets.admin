@@ -184,13 +184,13 @@
 
             // The data for our dataset
             data: {
-                // labels: ['26.03.2020'],
-                // datasets: [{
-                //     label: 'Кабинет №1',
-                //     backgroundColor: '#ff8080',
-                //     borderColor: '#ff8080',
-                //     data: [[10, 5], [-5, -10]]
-                // },
+                labels: ['26.03.2020'],
+                datasets: [{
+                    label: 'Кабинет №1',
+                    backgroundColor: '#ff8080',
+                    borderColor: '#ff8080',
+                    data: [[0, 1], [1, 2]]
+                },
                 // {
                 //     label: 'Кабинет №2',
                 //     backgroundColor: '#0000ff',
@@ -200,15 +200,15 @@
             },
 
             // Configuration options go here
-            options = {
-                scales: {
-                    yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'probability'
+            options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 30
                     }
-                    }]
-                }
+                }]
+            }
         }
         });
 
