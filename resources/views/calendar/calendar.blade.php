@@ -197,6 +197,7 @@
                     borderColor: '#0000ff',
                     data: [[2, 3], [4, 5]]
                 }]
+            },
             // Configuration options go here
             options: {
                 scales: {
@@ -207,8 +208,7 @@
                         }
                     }]
                 }
-            }
-            },
+            }   
         });
     });
 </script>
