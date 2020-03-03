@@ -61,11 +61,11 @@ class CabinetReservationApiController extends ApiBaseController
             ];
         };
 
-        $expire = idate('H', strtotime('+ 4 hour'));
+        $times = self::unsetExpTime($result);
 
-        return $this->sendResponse([$expire], 'test');
+        // return $this->sendResponse([$expire], 'test');
 
-        return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
+        return $this->sendResponse($times, 'Свободное время для выбранного кабинета');
     }
 
     public function makeReservation(Request $request)
@@ -399,5 +399,83 @@ class CabinetReservationApiController extends ApiBaseController
         $time[30] = '22.30-23.00';
 
         return $time;
+    }
+
+    private function unsetExpTime($result)
+    {
+        $expire = idate('H', strtotime('+ 4 hour'));
+        
+        switch ($expire) {
+            case 8:
+                for($i = 0; $i < 4; $i++)
+                {
+                    unset($result[$i]);
+                }
+                break;
+
+            case 9:
+                for($i = 0; $i < 6; $i++) unset($result[$i]);
+                break;
+
+            case 10:
+                for($i = 0; $i < 8; $i++) unset($result[$i]);
+                break;
+
+            case 11:
+                for($i = 0; $i < 10; $i++) unset($result[$i]);
+                break;
+                
+            case 12:
+                for($i = 0; $i < 12; $i++) unset($result[$i]);
+                break;
+
+            case 13:
+                for($i = 0; $i < 14; $i++) unset($result[$i]);
+                break;
+
+            case 14:
+                for($i = 0; $i < 16; $i++) unset($result[$i]);
+                break;
+
+            case 15:
+                for($i = 0; $i < 18; $i++) unset($result[$i]);
+                break;
+
+            case 16:
+                for($i = 0; $i < 20; $i++) unset($result[$i]);
+                break;
+
+            case 17:
+                for($i = 0; $i < 22; $i++) unset($result[$i]);
+                break;
+
+            case 18:
+                for($i = 0; $i < 24; $i++) unset($result[$i]);
+                break;
+
+            case 19:
+                for($i = 0; $i < 26; $i++) unset($result[$i]);
+                break;
+                
+            case 20:
+                for($i = 0; $i < 28; $i++) unset($result[$i]);
+                break;
+
+            case 21:
+                for($i = 0; $i < 30; $i++) unset($result[$i]);
+                break;
+
+            case 22:
+                for($i = 0; $i < 30; $i++) unset($result[$i]);
+                break;
+
+            case 23:
+                for($i = 0; $i < 30; $i++) unset($result[$i]);
+                break;
+            
+            default:
+                # code..
+                break;
+        }
     }
 }
