@@ -184,31 +184,33 @@
 
             // The data for our dataset
             data: {
-                labels: ['26.03.2020'],
-                datasets: [{
-                    label: 'Кабинет №1',
-                    backgroundColor: '#ff8080',
-                    borderColor: '#ff8080',
-                    data: [[10, 5], [-5, -10]]
-                },
-                {
-                    label: 'Кабинет №2',
-                    backgroundColor: '#0000ff',
-                    borderColor: '#0000ff',
-                    data: [[20, 10], [-10, -20]]
-                }]
+                // labels: ['26.03.2020'],
+                // datasets: [{
+                //     label: 'Кабинет №1',
+                //     backgroundColor: '#ff8080',
+                //     borderColor: '#ff8080',
+                //     data: [[10, 5], [-5, -10]]
+                // },
+                // {
+                //     label: 'Кабинет №2',
+                //     backgroundColor: '#0000ff',
+                //     borderColor: '#0000ff',
+                //     data: [[20, 10], [-10, -20]]
+                // }]
             },
 
             // Configuration options go here
             options: {
-                // scales: {
-                //     xAxes: [{
-                //         stacked: true
-                //     }],
-                //     yAxes: [{
-                //         stacked: true
-                //     }]
-                // }
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            // Include a dollar sign in the ticks
+                            callback: function(value, index, values) {
+                                return '$' + value;
+                            }
+                        }
+                    }]
+                }
             }
         });
 
