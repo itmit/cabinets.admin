@@ -27,7 +27,6 @@
                         {{-- <div class="list">
                             Для начала выберите дату!
                         </div> --}}
-                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -177,42 +176,6 @@
             });
         });
 
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'bar',
-
-            // The data for our dataset
-            data: {
-                labels: ['26.03.2020'],
-                datasets: [{
-                    label: 'Кабинет №1',
-                    backgroundColor: '#ff8080',
-                    borderColor: '#ff8080',
-                    data: [{x:'26.03.2020', y:0}, {x:'26.03.2020', y:-1}]
-                },
-                {
-                    label: 'Кабинет №2',
-                    backgroundColor: '#0000ff',
-                    borderColor: '#0000ff',
-                    data: [{x:'26.03.2020', y:-1}, {x:'26.03.2020', y:-2}]
-                }]
-            },
-            // Configuration options go here
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            suggestedMin: -30,
-                            suggestedMax: 0,
-                            callback: function(value, index, values) {
-                                return value + '.00';
-                            }
-                        }
-                    }]
-                }
-            }   
-        });
     });
 </script>
 @endsection

@@ -17,11 +17,13 @@ Route::post('login', 'Api\AuthApiController@login');
 Route::post('register', 'Api\AuthApiController@register');
 Route::post('logout', 'Api\AuthApiController@logout');
 
+Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
+
 Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('cabinets/index', 'Api\CabinetApiController@getListOfCabinets');
     Route::post('cabinets/show', 'Api\CabinetApiController@getCabinet');
-    Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
+    
     Route::post('cabinets/makeReservation', 'Api\CabinetReservationApiController@makeReservation');
     Route::post('cabinets/cancelReservation', 'Api\CabinetReservationApiController@cancelReservation');
     Route::post('cabinets/updateReservation', 'Api\CabinetReservationApiController@updateReservation');
