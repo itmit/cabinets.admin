@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Client;
 use App\Models\Cabinets;
 use App\Models\CabinetReservation;
 use App\Models\CabinetReservationTime;
@@ -105,6 +106,7 @@ class CabinetReservationApiController extends ApiBaseController
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
         ->where('date', '=', $request->date)->get();
         $authClientId = auth('api')->user()->id;
+        $client = Client::where('id', $authClientId)->first();
         $exist = false;
         $resId = 0;
         $resAmount = 0;
@@ -125,7 +127,7 @@ class CabinetReservationApiController extends ApiBaseController
         if($exist)
         {
             try {
-                DB::transaction(function () use ($request, $resId, $resAmount, $cabinet) {
+                DB::transaction(function () use ($request, $resId, $resAmount, $cabinet, $client) {
                     foreach ($request->times as $key => $value)
                     {
                         if($key <= 18)
@@ -145,6 +147,19 @@ class CabinetReservationApiController extends ApiBaseController
                             'time' => $value,
                             'price' => intdiv($price, 2)
                         ]);
+
+                        $event = new Event;
+
+                        $startEndTime = explode('-', $value);
+
+                        $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
+                        $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
+
+                        $event->name = 'Кабинет' . $cabinet->name . ' забронировал ' . $client->name;
+                        $event->startDateTime = $startDateTime;
+                        $event->endDateTime = $endDateTime;
+
+                        $event->save();
                     }
                     CabinetReservation::where('id', $resId)->update([
                         'total_amount' => $resAmount
@@ -157,7 +172,7 @@ class CabinetReservationApiController extends ApiBaseController
         else
         {
             try {
-                DB::transaction(function () use ($request, $cabinet, $authClientId) {
+                DB::transaction(function () use ($request, $cabinet, $authClientId, $client) {
                     $amount = 0;
                     $resId = CabinetReservation::create([
                         'uuid' => Str::uuid(),
@@ -195,11 +210,7 @@ class CabinetReservationApiController extends ApiBaseController
                         $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
                         $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
 
-                        // $format = 'YYYY-MM-DDTHH:mm:ssZ';
-                        // $startDateTime = date_create_from_format($format, $startDateTime);
-                        // $endDateTime = date_create_from_format($format, $endDateTime);
-
-                        $event->name = 'Кабинет' . $cabinet->id;
+                        $event->name = 'Кабинет' . $cabinet->name . ' забронировал ' . $client->name;
                         $event->startDateTime = $startDateTime;
                         $event->endDateTime = $endDateTime;
 
