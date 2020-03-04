@@ -8,7 +8,7 @@ use App\Models\CabinetReservationTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-// use Illuminate\Support\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\GoogleCalendar\Event;
-use Carbon\Carbon;
+// use Carbon\Carbon;
 
 class CalendarController extends ApiBaseController
 {
@@ -27,8 +27,8 @@ class CalendarController extends ApiBaseController
         $event = new Event;
 
         $event->name = 'A new event';
-        $event->startDateTime = Carbon\Carbon::now();
-        $event->endDateTime = Carbon\Carbon::now()->addHour();
+        $event->startDateTime = Carbon::now();
+        $event->endDateTime = Carbon::now()->addHour();
 
         $event->save();
     }
