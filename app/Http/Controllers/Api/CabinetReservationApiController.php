@@ -192,12 +192,12 @@ class CabinetReservationApiController extends ApiBaseController
 
                         $startEndTime = explode('-', $value);
 
-                        $startDateTime = '' . $request->date . 'T' . $startEndTime[0] . ':00.0z';
-                        $endDateTime = '' . $request->date . 'T' . $startEndTime[1] . ':00.0z';
+                        $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
+                        $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
 
-                        $format = 'YYYY-MM-DDTHH:mm:ssZ';
-                        return $startDateTime = date_create_from_format($format, $startDateTime);
-                        $endDateTime = date_create_from_format($format, $endDateTime);
+                        // $format = 'YYYY-MM-DDTHH:mm:ssZ';
+                        // $startDateTime = date_create_from_format($format, $startDateTime);
+                        // $endDateTime = date_create_from_format($format, $endDateTime);
 
                         $event->name = 'Кабинет' . $cabinet->id;
                         $event->startDateTime = $startDateTime;
