@@ -111,7 +111,19 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="color" type="color" class="form-control" name="color" value="{{ old('color') }}" required>
+                        <select id="color" type="color" class="form-control" name="color" value="{{ old('color') }}" required>
+                            <option value="1">blue</option>
+                            <option value="2">green</option>
+                            <option value="3">purple</option>
+                            <option value="4">red</option>
+                            <option value="5">yellow</option>
+                            <option value="6">orange</option>
+                            <option value="7">turquoise</option>
+                            <option value="8">gray</option>
+                            <option value="9">bold blue</option>
+                            <option value="10">bold green</option>
+                            <option value="11">bold red</option>
+                        </select>
             
                         @if ($errors->has('color'))
                             <span class="help-block">

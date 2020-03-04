@@ -69,6 +69,46 @@ class CabinetWebController extends Controller
         try {
             DB::transaction(function () use ($request) {
 
+                switch ($request->color) {
+                    case 1:
+                        $color_html = 'blue';
+                        break;
+                    case 2:
+                        $color_html = 'green';
+                        break;
+                    case 3:
+                        $color_html = 'purple';
+                        break;
+                    case 4:
+                        $color_html = 'red';
+                        break;
+                    case 5:
+                        $color_html = 'yellow';
+                        break;
+                    case 6:
+                        $color_html = 'orange';
+                        break;
+                    case 7:
+                        $color_html = 'turquoise';
+                        break;
+                    case 8:
+                        $color_html = 'gray';
+                        break;
+                    case 9:
+                        $color_html = 'bold blue';
+                        break;
+                    case 10:
+                        $color_html = 'bold green';
+                        break;
+                    case 11:
+                        $color_html = 'bold red';
+                        break;
+
+                    default:
+                        $color_html = 'blue';
+                        break;
+                }
+
                 $cabinet = Cabinets::create([
                     'uuid' => Str::uuid(),
                     'name' => $request->name,
@@ -78,6 +118,7 @@ class CabinetWebController extends Controller
                     'price_morning' => $request->price_morning,
                     'price_evening' => $request->price_evening,
                     'color' => $request->color,
+                    'color_html' => $color_html
                 ]);
 
                 foreach($request->file('photos') as $file)
