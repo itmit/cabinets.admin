@@ -213,7 +213,7 @@ class CabinetReservationApiController extends ApiBaseController
                         $event->name = $cabinet->name . ' забронировал ' . $client->name;
                         $event->startDateTime = $startDateTime;
                         $event->endDateTime = $endDateTime;
-                        $event->color = 3;
+                        $event->color = 9;
 
                         $event->save();
 
