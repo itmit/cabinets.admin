@@ -9,7 +9,7 @@
                 @foreach($cabinets as $item)
                 <div class="row">
                     <div class="col-sm-12">
-                        <h1>{{ $item->name }}<i class="material-icons" style="color: {{ $item->color }}">home</i></h1>
+                        <h1>{{ $item->name }}<i class="material-icons" style="color: {{ $item->color_html }}">home</i></h1>
                         <div class="row">
                             <div class="col-4 col-sm-12">
                                 <img src="{{ $item->cabinetPreviewPhoto()->photo }}" alt="{{ $item->name }}" width="25%" style="float:left; margin: 7px 7px 7px 0;">
