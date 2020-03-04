@@ -41,3 +41,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     
 });
 Route::get('test', 'Api\UserController@test');
+
+Route::get('testAddEvent', 'Api\CalendarController@testAddEvent');
