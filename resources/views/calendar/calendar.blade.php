@@ -7,12 +7,12 @@
         <div class="col-md-12">
             <h2>{{ $title }} <i class="material-icons">calendar_today</i></h2>
             <div class="row">
-                <ul class="nav nav-tabs" id="myTab">
+                {{-- <ul class="nav nav-tabs" id="myTab">
                     <li data-type="oneday" class="active"><a href="#">День</a></li>
                     <li data-type="fewdays"><a href="#">Промежуток</a></li>
-                </ul>
+                </ul> --}}
                 <div class="col-sm-12">
-                    <div class="oneday" style="display: block">
+                    {{-- <div class="oneday" style="display: block">
                         <input type="date" name="onedaypick" class="form-control">
                     </div>
                     <div class="fewdays" style="display: none">
@@ -22,7 +22,7 @@
                         <div class="col-sm-6">
                             <input type="date" name="lastdaypick" class="form-control">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-12 main">
                         {{-- <div class="list">
                             Для начала выберите дату!
