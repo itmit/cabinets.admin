@@ -155,7 +155,7 @@ class CabinetReservationApiController extends ApiBaseController
                         $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
                         $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
 
-                        $event->name = 'Кабинет' . $cabinet->name . ' забронировал ' . $client->name;
+                        $event->name = $cabinet->name . ' забронировал ' . $client->name;
                         $event->startDateTime = $startDateTime;
                         $event->endDateTime = $endDateTime;
 
@@ -210,9 +210,10 @@ class CabinetReservationApiController extends ApiBaseController
                         $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
                         $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
 
-                        $event->name = 'Кабинет' . $cabinet->name . ' забронировал ' . $client->name;
+                        $event->name = $cabinet->name . ' забронировал ' . $client->name;
                         $event->startDateTime = $startDateTime;
                         $event->endDateTime = $endDateTime;
+                        $event->color = 3;
 
                         $event->save();
 
