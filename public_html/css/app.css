@@ -16,7 +16,7 @@
     border-bottom: 1px solid #decfba!important;
 }
 .navbar-brand {
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 30px!important;
     padding-left: 15px!important;
     margin: 9px 0 0 0!important;
@@ -30,14 +30,14 @@
 }
 .navbar-right > li > button {
     width: 100%;
-    color: #9e4819;
+    color: rgba(1,52,144,0.6951155462184874);
     font-size: 22px;
     background-color: #fcf7f1;
     border: 1px solid #decfba;
     outline: none!important;
 }
 .navbar-right > li > a {
-    color: #9e4819;
+    color: rgba(1,52,144,0.6951155462184874);
     font-size: 22px;
     background-color: #fcf7f1;
     border: 1px solid #decfba;
@@ -65,21 +65,21 @@
 .panel-default>.panel-heading {
     background-color: #f7ecdd!important;
     border-color: #decfba!important;
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .btn-tc-tc {
     width: 100%;
     border-color: #decfba!important;
     background-color: #f7ecdd!important;
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .btn-tc-manager-auth {
     width: 50%;
     border-color: #decfba!important;
     background-color: #f7ecdd!important;
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .form-control {
@@ -95,23 +95,23 @@
     margin: 0 0 15px 0;
 }
 .text-tc-h {
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 30px!important;
     border-bottom: 1px solid #decfba!important;
 }
 .text-tc {
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .btn-tc-manager > a {
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .btn-tc-manager {
     width: 40%!important;
     border-color: #decfba!important;
     background-color: #f7ecdd!important;
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
     margin-bottom: 15px!important;
 }
@@ -119,18 +119,18 @@
     width: 40%!important;
     border-color: #decfba!important;
     background-color: #f7ecdd!important;
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .btn-tc {
     width: 40%;
     border-color: #decfba!important;
     background-color: #f7ecdd;
-    color: #9e4819;
+    color: rgba(1,52,144,0.6951155462184874);
     font-size: 18px;
 }
 .btn-link {
-    color: #9e4819!important;
+    color: rgba(1,52,144,0.6951155462184874)!important;
     font-size: 18px!important;
 }
 .panel-default {
@@ -139,13 +139,13 @@
 .navbar-right > .dropdown > .dropdown-menu {
     width: 100%;
     text-align: center;
-    color: #9e4819;
+    color: rgba(1,52,144,0.6951155462184874);
     font-size: 19px;
     background-color: #fcf7f1;
     border: 1px solid #decfba;
 }
 .navbar-right > .dropdown > .dropdown-menu > li > a {
-    color: #9e4819;
+    color: rgba(1,52,144,0.6951155462184874);
 }
 .navbar-toggle {
     margin-top: 15px!important;
@@ -157,7 +157,7 @@
     border-radius: 4px;
 }
 .navbar-toggle .icon-bar {
-    border: 1px solid #9e4819;
+    border: 1px solid rgba(1,52,144,0.6951155462184874);
 }
 .tc-left-menu > .nav {
     background-color: #f7ecdd;
@@ -181,7 +181,7 @@
     .navbar-right > .dropdown > .dropdown-menu {
         width: 100%;
         text-align: center!important;
-        color: #9e4819!important;
+        color: rgba(1,52,144,0.6951155462184874)!important;
         font-size: 19px!important;
         background-color: #fcf7f1!important;
         border: 1px solid #decfba!important;
