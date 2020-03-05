@@ -18,9 +18,9 @@
                 <tbody>
                 @foreach($clients as $item)
                     <tr data-c="{{ $item['client']->id }}" style="cursor: pointer">
-                        {{-- <td>{{ $item->name }}</td> --}}
-                        {{-- <td>{{ $item->getReservationCount() }}</td> --}}
-                        <td></td>
+                        <td>{{ $item['client']->name }}</td>
+                        <td>{{ $item['client']->getReservationCount() }}</td>
+                        <td>{{ $item['amount'] }}</td>
                         <td></td>
                     </tr>
                 @endforeach
