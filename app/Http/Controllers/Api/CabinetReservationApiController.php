@@ -355,7 +355,8 @@ class CabinetReservationApiController extends ApiBaseController
             $cabinet = $reservation->getCabinet();
             $cab = [
                 'uuid' => $cabinet->uuid,
-                'name' => $cabinet->name   
+                'name' => $cabinet->name,
+                'colour' => $cabinet->color_html,
             ];
             $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
             foreach ($times as $time) {
