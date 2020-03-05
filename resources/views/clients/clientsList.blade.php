@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                 @foreach($clients as $item)
-                    <tr data-c="{{ $item['client'] }}" style="cursor: pointer">
+                    <tr data-c="{{ $item['client']->id }}" style="cursor: pointer">
                         {{-- <td>{{ $item->name }}</td> --}}
                         {{-- <td>{{ $item->getReservationCount() }}</td> --}}
                         <td></td>
