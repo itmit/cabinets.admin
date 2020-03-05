@@ -30,7 +30,7 @@ class ClientWebController extends Controller
             foreach ($reservations as $item) {
                 if($item->is_paid == 0) $amount = $amount + $item->total_amount;
             }
-            $result = [
+            $result[] = [
                 'client' => $client,
                 'amount' => $amount
             ];
