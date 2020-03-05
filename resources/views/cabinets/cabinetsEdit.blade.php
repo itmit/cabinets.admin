@@ -154,8 +154,22 @@
                 if(isDel)
                 {
                     ids.push($(this).data('photo'));
+                    let photo = $(this).data('photo');
+                    let delPhoto =  $(this).closest('.col-md-4');
                     // $(this).closest('.thumbnail').css('opacity', '50%');
-                    $(this).closest('.col-md-4').remove();
+                    $.ajax({
+                        headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        dataType: "json",
+                        data    : { photo: photo },
+                        url     : 'cabinets/deletePhoto',
+                        method    : 'post',
+                        success: function (response) {
+                            delPhoto.remove();
+                        },
+                        error: function (xhr, err) { 
+                            console.log("Error: " + xhr + " " + err);
+                        }
+                    });
                 }
             }
         })

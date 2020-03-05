@@ -212,4 +212,19 @@ class CabinetWebController extends Controller
         // News::where('id', '=', $request->id)->delete();
         // return response()->json(['succses'=>'Удалено'], 200); 
     }
+
+    public function deletePhoto(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'photo' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Validation error'], 500);
+        }
+
+        PhotosToCabinet::where('id', $request->photo)->delete();
+        
+        return response()->json(['Deleted'], 200);
+    }
 }
