@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <h2>Редактирование кабинета</h2>
 
-            <a href="../cabinets">Назад</a>
+            <a href="..">Назад</a>
 
             <form class="form-horizontal" method="POST" action="/cabinets/{{ $id }}" enctype="multipart/form-data">
             {{ method_field('PATCH') }}
