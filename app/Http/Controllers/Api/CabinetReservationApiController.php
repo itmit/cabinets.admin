@@ -110,6 +110,7 @@ class CabinetReservationApiController extends ApiBaseController
         $exist = false;
         $resId = 0;
         $resAmount = 0;
+        ksort($times);
         foreach ($reservations as $key => $value) {
             if($value->cabinet_id == $cabinet->id AND $value->client_id == $authClientId AND $value->date == $request->date)
             {
