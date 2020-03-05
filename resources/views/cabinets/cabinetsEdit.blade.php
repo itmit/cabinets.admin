@@ -145,9 +145,12 @@
 <script>
  $(document).ready(function()
     {
+        let ids = [];
+
         $('.clear_photo').click(function () {
-            console.log('clic');
+            ids.push($(this).data('photo'));
             $(this).closest('.thumbnail').css('opacity', '50%');
+            console.log(ids);
         })
     })
 </script>
