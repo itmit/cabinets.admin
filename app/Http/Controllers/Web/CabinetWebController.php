@@ -69,45 +69,7 @@ class CabinetWebController extends Controller
         try {
             DB::transaction(function () use ($request) {
 
-                switch ($request->color) {
-                    case 1:
-                        $color_html = 'blue';
-                        break;
-                    case 2:
-                        $color_html = 'green';
-                        break;
-                    case 3:
-                        $color_html = 'purple';
-                        break;
-                    case 4:
-                        $color_html = 'red';
-                        break;
-                    case 5:
-                        $color_html = 'yellow';
-                        break;
-                    case 6:
-                        $color_html = 'orange';
-                        break;
-                    case 7:
-                        $color_html = 'turquoise';
-                        break;
-                    case 8:
-                        $color_html = 'gray';
-                        break;
-                    case 9:
-                        $color_html = 'bold blue';
-                        break;
-                    case 10:
-                        $color_html = 'bold green';
-                        break;
-                    case 11:
-                        $color_html = 'bold red';
-                        break;
-
-                    default:
-                        $color_html = 'blue';
-                        break;
-                }
+                $color_html = self::setColor($request->color);
 
                 $cabinet = Cabinets::create([
                     'uuid' => Str::uuid(),
@@ -170,6 +132,8 @@ class CabinetWebController extends Controller
         try {
             DB::transaction(function () use ($request, $id) {
 
+                $color_html = self::setColor($request->color);
+
                 $cabinet = Cabinets::where('id', $id)->update([
                     'name' => $request->name,
                     'area' => $request->area,
@@ -178,7 +142,7 @@ class CabinetWebController extends Controller
                     'price_morning' => $request->price_morning,
                     'price_evening' => $request->price_evening,
                     'color' => $request->color,
-                    'color_html' => $request->color_html,
+                    'color_html' => $color_html,
                 ]);
 
                 if ($request->hasFile('photos')) {
@@ -228,5 +192,50 @@ class CabinetWebController extends Controller
         PhotosToCabinet::where('id', $request->photo)->delete();
         
         return response()->json(['Deleted'], 200);
+    }
+
+    public function setColor($color)
+    {
+        switch ($color) {
+            case 1:
+                $color_html = 'blue';
+                break;
+            case 2:
+                $color_html = 'green';
+                break;
+            case 3:
+                $color_html = 'purple';
+                break;
+            case 4:
+                $color_html = 'red';
+                break;
+            case 5:
+                $color_html = 'yellow';
+                break;
+            case 6:
+                $color_html = 'orange';
+                break;
+            case 7:
+                $color_html = 'turquoise';
+                break;
+            case 8:
+                $color_html = 'gray';
+                break;
+            case 9:
+                $color_html = 'bold blue';
+                break;
+            case 10:
+                $color_html = 'bold green';
+                break;
+            case 11:
+                $color_html = 'bold red';
+                break;
+
+            default:
+                $color_html = 'blue';
+                break;
+        }
+
+        return $color_html;
     }
 }
