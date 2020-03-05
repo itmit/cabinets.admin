@@ -103,8 +103,8 @@
                             position: absolute;
                             right: 20px;
                             cursor: pointer;
-                        " data-photo="{{ $item->id }}"><i class="material-icons">clear</i></span>
-                            <a href="{{ $item->photo }}">
+                        " data-photo="{{ $item->id }}"><i class="material-icons clear">clear</i></span>
+                            <a href="{{ $item->photo }}" target="_blank" rel="noopener noreferrer">
                                 <img src="{{ $item->photo }}"style="width:100%">
                             </a>
                         </div>
@@ -141,5 +141,15 @@
         </div>
     </div>
 </div> 
+
+<script>
+ $(document).ready(function()
+    {
+        $('.material-icons clear').click(function () {
+            console.log('clic');
+            $(this).closest('.thumbnail').css('opacity', '50%');
+        })
+    })
+</script>
 
 @endsection

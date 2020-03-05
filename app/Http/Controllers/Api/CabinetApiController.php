@@ -31,7 +31,7 @@ class CabinetApiController extends ApiBaseController
                 'area' => $item->area,
                 'description' => $item->description,
                 'price' => $item->price,
-                'colour' => $item->color,
+                'colour' => $item->color_html,
                 'photo' => $item->cabinetPreviewPhoto()->photo
             ];
         }
