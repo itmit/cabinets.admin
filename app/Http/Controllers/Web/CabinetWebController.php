@@ -146,7 +146,8 @@ class CabinetWebController extends Controller
         $photos = PhotosToCabinet::where('cabinet_id', '=', $id)->get();
         return view('cabinets.cabinetsEdit', [
             'cabinet' => $cabinet,
-            'photos' => $photos
+            'photos' => $photos,
+            'id' => $id
         ]);
     }
 
