@@ -35,6 +35,8 @@ class ClientWebController extends Controller
                 'amount' => $amount
             ];
         }
+
+        $result = asort($result['amount']);
         
         return view('clients.clientsList', [
             'title' => 'Клиенты',
