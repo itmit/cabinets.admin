@@ -22,14 +22,23 @@ class ClientWebController extends Controller
      */
     public function index()
     {
-        // $amount = 0;
-        // $reservations = CabinetReservation::where('client_id', $id)->get();
-        // foreach ($reservations as $item) {
-        //     if($item->is_paid == 0) $amount = $amount + $item->total_amount;
-        // }
+        $clients = Client::all()->sortByDesc('created_at');
+        $result = [];
+        foreach ($clients as $client) {
+            $amount = 0;
+            $reservations = CabinetReservation::where('client_id', $client->id)->get();
+            foreach ($reservations as $item) {
+                if($item->is_paid == 0) $amount = $amount + $item->total_amount;
+            }
+            $result = [
+                'client' => $client,
+                'amount' => $amount
+            ];
+        }
+        
         return view('clients.clientsList', [
             'title' => 'Клиенты',
-            'clients' => Client::all()->sortByDesc('created_at')
+            'clients' => $result
         ]);
     }
 
