@@ -161,12 +161,10 @@ class CabinetWebController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('auth.cabinets.show')
+                ->route('auth.cabinets.edit', ['id' => $id])
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        dd($request->file('photos'));
 
         try {
             DB::transaction(function () use ($request, $id) {
@@ -196,8 +194,8 @@ class CabinetWebController extends Controller
         } catch (\Throwable $th) {
             return $th;
         }
-        $cabinet = Cabinets::where('id', '=', $id)->first();
-        $photos = PhotosToCabinet::where('cabinet_id', '=', $id)->get();
+        // $cabinet = Cabinets::where('id', '=', $id)->first();
+        // $photos = PhotosToCabinet::where('cabinet_id', '=', $id)->get();
         return redirect()->route('auth.cabinets.index');    
     }
 
