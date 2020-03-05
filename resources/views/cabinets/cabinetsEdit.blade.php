@@ -148,9 +148,16 @@
         let ids = [];
 
         $('.clear_photo').click(function () {
-            ids.push($(this).data('photo'));
-            $(this).closest('.thumbnail').css('opacity', '50%');
-            console.log(ids);
+            if(jQuery.inArray($(this).data('photo'), ids) !== -1)
+            {
+                let isDel = confirm("Удалить фотографию?");
+                if(isDel)
+                {
+                    ids.push($(this).data('photo'));
+                    $(this).closest('.thumbnail').css('opacity', '50%');
+                }
+                console.log(ids);
+            }
         })
     })
 </script>
