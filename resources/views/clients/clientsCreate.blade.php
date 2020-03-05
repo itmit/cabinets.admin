@@ -47,7 +47,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required maxlength="191">
+                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}" required maxlength="191">
             
                         @if ($errors->has('phone'))
                             <span class="help-block">
@@ -107,7 +107,7 @@
             
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-tc-ct">
+                        <button type="submit" class="btn btn-primary">
                             Сохранить
                         </button>
                     </div>
@@ -118,8 +118,8 @@
     </div>
 </div> 
 <script>
-    $(function(){
-        $("#phone").mask("+7 (999) 999-99-99");
+    $(document).ready(function () {
+        $('input[type=tel]').mask("+7 (999) 999-99-99");
     });
 </script>
 @endsection
