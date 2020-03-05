@@ -148,7 +148,7 @@
         let ids = [];
 
         $('.clear_photo').click(function () {
-            if(jQuery.inArray($(this).data('photo'), ids) !== -1)
+            if(jQuery.inArray($(this).data('photo'), ids) == -1)
             {
                 let isDel = confirm("Удалить фотографию?");
                 if(isDel)
