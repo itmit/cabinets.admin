@@ -76,6 +76,66 @@
                     </div>
                 </div>
 
+                <div class="row form-group{{ $errors->has('price_morning') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="price_morning" class="control-label text-tc">Цена с 7.00 до 17.00</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="price_morning" type="text" class="form-control" name="price_morning" value="{{ $cabinet->price_morning }}" required>
+            
+                        @if ($errors->has('price_morning'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('price_morning') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="row form-group{{ $errors->has('price_evening') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="price_evening" class="control-label text-tc">Цена с 17.00 до 23.00</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="price_evening" type="text" class="form-control" name="price_evening" value="{{ $cabinet->price_evening }}" required>
+            
+                        @if ($errors->has('price_evening'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('price_evening') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="row form-group{{ $errors->has('color') ? ' has-error' : '' }}">
+                    <div class="col-xs-12 col-sm-2">
+                    <label for="color" class="control-label text-tc">Цвет</label>
+                    </div>
+            
+                    <div class="col-xs-12 col-sm-10">
+                        <select id="color" type="color" class="form-control" name="color" value="{{ old('color') }}" required>
+                            <option value="1" @if($cabinet->color == 1) selected @endif>blue</option>
+                            <option value="2" @if($cabinet->color == 2) selected @endif>green</option>
+                            <option value="3" @if($cabinet->color == 3) selected @endif>purple</option>
+                            <option value="4" @if($cabinet->color == 4) selected @endif>red</option>
+                            <option value="5" @if($cabinet->color == 5) selected @endif>yellow</option>
+                            <option value="6" @if($cabinet->color == 6) selected @endif>orange</option>
+                            <option value="7" @if($cabinet->color == 7) selected @endif>turquoise</option>
+                            <option value="8" @if($cabinet->color == 8) selected @endif>gray</option>
+                            <option value="9" @if($cabinet->color == 9) selected @endif>bold blue</option>
+                            <option value="10" @if($cabinet->color == 10) selected @endif>bold green</option>
+                            <option value="11" @if($cabinet->color == 11) selected @endif>bold red</option>
+                        </select>
+            
+                        @if ($errors->has('color'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('color') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group{{ $errors->has('photos') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">
                     <label for="photos" class=" control-label text-tc">Фотографии</label>
