@@ -11,6 +11,7 @@
                 <tr>
                     <th scope="col">ФИО</th>
                     <th scope="col">Количество бронирований</th>
+                    <th scope="col">Задолженность</th>
                     <th scope="col">Статус</th>
                 </tr>
                 </thead>

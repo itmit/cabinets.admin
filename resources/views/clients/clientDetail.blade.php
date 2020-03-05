@@ -79,7 +79,7 @@
                                 @endif
                             </p>
                             @if ($item->is_paid == 0)
-                                <input type="button" class="paid" value="Оплатить" data-r="{{ $item->uuid }}">
+                                <input type="button" class="btn btn-primary paid" value="Оплатить" data-r="{{ $item->uuid }}">
                             @endif
                         </div>
                       </div>
