@@ -154,9 +154,9 @@
                 if(isDel)
                 {
                     ids.push($(this).data('photo'));
-                    $(this).closest('.thumbnail').css('opacity', '50%');
+                    // $(this).closest('.thumbnail').css('opacity', '50%');
+                    $(this).closest('.col-md-4').remove();
                 }
-                console.log(ids);
             }
         })
     })
