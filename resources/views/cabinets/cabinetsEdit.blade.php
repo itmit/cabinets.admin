@@ -161,7 +161,7 @@
                         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                         dataType: "json",
                         data    : { photo: photo },
-                        url     : '../../deletePhoto',
+                        url     : '../cabinets/deletePhoto',
                         method    : 'post',
                         success: function (response) {
                             delPhoto.remove();
