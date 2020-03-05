@@ -176,7 +176,7 @@
             
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-tc-ct">
+                        <button type="submit" class="btn btn-primary">
                             Сохранить
                         </button>
                     </div>
@@ -187,8 +187,12 @@
             <hr>
 
             <small>
-                Кабинет создан: {{ $cabinet->created_at }}
-                Кабинет обновлен: {{ $cabinet->updated_at }}
+                <p>
+                    Кабинет создан: {{ $cabinet->created_at }}
+                </p>
+                <p>
+                    Кабинет обновлен: {{ $cabinet->updated_at }}
+                </p>
             </small>
 
             <div class="form-group">

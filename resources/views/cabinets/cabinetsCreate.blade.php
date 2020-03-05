@@ -151,7 +151,7 @@
             
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-tc-ct">
+                        <button type="submit" class="btn btn-primary">
                             Сохранить
                         </button>
                     </div>

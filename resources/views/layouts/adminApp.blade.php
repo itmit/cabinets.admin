@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
+    <script src="jquery.maskedinput.min.js"></script>
+
 </head>
 <body>
 <div id="app">
