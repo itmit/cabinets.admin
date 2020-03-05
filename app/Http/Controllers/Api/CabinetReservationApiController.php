@@ -148,7 +148,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        self::setGoogleCalendar($value, $request->date, $cabinet);
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
                     }
                     CabinetReservation::where('id', $resId)->update([
                         'total_amount' => $resAmount
@@ -192,7 +192,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        self::setGoogleCalendar($value, $request->date, $cabinet);
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
 
                         CabinetReservation::where('id', $resId)->update([
                             'total_amount' => $amount
@@ -500,7 +500,7 @@ class CabinetReservationApiController extends ApiBaseController
 
     }
 
-    private function setGoogleCalendar($value, $date, $cabinet)
+    private function setGoogleCalendar($value, $date, $cabinet, $client)
     {
         $event = new Event;
 
