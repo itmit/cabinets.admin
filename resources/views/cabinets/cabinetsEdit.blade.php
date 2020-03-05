@@ -9,8 +9,9 @@
 
             <a href="../cabinets">Назад</a>
 
-            <form class="form-horizontal" method="PATCH" action="{{ route('auth.cabinets.edit', ['id' => $cabinet->id]),  }}" enctype="multipart/form-data">
-                {{ csrf_field() }}
+            <form class="form-horizontal" method="POST" action="/cabinets/{{ $id }}" enctype="multipart/form-data">
+            {{ method_field('PATCH') }}
+            {{ csrf_field() }}
             
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="col-xs-12 col-sm-2">

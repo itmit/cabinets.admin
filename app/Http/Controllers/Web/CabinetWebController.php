@@ -169,12 +169,15 @@ class CabinetWebController extends Controller
         try {
             DB::transaction(function () use ($request, $id) {
 
-                $cabinet = Cabinets::where('id', '=', $id)->update([
-                    'uuid' => Str::uuid(),
+                $cabinet = Cabinets::where('id', $id)->update([
                     'name' => $request->name,
                     'area' => $request->area,
                     'capacity' => $request->capacity,
                     'description' => $request->description,
+                    'price_morning' => $request->price_morning,
+                    'price_evening' => $request->price_evening,
+                    'color' => $request->color,
+                    'color_html' => $request->color_html,
                 ]);
 
                 if ($request->hasFile('photos')) {
