@@ -148,18 +148,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        $event = new Event;
-
-                        $startEndTime = explode('-', $value);
-
-                        $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
-                        $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
-
-                        $event->name = $cabinet->name . ' забронировал ' . $client->name;
-                        $event->startDateTime = $startDateTime;
-                        $event->endDateTime = $endDateTime;
-
-                        $event->save();
+                        self::setGoogleCalendar($value, $request->date, $cabinet);
                     }
                     CabinetReservation::where('id', $resId)->update([
                         'total_amount' => $resAmount
@@ -203,21 +192,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        $event = new Event;
-
-                        $startEndTime = explode('-', $value);
-
-                        $startDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[0] . ':00');
-                        $startDateTime->subHours(3);
-                        $endDateTime = new Carbon('' . $request->date . ' ' . $startEndTime[1] . ':00');
-                        $endDateTime->subHours(3);
-
-                        $event->name = $cabinet->name . ' забронировал ' . $client->name;
-                        $event->startDateTime = $startDateTime;
-                        $event->endDateTime = $endDateTime;
-                        $event->colorId = $cabinet->color;
-
-                        $event->save();
+                        self::setGoogleCalendar($value, $request->date, $cabinet);
 
                         CabinetReservation::where('id', $resId)->update([
                             'total_amount' => $amount
@@ -523,5 +498,24 @@ class CabinetReservationApiController extends ApiBaseController
 
         return $result;
 
+    }
+
+    private function setGoogleCalendar($value, $date, $cabinet)
+    {
+        $event = new Event;
+
+        $startEndTime = explode('-', $value);
+
+        $startDateTime = new Carbon('' . $date . ' ' . $startEndTime[0] . ':00');
+        $startDateTime->subHours(3);
+        $endDateTime = new Carbon('' . $date . ' ' . $startEndTime[1] . ':00');
+        $endDateTime->subHours(3);
+
+        $event->name = $cabinet->name . ' забронировал ' . $client->name;
+        $event->startDateTime = $startDateTime;
+        $event->endDateTime = $endDateTime;
+        $event->colorId = $cabinet->color;
+
+        $event->save();
     }
 }
