@@ -507,9 +507,9 @@ class CabinetReservationApiController extends ApiBaseController
         $startEndTime = explode('-', $value);
 
         $startDateTime = new Carbon('' . $date . ' ' . $startEndTime[0] . ':00');
-        $startDateTime->subHours(3);
+        // $startDateTime->subHours(3);
         $endDateTime = new Carbon('' . $date . ' ' . $startEndTime[1] . ':00');
-        $endDateTime->subHours(3);
+        // $endDateTime->subHours(3);
 
         $event->name = $cabinet->name . ' забронировал ' . $client->name;
         $event->startDateTime = $startDateTime;
