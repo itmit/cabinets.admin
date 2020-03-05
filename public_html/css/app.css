@@ -8,7 +8,7 @@
 
 .active {
     background-color: white!important;
-    border-bottom: 1px solid #a3522d!important;
+    border-bottom: 1px solid rgba(104,156,249,0.7)!important;
 }
 
 .navbar-tc {
@@ -85,7 +85,7 @@
 .form-control {
     width: 100%!important;
 }
-.h1, h1 {
+.h1, h1, h2 {
     color: rgba(1,52,144,0.6951155462184874)!important;
 }
 .import-tc {
@@ -151,9 +151,9 @@
     margin-top: 15px!important;
     margin-right: 15p!important;
     margin-bottom: 15px!important;
-    background-color: #c0896794!important;
+    background-color: rgba(1,74,206,0.7)!important;
     background-image: none;
-    border: 1px solid #c08967!important;
+    border: 1px solid rgba(1,74,206,0.7)!important;
     border-radius: 4px;
 }
 .navbar-toggle .icon-bar {
