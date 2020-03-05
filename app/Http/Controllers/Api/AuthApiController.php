@@ -158,16 +158,10 @@ class AuthApiController extends ApiBaseController
         return response()->json(['error'=>'Авторизация не удалась'], 401); 
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $isUser = $request->client()->token()->revoke();
-        if($isUser){
-            $success['message'] = "Successfully logged out.";
-            return $this->sendResponse($success);
-        }
-        else{
-            $error = "Something went wrong.";
-            return $this->sendResponse($error);
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
         }
     }
 

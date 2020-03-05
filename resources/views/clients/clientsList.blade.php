@@ -20,7 +20,7 @@
                     <tr data-c="{{ $item['client']->id }}" style="cursor: pointer">
                         <td>{{ $item['client']->name }}</td>
                         <td>{{ $item['client']->getReservationCount() }}</td>
-                        <td>{{ $item['amount'] }}</td>
+                        <td>{{ $item['amount'] }} рублей</td>
                         <td></td>
                     </tr>
                 @endforeach

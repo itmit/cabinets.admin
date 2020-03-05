@@ -52,4 +52,8 @@ class Client extends Authenticatable
     {
         return $this->hasMany(CabinetReservation::class, 'client_id')->count();
     }
+
+    public function AauthAcessToken(){
+        return $this->hasMany('\App\Models\OauthAccessToken');
+    }
 }
