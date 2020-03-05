@@ -163,8 +163,8 @@ class AuthApiController extends ApiBaseController
         if (Auth::check()) {
             Auth::user()->AauthAcessToken()->delete();
         }
-        $user = Auth::user()->token();
-        $user->revoke();
+        // $user = Auth::user()->token();
+        // $user->revoke();
     }
 
     public function updateDeviceToken(Request $request)
