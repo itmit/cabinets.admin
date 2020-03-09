@@ -178,12 +178,12 @@ class ReservationController extends Controller
                 ->withInput();
         }
 
-        $cabinet = Cabinets::where('uuid', '=', $request->cabinet)->first();
+        $cabinet = Cabinets::where('id', '=', $request->cabinet)->first();
 
-        if(!$cabinet)
-        {
-            return response()->json(['error'=>'Нет такого кабинета'], 500);     
-        }
+        // if(!$cabinet)
+        // {
+        //     return response()->json(['error'=>'Нет такого кабинета'], 500);     
+        // }
 
         $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
         ->where('date', '=', $request->date)->get();
