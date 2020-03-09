@@ -101,7 +101,8 @@
 <script>
     $(document).ready(function () {
         $(".cabinetAndDateSelect").change(function() {
-            console.log($(this).children("option:selected").val());
+            console.log($(this).val());
+            // console.log($(this).children("option:selected").val());
         });
     });
 </script>
