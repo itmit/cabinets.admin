@@ -57,7 +57,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input type="date" name="date" class="form-control" required>
+                        <input type="date" name="date" class="form-control" required onchange="getTimes()">
             
                         @if ($errors->has('date'))
                             <span class="help-block">
@@ -100,7 +100,10 @@
 </div> 
 <script>
     $(document).ready(function () {
-        
+        function getTimes()
+        {
+            console.log('clc');
+        }
     });
 </script>
 @endsection
