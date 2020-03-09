@@ -38,7 +38,8 @@ class ReservationController extends Controller
     {
         return view('reservations.reservationCreate', [
             'title' => 'Добавить бронирование',
-            'cabinets' => Cabinets::get()
+            'cabinets' => Cabinets::get(),
+            'clients' => Client::get()
         ]);
     }
 
