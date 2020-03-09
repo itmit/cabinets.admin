@@ -171,8 +171,11 @@ class ReservationController extends Controller
             'times' => 'required|array'
         ]);
         
-        if ($validator->fails()) { 
-            return response()->json(['errors'=>$validator->errors()], 500);            
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.reservations.create')
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $cabinet = Cabinets::where('uuid', '=', $request->cabinet)->first();
@@ -283,7 +286,7 @@ class ReservationController extends Controller
                 return $th;
             }
         }
-        return $this->sendResponse([], 'Кабинет забронирован');
+        return redirect()->route('auth.reservations.index');
     }
 
     private function workingTime()
