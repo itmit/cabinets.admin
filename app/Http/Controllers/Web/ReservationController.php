@@ -162,6 +162,130 @@ class ReservationController extends Controller
         // return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
     }
 
+    public function makeReservation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'cabinet' => 'required',
+            'client' => 'required',
+            'date' => 'required|date',
+            'times' => 'required|array'
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $cabinet = Cabinets::where('uuid', '=', $request->cabinet)->first();
+
+        if(!$cabinet)
+        {
+            return response()->json(['error'=>'Нет такого кабинета'], 500);     
+        }
+
+        $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)
+        ->where('date', '=', $request->date)->get();
+        $authClientId = $request->client;
+        $client = Client::where('id', $authClientId)->first();
+        $exist = false;
+        $resId = 0;
+        $resAmount = 0;
+        // asort($request->times);
+        foreach ($reservations as $key => $value) {
+            if($value->cabinet_id == $cabinet->id AND $value->client_id == $authClientId AND $value->date == $request->date)
+            {
+                $exist = true;
+                $resId = $value->id;
+                $resAmount = $value->total_amount;
+            };
+            foreach ($request->times as $key2 => $time)
+            {
+                if(CabinetReservationTime::where('reservation_id', '=', $value->id)
+                ->where('time', '=', $time)
+                ->exists()) return response()->json(['error'=>'Кабинет на это время уже забронирован'], 500);
+            }
+        }
+        if($exist)
+        {
+            try {
+                DB::transaction(function () use ($request, $resId, $resAmount, $cabinet, $client) {
+                    foreach ($request->times as $key => $value)
+                    {
+                        if($key <= 18)
+                        {
+                            $price = $cabinet->price_morning;
+                        }
+                        if($key > 18)
+                        {
+                            $price = $cabinet->price_evening;
+                        }
+
+                        $resAmount = $resAmount + intdiv($price, 2);
+
+                        CabinetReservationTime::create([
+                            'uuid' => Str::uuid(),
+                            'reservation_id' => $resId,
+                            'time' => $value,
+                            'price' => intdiv($price, 2)
+                        ]);
+
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
+                    }
+                    CabinetReservation::where('id', $resId)->update([
+                        'total_amount' => $resAmount
+                    ]);
+                });
+            } catch (\Throwable $th) {
+                return $th;
+            }
+        }
+        else
+        {
+            try {
+                DB::transaction(function () use ($request, $cabinet, $authClientId, $client) {
+                    $amount = 0;
+                    $resId = CabinetReservation::create([
+                        'uuid' => Str::uuid(),
+                        'cabinet_id' => $cabinet->id,
+                        'client_id' => $authClientId,
+                        'date' => $request->date,
+                    ]);
+
+                    $resId = $resId->id;
+
+                    foreach ($request->times as $key => $value)
+                    {
+                        if($key <= 18)
+                        {
+                            $price = $cabinet->price_morning;
+                        }
+                        if($key > 18)
+                        {
+                            $price = $cabinet->price_evening;
+                        }
+
+                        $amount = $amount + intdiv($price, 2);
+
+                        CabinetReservationTime::create([
+                            'uuid' => Str::uuid(),
+                            'reservation_id' => $resId,
+                            'time' => $value,
+                            'price' => intdiv($price, 2)
+                        ]);
+
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
+
+                        CabinetReservation::where('id', $resId)->update([
+                            'total_amount' => $amount
+                        ]);
+                    }
+                });
+            } catch (\Throwable $th) {
+                return $th;
+            }
+        }
+        return $this->sendResponse([], 'Кабинет забронирован');
+    }
+
     private function workingTime()
     {
         // первая стоимость
