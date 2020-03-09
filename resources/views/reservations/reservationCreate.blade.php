@@ -16,7 +16,7 @@
             
                     <div class="col-xs-12 col-sm-10">
                         <select name="cabinet" class="form-control" required>
-                            <option selected disable>Кабинет</option>
+                            <option selected disabled>Кабинет</option>
                             @foreach ($cabinets as $cabinet)
                                 <option value="{{ $cabinet->id }}">{{ $cabinet->name }}</option>
                             @endforeach
@@ -37,7 +37,7 @@
             
                     <div class="col-xs-12 col-sm-10">
                         <select name="client" class="form-control" required>
-                            <option selected disable>Клиент</option>
+                            <option selected disabled>Клиент</option>
                             @foreach ($clients as $client)
                                 <option value="{{ $client->id }}">{{ $client->name }}</option>
                             @endforeach
