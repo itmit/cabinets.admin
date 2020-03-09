@@ -103,21 +103,21 @@
         $(".cabinetAndDateSelect").change(function() {
             let cab = $('select[name="cabinet"]').val();
             let date = $('input[name="date"]').val();
-            console.log(cab + ' ' + date);
+            // console.log(cab + ' ' + date);
             // console.log($(this).children("option:selected").val());
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "json",
-            //     data: {date: date, cabinet: cab},
-            //     url     : 'reservations/getTimes',
-            //     method    : 'post',
-            //     success: function (response) {
-                    
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log(err + " " + xhr);
-            //     }
-            // });
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {date: date, cabinet: cab},
+                url     : 'reservations/getTimes',
+                method    : 'post',
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
         });
     });
 </script>
