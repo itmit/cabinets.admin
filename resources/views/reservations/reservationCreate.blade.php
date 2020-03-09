@@ -73,7 +73,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <select name="times" class="form-control" required multiple size="10">
+                        <select name="times[]" class="form-control" required multiple size="10">
                             <option value="" selected disabled>Время</option>
                         </select>
             
