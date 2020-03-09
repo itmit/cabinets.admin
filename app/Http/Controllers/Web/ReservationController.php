@@ -51,119 +51,6 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function getTimes(Request $request)
-    {
-        $validator = Validator::make($request->all(), [ 
-            'cabinet' => 'required',
-            'date' => 'required|date'
-        ]);
-        
-        if ($validator->fails()) { 
-            return response()->json(['errors'=>$validator->errors()], 500);            
-        }
-
-        $cabinet = Cabinets::where('id', '=', $request->cabinet)->first();
-
-        if(!$cabinet)
-        {
-            return response()->json(['error'=>'Нет такого кабинета'], 500);     
-        }
-
-        $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get();
-
-        $resTime = [];
-        foreach ($reservations as $key => $value) {
-            $times = CabinetReservationTime::where('reservation_id', '=', $value->id)->get();
-            foreach ($times as $item) {
-                $resTime[] = $item->time;
-            }
-        }
-
-        $result = [];
-
-        $times = self::workingTime();
-
-        $freeTimes = array_diff($times, $resTime);
-
-        foreach ($freeTimes as $key => $value) {
-            $result[] = [
-                "key" => $key,
-                "value" => $value
-            ];
-        };
-
-        if($request->date == date('Y-m-d'))
-        {
-            $times = self::unsetExpTime($result);
-
-            $result = [];
-            foreach ($times as $key => $value) {
-                $result[] = $value;
-            };
-        }
-
-        if($request->date < date('Y-m-d'))
-        {
-            $result = [];
-        }
-        
-
-        // return $this->sendResponse([$expire], 'test');
-
-        return response()->json($result);
-        // return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
-    }
-
-    public function makeReservation(Request $request)
-    {
         $validator = Validator::make($request->all(), [ 
             'cabinet' => 'required',
             'client' => 'required',
@@ -289,6 +176,114 @@ class ReservationController extends Controller
             }
         }
         return redirect()->route('auth.reservations.create');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function getTimes(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'cabinet' => 'required',
+            'date' => 'required|date'
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $cabinet = Cabinets::where('id', '=', $request->cabinet)->first();
+
+        if(!$cabinet)
+        {
+            return response()->json(['error'=>'Нет такого кабинета'], 500);     
+        }
+
+        $reservations = CabinetReservation::where('cabinet_id', '=', $cabinet->id)->where('date', '=', $request->date)->get();
+
+        $resTime = [];
+        foreach ($reservations as $key => $value) {
+            $times = CabinetReservationTime::where('reservation_id', '=', $value->id)->get();
+            foreach ($times as $item) {
+                $resTime[] = $item->time;
+            }
+        }
+
+        $result = [];
+
+        $times = self::workingTime();
+
+        $freeTimes = array_diff($times, $resTime);
+
+        foreach ($freeTimes as $key => $value) {
+            $result[] = [
+                "key" => $key,
+                "value" => $value
+            ];
+        };
+
+        if($request->date == date('Y-m-d'))
+        {
+            $times = self::unsetExpTime($result);
+
+            $result = [];
+            foreach ($times as $key => $value) {
+                $result[] = $value;
+            };
+        }
+
+        if($request->date < date('Y-m-d'))
+        {
+            $result = [];
+        }
+        
+
+        // return $this->sendResponse([$expire], 'test');
+
+        return response()->json($result);
+        // return $this->sendResponse($result, 'Свободное время для выбранного кабинета');
     }
 
     private function workingTime()
