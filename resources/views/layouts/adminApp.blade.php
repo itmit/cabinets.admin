@@ -147,7 +147,6 @@
         case 'notifications':
             $( "li[name='notifications']" ).addClass( "active" );
             break;
-        }
 
         case 'notifications':
             $( "li[name='reservations']" ).addClass( "active" );
