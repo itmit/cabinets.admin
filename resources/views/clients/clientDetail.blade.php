@@ -45,7 +45,7 @@
 
                 <div class="row">
                     <div class="col-sm-9">
-                        <p>Бронирование кабинета <b><a href="../cabinets/{{ $cabinet->id }}/edit">{{ $cabinet->name }}</a></b><i class="material-icons" style="color: {{ $cabinet->color }}">home</i> ({{ $item->date }})</p>
+                        <p>Бронирование кабинета <b><a href="../cabinets/{{ $cabinet->id }}/edit">{{ $cabinet->name }}</a></b><i class="material-icons" style="color: {{ $cabinet->color_html }}">home</i> ({{ $item->date }})</p>
                       <div class="row">
                         <div class="col-xs-4 col-sm-4">
                             <p>Время: </p>
