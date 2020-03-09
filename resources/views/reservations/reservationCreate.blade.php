@@ -100,7 +100,7 @@
 </div> 
 <script>
     $(document).ready(function () {
-        $( "input[id='cabinetAndDateSelect']" ).change(function() {
+        $("input[id='cabinetAndDateSelect']", "select[id='cabinetAndDateSelect']").change(function() {
             console.log($(this).val)
         });
     });
