@@ -36,7 +36,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('clients.reservationCreate', [
+        return view('reservations.reservationCreate', [
             'title' => 'Добавить бронирование',
             'cabinets' => Cabinets::get()
         ]);
