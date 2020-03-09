@@ -178,6 +178,8 @@ class ReservationController extends Controller
                 ->withInput();
         }
 
+        dd($request);
+
         $cabinet = Cabinets::where('id', '=', $request->cabinet)->first();
 
         // if(!$cabinet)
