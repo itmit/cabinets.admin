@@ -105,7 +105,7 @@
 
                             <li style="width: 100%" name="notifications"><a href="{{ route('auth.news.index') }}">Уведомления</a></li>
 
-                            <li style="width: 100%" name="reservations"><a href="{{ route('auth.reservations.index') }}">Бронирования</a></li>
+                            <li style="width: 100%" name="reservations"><a href="{{ route('auth.reservations.create') }}">Бронирования</a></li>
         
                         </ul>
                     </div>
