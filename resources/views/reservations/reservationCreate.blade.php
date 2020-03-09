@@ -109,7 +109,7 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
                 data: {date: date, cabinet: cab},
-                url     : 'reservations/getTimes',
+                url     : 'getTimes',
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
