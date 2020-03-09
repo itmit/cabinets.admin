@@ -286,7 +286,7 @@ class ReservationController extends Controller
                 return $th;
             }
         }
-        return redirect()->route('auth.reservations.index');
+        return redirect()->route('auth.reservations.create');
     }
 
     private function workingTime()
