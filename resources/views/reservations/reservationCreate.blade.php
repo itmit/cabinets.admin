@@ -116,7 +116,7 @@
                         result += '<option value="'+response[i]['value']+'">'+response[i]['value']+'</option>';
                     }
                     // console.log(response);
-                    $('select[name="times"]').html(result);
+                    $('select[name="times[]"]').html(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
