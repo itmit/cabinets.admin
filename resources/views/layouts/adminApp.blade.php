@@ -104,6 +104,8 @@
                             <li style="width: 100%" name="calendar"><a href="{{ route('auth.calendar.index') }}">Календарь</a></li>
 
                             <li style="width: 100%" name="notifications"><a href="{{ route('auth.news.index') }}">Уведомления</a></li>
+
+                            <li style="width: 100%" name="reservations"><a href="{{ route('auth.reservations.index') }}">Бронирования</a></li>
         
                         </ul>
                     </div>
@@ -144,6 +146,11 @@
 
         case 'notifications':
             $( "li[name='notifications']" ).addClass( "active" );
+            break;
+        }
+
+        case 'notifications':
+            $( "li[name='reservations']" ).addClass( "active" );
             break;
         }
     })

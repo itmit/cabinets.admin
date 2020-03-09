@@ -23,6 +23,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::resource('calendar', 'Web\CalendarController');
 
+    Route::resource('reservations', 'Web\ReservationController');
+
     Route::post('calendar/getOneDay', 'Web\CalendarController@getOneDay');
     Route::post('calendar/getFewDay', 'Web\CalendarController@getFewDay');
 
