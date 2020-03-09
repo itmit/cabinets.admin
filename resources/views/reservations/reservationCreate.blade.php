@@ -36,7 +36,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <select name="cabinet" class="form-control" required>
+                        <select name="cabinet" class="form-control" required id="cabinetAndDateSelect">
                             <option value="" selected disabled>Кабинет</option>
                             @foreach ($cabinets as $cabinet)
                                 <option value="{{ $cabinet->id }}">{{ $cabinet->name }}</option>
@@ -57,7 +57,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input type="date" name="date" class="form-control" required onchange="getTimes()">
+                        <input type="date" name="date" id="cabinetAndDateSelect" class="form-control" required>
             
                         @if ($errors->has('date'))
                             <span class="help-block">
@@ -100,10 +100,9 @@
 </div> 
 <script>
     $(document).ready(function () {
-        function getTimes()
-        {
-            console.log('clc');
-        }
+        $( "input[id='cabinetAndDateSelect']" ).change(function() {
+            console.log($(this).value)
+        });
     });
 </script>
 @endsection
