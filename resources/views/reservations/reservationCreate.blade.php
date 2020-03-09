@@ -112,7 +112,12 @@
                 url     : 'getTimes',
                 method    : 'post',
                 success: function (response) {
-                    console.log(response);
+                    let result = '<option value="" selected disabled>Время</option>';
+                    for(var i = 0; i < response.length; i++) {
+                        result += '<option value="'+response[i]['value']+'">'+response[i]['value']+'</option>';
+                    }
+                    // console.log(response);
+                    $('select[name="times"]').html(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
