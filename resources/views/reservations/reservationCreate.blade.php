@@ -101,7 +101,7 @@
 <script>
     $(document).ready(function () {
         $( "input[id='cabinetAndDateSelect']" ).change(function() {
-            console.log($(this).value)
+            console.log($(this).val)
         });
     });
 </script>
