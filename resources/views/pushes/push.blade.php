@@ -98,7 +98,7 @@
             {
                 return false;
             }
-            if(text == null)
+            if(text == '' || text == null)
             {
                 return false;
             }
