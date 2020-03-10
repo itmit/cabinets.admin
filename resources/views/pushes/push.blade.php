@@ -94,7 +94,7 @@
             {
                 return false;
             }
-            if(type == 'cli' && clients == null)
+            if(type == 'cli' && clients.length == 0)
             {
                 return false;
             }
