@@ -38,6 +38,8 @@ class checkReservations extends Command
      */
     public function handle()
     {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
         $date = date("Y-m-d", strtotime('+1 day'));
         $reservations = CabinetReservation::where('date', $date)->get();
         $client_token = [];
@@ -46,34 +48,31 @@ class checkReservations extends Command
             $client_token[$client->id] = $client->device_token;
         }
         
-        // $countOfReservations = Reservation::where('accepted', '=', '0')->get();
-        // $countOfReservations = $countOfReservations->count();
-
-        // $url = 'https://fcm.googleapis.com/fcm/send';
-
-        // $fields = array (
-        //     'to' => '/topics/all',
-        //     "notification" => [
-        //         "body" => "У вас ".$countOfReservations." необработанных заявок.",
-        //         "title" => "Внимание"
-        //     ]
-        // );
-        // $fields = json_encode ( $fields );
-
-        // $headers = array (
-        //         'Authorization: key=' . "AAAAcZkfTDU:APA91bGgoysHhtZfk272579GGadndryldrSN49MEIO3QGrgI1aKTYir62YbtVXHEaICk1-G1NIWq9DsmCwQGmcmnqqlXWltysqQRoXPoXEdkvz-1oiHS-cF54VSNsWOvut-I_0gBQgrx",
-        //         'Content-Type: application/json'
-        // );
-
-        // $ch = curl_init ();
-        // curl_setopt ( $ch, CURLOPT_URL, $url );
-        // curl_setopt ( $ch, CURLOPT_POST, true );
-        // curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-        // curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-        // curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
-
-        // curl_exec ( $ch );
-
-        // curl_close ( $ch );
+        foreach ($client_token as $key => $value) {
+            $fields = array (
+                'to' => $value,
+                "notification" => [
+                    "body" => "У вас забронирован кабинет на завтра",
+                    "title" => "Психологическая студия"
+                ]
+            );
+            $fields = json_encode ( $fields );
+    
+            $headers = array (
+                    'Authorization: key=' . env('FIREBASE_KEY'),
+                    'Content-Type: application/json'
+            );
+    
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, true );
+            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+    
+            curl_exec ( $ch );
+    
+            curl_close ( $ch );
+        }
     }
 }

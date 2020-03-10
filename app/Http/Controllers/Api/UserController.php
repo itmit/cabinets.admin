@@ -99,6 +99,8 @@ class UserController extends ApiBaseController
 
     public function test(Request $request)
     {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
         $date = date("Y-m-d", strtotime('+1 day'));
         $reservations = CabinetReservation::where('date', $date)->get();
         $client_token = [];
@@ -106,6 +108,32 @@ class UserController extends ApiBaseController
             $client = $reservation->getClient();
             $client_token[$client->id] = $client->device_token;
         }
-        return $this->sendResponse($client_token, 'test');
+        
+        foreach ($client_token as $key => $value) {
+            $fields = array (
+                'to' => $value,
+                "notification" => [
+                    "body" => "У вас забронирован кабинет на завтра",
+                    "title" => "Психологическая студия"
+                ]
+            );
+            $fields = json_encode ( $fields );
+    
+            $headers = array (
+                    'Authorization: key=' . env('FIREBASE_KEY'),
+                    'Content-Type: application/json'
+            );
+    
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, true );
+            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+    
+            curl_exec ( $ch );
+    
+            curl_close ( $ch );
+        }
     }
 }
