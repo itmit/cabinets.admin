@@ -28,11 +28,11 @@
 
             <div class="form-group{{ $errors->has('client') ? ' has-error' : '' }} client" style="display: none">
                 <div class="col-xs-12 col-sm-2">
-                <label for="client" class="control-label text-tc">Push</label>
+                <label for="client" class="control-label text-tc">Клиент</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <select name="client" class="form-control" required>
+                    <select name="client[]" class="form-control" required multiple>
                         <option value="" selected disabled>Клиент</option>
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}">{{ $client->name }}</option>
@@ -47,6 +47,14 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary">
+                        Отправить
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div> 
@@ -56,6 +64,14 @@
             let type = $(this).val();
             if(type == 'all') $('.client').css('display', 'none');
             if(type == 'cli') $('.client').css('display', 'block');
+        });
+
+        $(".btn").click(function() {
+            let type = $('select[name="whom"]').val();
+            if(type == 'cli') let client = $('select[name="client[]"]').val();
+            // if(type == 'all') $('.client').css('display', 'none');
+            // if(type == 'cli') $('.client').css('display', 'block');
+            console.log('type ' + type + ' client ' + client);
         });
     });
 </script>
