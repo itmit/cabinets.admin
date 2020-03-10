@@ -18,20 +18,19 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::resource('news', 'Web\NewsWebController');
 
     Route::resource('clients', 'Web\ClientWebController');
+    Route::post('clients/paid', 'Web\ClientWebController@paid');
 
     Route::resource('cabinets', 'Web\CabinetWebController');
+    Route::post('cabinets/deletePhoto', 'Web\CabinetWebController@deletePhoto');
 
     Route::resource('calendar', 'Web\CalendarController');
+    Route::post('calendar/getOneDay', 'Web\CalendarController@getOneDay');
+    Route::post('calendar/getFewDay', 'Web\CalendarController@getFewDay');
 
     Route::resource('reservations', 'Web\ReservationController');
     Route::post('reservations/getTimes', 'Web\ReservationController@getTimes');
 
-    Route::post('calendar/getOneDay', 'Web\CalendarController@getOneDay');
-    Route::post('calendar/getFewDay', 'Web\CalendarController@getFewDay');
-
-    Route::post('clients/paid', 'Web\ClientWebController@paid');
-
-    Route::post('cabinets/deletePhoto', 'Web\CabinetWebController@deletePhoto');
+    Route::resource('pushes', 'Web\PushController');
     
 });
 

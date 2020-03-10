@@ -103,7 +103,7 @@
 
                             <li style="width: 100%" name="calendar"><a href="{{ route('auth.calendar.index') }}">Календарь</a></li>
 
-                            <li style="width: 100%" name="notifications"><a href="{{ route('auth.news.index') }}">Уведомления</a></li>
+                            <li style="width: 100%" name="notifications"><a href="{{ route('auth.pushes.index') }}">Уведомления</a></li>
 
                             <li style="width: 100%" name="reservations"><a href="{{ route('auth.reservations.create') }}">Бронирования</a></li>
         
