@@ -92,8 +92,12 @@
             // if(type == 'all') $('.client').css('display', 'none');
             // if(type == 'cli') $('.client').css('display', 'block');
             // console.log('type ' + type + ' client ' + clients);
-            if(clients.length == 1) alert('Уведомление отправлено');
-            else alert('Уведомления отправлены');
+            if(clients == null) alert('Уведомления отправлены');
+            else
+            {
+                if(clients.length == 1) alert('Уведомление отправлено');
+                else alert('Уведомления отправлены');
+            }
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             //     dataType: "json",
