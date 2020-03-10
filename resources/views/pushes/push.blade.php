@@ -85,33 +85,46 @@
         $(".btn").click(function() {
             let type = $('select[name="whom"]').val();
             let clients = null;
+            let text = $('textarea[name="text"]').val();
             if(type == 'cli')
             {
                 clients = $('select[name="client[]"]').val();
             }
-            // if(type == 'all') $('.client').css('display', 'none');
-            // if(type == 'cli') $('.client').css('display', 'block');
-            // console.log('type ' + type + ' client ' + clients);
-            if(clients == null) alert('Уведомления отправлены');
-            else
+            if(type == null)
             {
-                if(clients.length == 1) alert('Уведомление отправлено');
-                else alert('Уведомления отправлены');
+                return false;
             }
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "json",
-            //     data: {type: type, clients: clients},
-            //     url     : 'sendPush',
-            //     method    : 'post',
-            //     success: function (response) {
-            //         if(clients.length == 1) alert('Уведомление отправлено');
-            //         else alert('Уведомления отправлены');
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log(err + " " + xhr);
-            //     }
-            // });
+            if(type == 'cli' && clients == null)
+            {
+                return false;
+            }
+            if(text == null)
+            {
+                return false;
+            }
+
+            console.log(text);
+
+            return false;
+
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {type: type, clients: clients},
+                url     : 'sendPush',
+                method    : 'post',
+                success: function (response) {
+                    if(clients == null) alert('Уведомления отправлены');
+                    else
+                    {
+                        if(clients.length == 1) alert('Уведомление отправлено');
+                        else alert('Уведомления отправлены');
+                    }
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
         });
     });
 </script>
