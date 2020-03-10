@@ -111,14 +111,14 @@ class ReservationController extends Controller
 
                         $resAmount = $resAmount + intdiv($price, 2);
 
-                        CabinetReservationTime::create([
+                        $newTime = CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId,
                             'time' => $value,
                             'price' => intdiv($price, 2)
                         ]);
 
-                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client, $newTime);
                     }
                     CabinetReservation::where('id', $resId)->update([
                         'total_amount' => $resAmount
@@ -155,14 +155,14 @@ class ReservationController extends Controller
 
                         $amount = $amount + intdiv($price, 2);
 
-                        CabinetReservationTime::create([
+                        $newTime = CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId,
                             'time' => $value,
                             'price' => intdiv($price, 2)
                         ]);
 
-                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client, $newTime);
 
                         CabinetReservation::where('id', $resId)->update([
                             'total_amount' => $amount
@@ -403,7 +403,7 @@ class ReservationController extends Controller
 
     }
 
-    private function setGoogleCalendar($value, $date, $cabinet, $client)
+    private function setGoogleCalendar($value, $date, $cabinet, $client, $newTime)
     {
         $event = new Event;
 
@@ -420,5 +420,9 @@ class ReservationController extends Controller
         $event->colorId = $cabinet->color;
 
         $event->save();
+
+        CabinetReservationTime::where('id', $newTime->id)->update([
+            'calendar_id' => $event->id
+        ]);
     }
 }
