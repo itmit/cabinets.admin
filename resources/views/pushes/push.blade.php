@@ -68,7 +68,10 @@
 
         $(".btn").click(function() {
             let type = $('select[name="whom"]').val();
-            if(type == 'cli') let client = $('select[name="client[]"]').val();
+            if(type == 'cli')
+            {
+                let client = $('select[name="client[]"]').val();
+            }
             // if(type == 'all') $('.client').css('display', 'none');
             // if(type == 'cli') $('.client').css('display', 'block');
             console.log('type ' + type + ' client ' + client);
