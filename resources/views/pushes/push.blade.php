@@ -9,7 +9,7 @@
             
             <div class="form-group{{ $errors->has('whom') ? ' has-error' : '' }}">
                 <div class="col-xs-12 col-sm-2">
-                <label for="whom" class="control-label text-tc">Push</label>
+                <label for="whom" class="control-label text-tc">Кому</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
@@ -32,7 +32,7 @@
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
-                    <select name="client[]" class="form-control" required multiple>
+                    <select name="client[]" class="form-control" required multiple size="{{ $clients->count() }}">
                         <option value="" selected disabled>Клиент</option>
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}">{{ $client->name }}</option>
@@ -42,6 +42,22 @@
                     @if ($errors->has('client'))
                         <span class="help-block">
                             <strong>{{ $errors->first('client') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group{{ $errors->has('text') ? ' has-error' : '' }} client">
+                <div class="col-xs-12 col-sm-2">
+                <label for="text" class="control-label text-tc">Текст уведомления</label>
+                </div>
+        
+                <div class="col-xs-12 col-sm-10">
+                    <textarea name="text" class="form-control" cols="30" rows="10"></textarea>
+        
+                    @if ($errors->has('text'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('text') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -68,9 +84,10 @@
 
         $(".btn").click(function() {
             let type = $('select[name="whom"]').val();
+            let client = null;
             if(type == 'cli')
             {
-                let client = $('select[name="client[]"]').val();
+                client = $('select[name="client[]"]').val();
             }
             // if(type == 'all') $('.client').css('display', 'none');
             // if(type == 'cli') $('.client').css('display', 'block');
