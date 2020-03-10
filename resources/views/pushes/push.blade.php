@@ -47,9 +47,9 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('text') ? ' has-error' : '' }} client">
+            <div class="form-group{{ $errors->has('text') ? ' has-error' : '' }}">
                 <div class="col-xs-12 col-sm-2">
-                <label for="text" class="control-label text-tc">Текст уведомления</label>
+                <label for="text" class="control-label text-tc">Текст</label>
                 </div>
         
                 <div class="col-xs-12 col-sm-10">
@@ -84,14 +84,30 @@
 
         $(".btn").click(function() {
             let type = $('select[name="whom"]').val();
-            let client = null;
+            let clients = null;
             if(type == 'cli')
             {
-                client = $('select[name="client[]"]').val();
+                clients = $('select[name="client[]"]').val();
             }
             // if(type == 'all') $('.client').css('display', 'none');
             // if(type == 'cli') $('.client').css('display', 'block');
-            console.log('type ' + type + ' client ' + client);
+            // console.log('type ' + type + ' client ' + clients);
+            if(clients.length == 1) alert('Уведомление отправлено');
+            else alert('Уведомления отправлены');
+            // $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "json",
+            //     data: {type: type, clients: clients},
+            //     url     : 'sendPush',
+            //     method    : 'post',
+            //     success: function (response) {
+            //         if(clients.length == 1) alert('Уведомление отправлено');
+            //         else alert('Уведомления отправлены');
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log(err + " " + xhr);
+            //     }
+            // });
         });
     });
 </script>
