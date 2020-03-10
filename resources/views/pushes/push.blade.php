@@ -103,14 +103,10 @@
                 return false;
             }
 
-            console.log(text);
-
-            return false;
-
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
-                data: {type: type, clients: clients},
+                data: {type: type, clients: clients, text: text},
                 url     : 'sendPush',
                 method    : 'post',
                 success: function (response) {
