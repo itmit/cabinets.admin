@@ -103,7 +103,31 @@ class PushController extends Controller
         $url = 'https://fcm.googleapis.com/fcm/send';
         if($request->type == 'all')
         {
-
+            $token = Client::where('id', $client)->first()->device_token;
+                $fields = array (
+                    'to' => '/topics/all',
+                    "notification" => [
+                        "body" => $request->text,
+                        "title" => "Психологическая студия"
+                    ]
+                );
+                $fields = json_encode ( $fields );
+        
+                $headers = array (
+                        'Authorization: key=' . env('FIREBASE_KEY'),
+                        'Content-Type: application/json'
+                );
+        
+                $ch = curl_init ();
+                curl_setopt ( $ch, CURLOPT_URL, $url );
+                curl_setopt ( $ch, CURLOPT_POST, true );
+                curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+                curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+                curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+        
+                curl_exec ( $ch );
+        
+                curl_close ( $ch );
         }
         if($request->type == 'cli')
         {
@@ -135,15 +159,6 @@ class PushController extends Controller
                 curl_close ( $ch );
             }
         }
-    }
-
-    private function sendPushToAll()
-    {
-
-    }
-
-    private function sendPushToClients()
-    {
-        
+        return response()->json(200);
     }
 }
