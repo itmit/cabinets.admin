@@ -419,10 +419,10 @@ class ReservationController extends Controller
         $event->endDateTime = $endDateTime;
         $event->colorId = $cabinet->color;
 
-        $event->save();
+        $calendarEvent = $event->save();
 
         CabinetReservationTime::where('id', $newTime->id)->update([
-            'calendar_id' => $event->id
+            'calendar_id' => $calendarEvent->id
         ]);
     }
 }
