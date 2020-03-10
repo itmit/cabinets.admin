@@ -110,7 +110,7 @@ class PushController extends Controller
             foreach ($request->clients as $client) {
                 $token = Client::where('id', $client)->first()->device_token;
                 $fields = array (
-                    'to' => $user->user()->device_token,
+                    'to' => $token,
                     "notification" => [
                         "body" => $request->text,
                         "title" => "Психологическая студия"
