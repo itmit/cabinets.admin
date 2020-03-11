@@ -149,7 +149,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client, $newTime);
                     }
                     CabinetReservation::where('id', $resId)->update([
                         'total_amount' => $resAmount
@@ -193,7 +193,7 @@ class CabinetReservationApiController extends ApiBaseController
                             'price' => intdiv($price, 2)
                         ]);
 
-                        self::setGoogleCalendar($value, $request->date, $cabinet, $client);
+                        self::setGoogleCalendar($value, $request->date, $cabinet, $client, $newTime);
 
                         CabinetReservation::where('id', $resId)->update([
                             'total_amount' => $amount
@@ -246,7 +246,7 @@ class CabinetReservationApiController extends ApiBaseController
     public function cancelReservation(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
-            'uuid' => 'required|uuid'
+            'uuid' => 'required|uuid|exists:cabinet_reservations'
         ]);
         
         if ($validator->fails()) { 
@@ -505,7 +505,7 @@ class CabinetReservationApiController extends ApiBaseController
 
     }
 
-    private function setGoogleCalendar($value, $date, $cabinet, $client)
+    private function setGoogleCalendar($value, $date, $cabinet, $client, $newTime)
     {
         $event = new Event;
 
@@ -521,6 +521,10 @@ class CabinetReservationApiController extends ApiBaseController
         $event->endDateTime = $endDateTime;
         $event->colorId = $cabinet->color;
 
-        $event->save();
+        $calendarEvent = $event->save();
+
+        CabinetReservationTime::where('id', $newTime->id)->update([
+            'calendar_id' => $calendarEvent->id
+        ]);
     }
 }
