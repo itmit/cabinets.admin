@@ -142,7 +142,7 @@ class CabinetReservationApiController extends ApiBaseController
 
                         $resAmount = $resAmount + intdiv($price, 2);
 
-                        CabinetReservationTime::create([
+                        $newTime = CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId,
                             'time' => $value,
@@ -186,7 +186,7 @@ class CabinetReservationApiController extends ApiBaseController
 
                         $amount = $amount + intdiv($price, 2);
 
-                        CabinetReservationTime::create([
+                        $newTime = CabinetReservationTime::create([
                             'uuid' => Str::uuid(),
                             'reservation_id' => $resId,
                             'time' => $value,
