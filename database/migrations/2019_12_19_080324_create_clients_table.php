@@ -23,7 +23,7 @@ class CreateClientsTable extends Migration
             // $table->boolean('blacklist');
             $table->string('password');
             $table->rememberToken();
-            $table->text('device_token')->unique()->nullable();
+            $table->text('device_token')->nullable();
             $table->timestamps();
         });
     }
