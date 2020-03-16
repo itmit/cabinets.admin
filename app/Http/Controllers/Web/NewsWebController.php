@@ -74,15 +74,17 @@ class NewsWebController extends Controller
             'preview_picture' => $url,
         ]);
 
-        foreach($request->file('news_picture') as $file)
-        {
-            $path = $file->storeAs('public/newsPictures', $file->getClientOriginalName());
-            $url = Storage::url($path);
+        if ($request->hasFile('news_picture')) {
+            foreach($request->file('news_picture') as $file)
+            {
+                $path = $file->storeAs('public/newsPictures', $file->getClientOriginalName());
+                $url = Storage::url($path);
 
-            PictureToNews::create([
-                'news_id' => $news->id,
-                'picture' => $url,
-            ]);
+                PictureToNews::create([
+                    'news_id' => $news->id,
+                    'picture' => $url,
+                ]);
+            }
         }
 
         return redirect()->route('auth.news.index');

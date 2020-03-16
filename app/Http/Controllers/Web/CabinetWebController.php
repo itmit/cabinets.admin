@@ -152,7 +152,7 @@ class CabinetWebController extends Controller
                         $url = Storage::url($path);
 
                         PhotosToCabinet::create([
-                            'cabinet_id' => $cabinet->id,
+                            'cabinet_id' => $id,
                             'photo' => $url,
                         ]);
                     }
