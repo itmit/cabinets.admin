@@ -19,7 +19,7 @@ class CreateCabinetReservationsTable extends Migration
             $table->bigInteger('cabinet_id')->unsigned();
             $table->bigInteger('client_id')->unsigned();
             $table->date('date');
-            $table->integer('total_amount')->unsigned();
+            $table->integer('total_amount')->unsigned()->default(0);
             $table->boolean('is_paid')->default(0);
             $table->timestamps();
             $table->softDeletes();
