@@ -100,11 +100,11 @@ class ReservationController extends Controller
                 DB::transaction(function () use ($request, $resId, $resAmount, $cabinet, $client) {
                     foreach ($request->times as $key => $value)
                     {
-                        if($key <= 18)
+                        if($key <= 19)
                         {
                             $price = $cabinet->price_morning;
                         }
-                        if($key > 18)
+                        if($key > 19)
                         {
                             $price = $cabinet->price_evening;
                         }
@@ -144,11 +144,11 @@ class ReservationController extends Controller
 
                     foreach ($request->times as $key => $value)
                     {
-                        if($key <= 18)
+                        if($key <= 19)
                         {
                             $price = $cabinet->price_morning;
                         }
-                        if($key > 18)
+                        if($key > 19)
                         {
                             $price = $cabinet->price_evening;
                         }
