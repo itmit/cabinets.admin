@@ -177,6 +177,6 @@ class ClientWebController extends Controller
             return $th;
         }
 
-        return $this->sendResponse([], 'Бронирование удалено');
+        return response()->json(['succses'=>'Удалено'], 200); 
     }
 }
