@@ -80,6 +80,7 @@
                             </p>
                             @if ($item->is_paid == 0)
                                 <input type="button" class="btn btn-primary paid" value="Оплатить" data-r="{{ $item->uuid }}">
+                                <input type="button" class="btn btn-danger cancel" value="Отменить" data-r="{{ $item->uuid }}">
                             @endif
                         </div>
                       </div>
@@ -100,6 +101,24 @@
                 dataType: "json",
                 data: {reservation: reservation},
                 url     : 'paid',
+                method    : 'post',
+                success: function (response) {
+                    // console.log(response);
+                    location.reload();
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
+        });
+
+        $(".cancel").click(function() {
+            reservation = $(this).data('r');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {uuid: reservation},
+                url     : 'cancel',
                 method    : 'post',
                 success: function (response) {
                     // console.log(response);

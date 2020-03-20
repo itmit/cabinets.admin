@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Spatie\GoogleCalendar\Event;
 
 class ClientWebController extends Controller
 {
@@ -145,5 +146,36 @@ class ClientWebController extends Controller
         $reservation = CabinetReservation::where('uuid', $request->reservation)->update(['is_paid'=>1]);
 
         return response()->json();
+    }
+
+    public function cancelReservation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uuid' => 'required|uuid|exists:cabinet_reservations'
+        ]);
+        
+        if ($validator->fails()) { 
+            return response()->json(['errors'=>$validator->errors()], 500);            
+        }
+
+        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->first();
+        if($reservation == NULL)
+        {
+            return response()->json(['error'=>'нет такого бронирования'], 500);        
+        }
+
+        try {
+            DB::transaction(function () use ($reservation, $request) {
+                $CabinetReservationTime = CabinetReservationTime::where('reservation_id', $reservation->id)->first();
+                $event = Event::find($CabinetReservationTime->calendar_id);
+                $event->delete();
+                $CabinetReservationTime->delete();
+                CabinetReservation::where('uuid', '=', $request->uuid)->delete();
+            });
+        } catch (\Throwable $th) {
+            return $th;
+        }
+
+        return $this->sendResponse([], 'Бронирование удалено');
     }
 }
