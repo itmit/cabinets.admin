@@ -356,6 +356,9 @@ class CabinetReservationApiController extends ApiBaseController
             $resTimes = [];
             $cab = [];
             $cabinet = $reservation->getCabinet();
+            if($cabinet->color_html == 'bold blue') $cabinet->color_html = 'darkblue';
+            if($cabinet->color_html == 'bold green') $cabinet->color_html = 'darkgreen';
+            if($cabinet->color_html == 'bold red') $cabinet->color_html = 'darkred';
             $cab = [
                 'uuid' => $cabinet->uuid,
                 'name' => $cabinet->name,
