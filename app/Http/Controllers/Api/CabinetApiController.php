@@ -24,6 +24,9 @@ class CabinetApiController extends ApiBaseController
         $cabinets = Cabinets::all()->sortByDesc('created_at');
         $list = [];
         foreach ($cabinets as $item) {
+            if($item->color_html == 'bold blue') $item->color_html = 'darkblue';
+            if($item->color_html == 'bold green') $item->color_html = 'darkgreen';
+            if($item->color_html == 'bold red') $item->color_html = 'darkred';
             $list[] = [
                 'uuid' => $item->uuid,
                 'name' => $item->name,
