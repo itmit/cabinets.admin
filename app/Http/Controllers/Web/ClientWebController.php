@@ -183,7 +183,7 @@ class ClientWebController extends Controller
     public function edit($id)
     {
         $client = Client::withTrashed()->where('id', $id)->first();
-        return view('cabinets.cabinetsEdit', [
+        return view('clients.clientEdit', [
             'client' => $client,
             'id' => $id
         ]);
