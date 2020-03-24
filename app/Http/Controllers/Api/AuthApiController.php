@@ -188,7 +188,7 @@ class AuthApiController extends ApiBaseController
         $message = wordwrap($message, 70, "\r\n");
 
         // Отправляем
-        mail($request->email, 'НКО Якутия. Сброс пароля', $message);
+        mail($request->email, 'Психологическая студия. Сброс пароля', $message);
     }
     
     public function resetPassword(Request $request)
