@@ -79,7 +79,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="password" type="password" class="form-control" name="password" value="{{ $client->password }}" required maxlength="191">
+                        <input id="password" type="password" class="form-control" name="password" value="" required maxlength="191">
             
                         @if ($errors->has('password'))
                             <span class="help-block">
