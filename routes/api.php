@@ -17,6 +17,9 @@ Route::post('login', 'Api\AuthApiController@login');
 Route::post('register', 'Api\AuthApiController@register');
 Route::post('logout', 'Api\AuthApiController@logout');
 
+Route::post('sendCode', 'Api\AuthApiController@sendCode');
+Route::post('resetPassword', 'Api\AuthApiController@resetPassword');
+
 Route::post('cabinets/selectDate', 'Api\CabinetReservationApiController@checkCabinetByDate');
 
 Route::group(['middleware' => 'auth:api'], function(){
