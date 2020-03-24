@@ -188,4 +188,35 @@ class ClientWebController extends Controller
             'id' => $id
         ]);
     }
+
+    public function update($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:191|string',
+            'birthday' => 'required|date',
+            'phone' => 'required',
+            'email' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.cabinets.edit', ['id' => $id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        try {
+            DB::transaction(function () use ($request, $id) {
+                $client = Client::withTrashed()->where('id', $id)->update([
+                    'name' => $request->name,
+                    'birthday' => $request->birthday,
+                    'phone' => $request->phone,
+                    'email' => $request->email,
+                ]);
+            });
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        return redirect()->route('auth.clients.show', ['id' => $id]);    
+    }
 }
