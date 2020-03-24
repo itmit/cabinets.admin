@@ -89,7 +89,7 @@
                                     Не оплачено
                                 @endif
                             </p>
-                            @if($item->deleted_at != null)
+                            @if(!$item->deleted_at)
                                 @if ($item->is_paid == 0)
                                     <input type="button" class="btn btn-primary paid" value="Оплатить" data-r="{{ $item->uuid }}">
                                     <input type="button" class="btn btn-danger cancel" value="Отменить" data-r="{{ $item->uuid }}">
