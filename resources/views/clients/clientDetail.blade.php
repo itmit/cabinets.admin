@@ -10,8 +10,8 @@
             <a href="../clients">Назад</a>
 
             <div class="row">
-                <div class="col-md-2"><a href="/edit" class="btn btn-primary">Редактировать</a></div>
-                <div class="col-md-2"><button class="btn btn-danger">Архивировать</button></div>
+                <div class="col-md-3"><a href="/clients/{{ $client->id }}/edit" class="btn btn-primary">Редактировать</a></div>
+                <div class="col-md-3"><button class="btn btn-danger">Архивировать</button></div>
             </div>
             
             <div class="row">
