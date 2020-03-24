@@ -31,6 +31,6 @@ class CabinetReservation extends Model
 
     public function getTimes()
     {
-        return $this->hasMany(CabinetReservationTime::class, 'reservation_id')->get();
+        return $this->hasMany(CabinetReservationTime::class, 'reservation_id')->withTrashed()->get();
     }
 }
