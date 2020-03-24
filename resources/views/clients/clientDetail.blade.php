@@ -5,7 +5,7 @@
 <div class="col-sm-12 tabs-content">
     <div class="row justify-content-center cont-m">
         <div class="col-md-12">
-        <h2>{{ $title }} {{ $client->name }}</h2>
+        <h2>Клиент {{ $client->name }}</h2>
 
             <a href="../clients">Назад</a>
 
