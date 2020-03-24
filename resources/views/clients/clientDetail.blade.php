@@ -89,9 +89,13 @@
                                     Не оплачено
                                 @endif
                             </p>
-                            @if ($item->is_paid == 0)
-                                <input type="button" class="btn btn-primary paid" value="Оплатить" data-r="{{ $item->uuid }}">
-                                <input type="button" class="btn btn-danger cancel" value="Отменить" data-r="{{ $item->uuid }}">
+                            @if($item->deleted_at != null)
+                                @if ($item->is_paid == 0)
+                                    <input type="button" class="btn btn-primary paid" value="Оплатить" data-r="{{ $item->uuid }}">
+                                    <input type="button" class="btn btn-danger cancel" value="Отменить" data-r="{{ $item->uuid }}">
+                                @endif
+                            @else
+                                <p>Бронирование было отменено</p>
                             @endif
                         </div>
                       </div>

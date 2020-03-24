@@ -51,7 +51,7 @@ class Client extends Authenticatable
 
     public function getReservationCount()
     {
-        return $this->hasMany(CabinetReservation::class, 'client_id')->withTrashed()->count();
+        return $this->hasMany(CabinetReservation::class, 'client_id')->withTrashed()->where('deleted_at', null)->count();
     }
 
     public function AauthAcessToken(){
