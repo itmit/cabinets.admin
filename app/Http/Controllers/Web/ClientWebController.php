@@ -237,9 +237,9 @@ class ClientWebController extends Controller
                 $event = Event::find($time->calendar_id);
                 if(!$event) $event->delete();
             }
-            $times->delete();
+            $times->each()->delete();
         }
-        $reservations->delete();
+        $reservations->each()->delete();
         $client->delete();
         return response()->json(['succses'=>'Клиент архивирован'], 200); 
     }
