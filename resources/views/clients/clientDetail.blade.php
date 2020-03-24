@@ -17,6 +17,7 @@
                     @else
                     <button class="btn btn-danger unarchive" data-i="{{ $client->id }}">Разархивировать</button>
                     @endif
+                    <div class="loader" style="display: none"></div>
                 </div>
             </div>
             
@@ -149,6 +150,7 @@
             let isDel = confirm("Архивировать клиента? Все его текущие бронирования будут отменены!");
             if(isDel)
             {
+                $('.loader').css('display', 'block');
                 id = $(this).data('i');
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -186,4 +188,19 @@
         });
     })
 </script>
+<style>
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 @endsection
