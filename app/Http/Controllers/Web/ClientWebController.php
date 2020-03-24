@@ -229,10 +229,10 @@ class ClientWebController extends Controller
     public function archive(Request $request)
     {
         $client = Client::where('id', $request->id)->first();
-        $reservations = CabinetReservation::where('client_id', $client->id)->get();
+        $reservations = CabinetReservation::withTrashed()->where('client_id', $client->id)->get();
         foreach($reservations as $reservation)
         {
-            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
+            $times = CabinetReservationTime::withTrashed()->where('reservation_id', $reservation->id)->get();
             foreach($times as $time)
             {
                 $event = Event::find($time->calendar_id);
