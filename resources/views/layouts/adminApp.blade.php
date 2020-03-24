@@ -153,7 +153,6 @@
         case 'reservations':
             $( "li[name='reservations']" ).addClass( "active" );
             break;
-        }
 
         case 'reservations_cancel':
             $( "li[name='reservations_cancel']" ).addClass( "active" );
