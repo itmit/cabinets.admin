@@ -21,7 +21,12 @@
                         <td>{{ $item['client']->name }}</td>
                         <td>{{ $item['client']->getReservationCount() }}</td>
                         <td>{{ $item['amount'] }} рублей</td>
-                        <td></td>
+                        <td>@if($item['client']->deleted_at == null)
+                                Активен
+                            @else
+                                Архивирован
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

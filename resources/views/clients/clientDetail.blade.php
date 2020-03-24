@@ -8,6 +8,11 @@
         <h2>{{ $title }} {{ $client->name }}</h2>
 
             <a href="../clients">Назад</a>
+
+            <div class="row">
+                <div class="col-md-6"><a href="" class="btn btn-primary">Редактировать</a></div>
+                <div class="col-md-6"><button class="btn btn-primary">Архивировать</button></div>
+            </div>
             
             <div class="row">
                 <div class="col-md-4">Телефон</div>
