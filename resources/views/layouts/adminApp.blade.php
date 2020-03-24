@@ -107,7 +107,7 @@
 
                             <li style="width: 100%" name="reservations"><a href="{{ route('auth.reservations.create') }}">Бронирования</a></li>
 
-                            <li style="width: 100%" name="reservations_cancel"><a href="{{ route('auth.reservationcancels.reservationcancels') }}">Отмены бронирования</a></li>
+                            <li style="width: 100%" name="reservations_cancel"><a href="{{ route('auth.reservationcancels') }}">Отмены бронирования</a></li>
         
                         </ul>
                     </div>

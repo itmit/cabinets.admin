@@ -176,6 +176,11 @@ class ReservationController extends Controller
         return redirect()->route('auth.reservations.create');
     }
 
+    public function reservationcancels()
+    {
+        return 'reservationcancels';
+    }
+
     /**
      * Display the specified resource.
      *
