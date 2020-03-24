@@ -234,11 +234,10 @@ class ClientWebController extends Controller
         $reservations = CabinetReservation::withTrashed()->where('client_id', $client->id)->get();
         foreach($reservations as $reservation)
         {
-            $times = CabinetReservationTime::withTrashed()->where('reservation_id', $reservation->id)->get();
+            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
             foreach($times as $time)
             {
                 $event = Event::find($time->calendar_id);
-                return $event;
                 if($event != null) $event->delete();
                 $time->delete();
             }
