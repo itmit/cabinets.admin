@@ -28,7 +28,7 @@ class ClientWebController extends Controller
         $result = [];
         foreach ($clients as $client) {
             $amount = 0;
-            $reservations = CabinetReservation::where('client_id', $client->id)->get();
+            $reservations = CabinetReservation::withTrashed()->where('client_id', $client->id)->get();
             foreach ($reservations as $item) {
                 if($item->is_paid == 0) $amount = $amount + $item->total_amount;
             }
@@ -144,7 +144,7 @@ class ClientWebController extends Controller
             return response()->json(['errors'=>$validator->errors()], 401);            
         }
 
-        $reservation = CabinetReservation::where('uuid', $request->reservation)->update(['is_paid'=>1]);
+        $reservation = CabinetReservation::withTrashed()->where('uuid', $request->reservation)->update(['is_paid'=>1]);
 
         return response()->json();
     }
@@ -159,7 +159,7 @@ class ClientWebController extends Controller
             return response()->json(['errors'=>$validator->errors()], 500);            
         }
 
-        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->first();
+        $reservation = CabinetReservation::withTrashed()->where('uuid', '=', $request->uuid)->first();
         if($reservation == NULL)
         {
             return response()->json(['error'=>'нет такого бронирования'], 500);        
