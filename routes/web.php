@@ -36,6 +36,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::resource('pushes', 'Web\PushController');
     Route::post('sendPush', 'Web\PushController@sendPush');
+
+    Route::post('reservationcancels', 'Web\ReservationController@reservationcancels');
     
 });
 
