@@ -238,7 +238,7 @@ class ClientWebController extends Controller
             foreach($times as $time)
             {
                 $event = Event::find($time->calendar_id);
-                if(!$event) $event->delete();
+                if($event) $event->delete();
                 $time->delete();
             }
             $reservation->delete();
