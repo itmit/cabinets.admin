@@ -219,4 +219,28 @@ class ClientWebController extends Controller
         }
         return redirect()->route('auth.clients.show', ['id' => $id]);    
     }
+
+    public function unarchive(Request $request)
+    {
+        
+    }
+
+    public function archive(Request $request)
+    {
+        $client = Client::where('id', $request->id)->first();
+        $reservations = CabinetReservation::where('client_id', $client->id)->get();
+        foreach($reservations as $reservation)
+        {
+            $times = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
+            foreach($times as $time)
+            {
+                $event = Event::find($time->calendar_id);
+                $event->delete();
+            }
+            $times->delete();
+        }
+        $reservations->delete();
+        $client->delete();
+        return response()->json(['succses'=>'Клиент архивирован'], 200); 
+    }
 }

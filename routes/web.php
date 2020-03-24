@@ -21,6 +21,9 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::post('clients/paid', 'Web\ClientWebController@paid');
     Route::post('clients/cancel', 'Web\ClientWebController@cancelReservation');
 
+    Route::post('clients/archive', 'Web\ClientWebController@archive');
+    Route::post('clients/unarchive', 'Web\ClientWebController@unarchive');
+
     Route::resource('cabinets', 'Web\CabinetWebController');
     Route::post('cabinets/deletePhoto', 'Web\CabinetWebController@deletePhoto');
 

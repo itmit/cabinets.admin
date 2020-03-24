@@ -11,7 +11,13 @@
 
             <div class="row">
                 <div class="col-md-3"><a href="/clients/{{ $client->id }}/edit" class="btn btn-primary">Редактировать</a></div>
-                <div class="col-md-3"><button class="btn btn-danger">Архивировать</button></div>
+                <div class="col-md-3">
+                    @if($client->deleted_at == null)
+                    <button class="btn btn-danger archive" data-i="{{ $client->id }}">Архивировать</button>
+                    @else
+                    <button class="btn btn-danger unarchive" data-i="{{ $client->id }}">Разархивировать</button>
+                    @endif
+                </div>
             </div>
             
             <div class="row">
@@ -124,6 +130,46 @@
                 dataType: "json",
                 data: {uuid: reservation},
                 url     : 'cancel',
+                method    : 'post',
+                success: function (response) {
+                    // console.log(response);
+                    location.reload();
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
+        });
+
+        $(".archive").click(function() {
+            let isDel = confirm("Архивировать клиента? Все его текущие бронирования будут отменены!");
+            if(isDel)
+            {
+                id = $(this).data('i');
+                $.ajax({
+                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    dataType: "json",
+                    data: {id: id},
+                    url     : 'archive',
+                    method    : 'post',
+                    success: function (response) {
+                        // console.log(response);
+                        location.reload();
+                    },
+                    error: function (xhr, err) { 
+                        console.log(err + " " + xhr);
+                    }
+                });
+            }
+        });
+
+        $(".unarchive").click(function() {
+            id = $(this).data('i');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {id: id},
+                url     : 'unarchive',
                 method    : 'post',
                 success: function (response) {
                     // console.log(response);
