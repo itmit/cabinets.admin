@@ -261,10 +261,12 @@ class CabinetReservationApiController extends ApiBaseController
 
         try {
             DB::transaction(function () use ($reservation, $request) {
-                $CabinetReservationTime = CabinetReservationTime::where('reservation_id', $reservation->id)->first();
-                $event = Event::find($CabinetReservationTime->calendar_id);
-                $event->delete();
-                $CabinetReservationTime->delete();
+                $CabinetReservationTimes = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
+                foreach ($CabinetReservationTimes as $CabinetReservationTime) {
+                    $event = Event::find($CabinetReservationTime->calendar_id);
+                    $event->delete();
+                    $CabinetReservationTime->delete();
+                }
                 CabinetReservation::where('uuid', '=', $request->uuid)->delete();
             });
         } catch (\Throwable $th) {
