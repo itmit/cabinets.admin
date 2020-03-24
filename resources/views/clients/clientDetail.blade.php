@@ -17,7 +17,7 @@
                     @else
                     <button class="btn btn-danger unarchive" data-i="{{ $client->id }}">Разархивировать</button>
                     @endif
-                    <div class="loader" style="display: none"></div>
+                    <div class="loader" style="display: none; position:fixed"></div>
                 </div>
             </div>
             
@@ -170,6 +170,7 @@
         });
 
         $(".unarchive").click(function() {
+            $('.loader').css('display', 'block');
             id = $(this).data('i');
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
