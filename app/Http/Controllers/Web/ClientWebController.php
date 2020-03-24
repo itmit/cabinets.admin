@@ -24,7 +24,7 @@ class ClientWebController extends Controller
      */
     public function index()
     {
-        $clients = Client::all()->withTrashed()->sortByDesc('created_at');
+        $clients = Client::withTrashed()->sortByDesc('created_at')->get();
         $result = [];
         foreach ($clients as $client) {
             $amount = 0;
