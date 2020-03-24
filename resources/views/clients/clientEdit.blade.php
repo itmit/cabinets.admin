@@ -5,6 +5,7 @@
 <div class="col-sm-12 tabs-content">
     <div class="row justify-content-center cont-m">
         <div class="col-md-12">
+            <a href="../clients/{{$id}}">Назад</a>
             <form class="form-horizontal" method="POST" action="/clients/{{ $id }}" enctype="multipart/form-data">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
