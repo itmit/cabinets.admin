@@ -122,7 +122,7 @@ class ClientWebController extends Controller
     public function show($id)
     {
         $amount = 0;
-        $reservations = CabinetReservation::where('client_id', $id)->orderBy('created_at', 'desc')->get();
+        $reservations = CabinetReservation::withTrashed()->where('client_id', $id)->orderBy('created_at', 'desc')->get();
         foreach ($reservations as $item) {
             if($item->is_paid == 0) $amount = $amount + $item->total_amount;
         }
