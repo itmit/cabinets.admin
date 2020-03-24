@@ -222,7 +222,8 @@ class ClientWebController extends Controller
 
     public function unarchive(Request $request)
     {
-        
+        $client = Client::withTrashed()->where('id', $request->id)->restore();
+        return response()->json(['succses'=>'Клиент восстановлен'], 200); 
     }
 
     public function archive(Request $request)
