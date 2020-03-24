@@ -124,7 +124,7 @@ class ClientWebController extends Controller
         $amount = 0;
         $reservations = CabinetReservation::withTrashed()->where('client_id', $id)->orderBy('created_at', 'desc')->get();
         foreach ($reservations as $item) {
-            if($item->is_paid == 0) $amount = $amount + $item->total_amount;
+            if($item->is_paid == 0 && !$item->deleted_at) $amount = $amount + $item->total_amount;
         }
         return view('clients.clientDetail', [
             'title' => 'Клиент',
