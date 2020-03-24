@@ -159,7 +159,7 @@ class ClientWebController extends Controller
             return response()->json(['errors'=>$validator->errors()], 500);            
         }
 
-        $reservation = CabinetReservation::withTrashed()->where('uuid', '=', $request->uuid)->first();
+        $reservation = CabinetReservation::where('uuid', '=', $request->uuid)->first();
         if($reservation == NULL)
         {
             return response()->json(['error'=>'нет такого бронирования'], 500);        
@@ -167,10 +167,12 @@ class ClientWebController extends Controller
 
         try {
             DB::transaction(function () use ($reservation, $request) {
-                $CabinetReservationTime = CabinetReservationTime::where('reservation_id', $reservation->id)->first();
-                $event = Event::find($CabinetReservationTime->calendar_id);
-                $event->delete();
-                $CabinetReservationTime->delete();
+                $CabinetReservationTimes = CabinetReservationTime::where('reservation_id', $reservation->id)->get();
+                foreach ($CabinetReservationTimes as $CabinetReservationTime) {
+                    $event = Event::find($CabinetReservationTime->calendar_id);
+                    $event->delete();
+                    $CabinetReservationTime->delete();
+                }
                 CabinetReservation::where('uuid', '=', $request->uuid)->delete();
             });
         } catch (\Throwable $th) {
