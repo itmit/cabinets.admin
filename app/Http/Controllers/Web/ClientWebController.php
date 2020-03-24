@@ -128,7 +128,7 @@ class ClientWebController extends Controller
         }
         return view('clients.clientDetail', [
             'title' => 'Клиент',
-            'client' => Client::where('id', $id)->first(),
+            'client' => Client::withTrashed()->where('id', $id)->first(),
             'amount' => $amount,
             'reservations' => $reservations
         ]);

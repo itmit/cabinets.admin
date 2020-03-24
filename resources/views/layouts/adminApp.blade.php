@@ -106,6 +106,8 @@
                             <li style="width: 100%" name="notifications"><a href="{{ route('auth.pushes.index') }}">Уведомления</a></li>
 
                             <li style="width: 100%" name="reservations"><a href="{{ route('auth.reservations.create') }}">Бронирования</a></li>
+
+                            <li style="width: 100%" name="reservations_cancel"><a href="">Отмены бронирования</a></li>
         
                         </ul>
                     </div>
@@ -148,8 +150,13 @@
             $( "li[name='notifications']" ).addClass( "active" );
             break;
 
-        case 'notifications':
+        case 'reservations':
             $( "li[name='reservations']" ).addClass( "active" );
+            break;
+        }
+
+        case 'reservations_cancel':
+            $( "li[name='reservations_cancel']" ).addClass( "active" );
             break;
         }
     })
