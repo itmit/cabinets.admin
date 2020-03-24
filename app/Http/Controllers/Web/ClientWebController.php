@@ -179,4 +179,13 @@ class ClientWebController extends Controller
 
         return response()->json(['succses'=>'Удалено'], 200); 
     }
+
+    public function edit($id)
+    {
+        $client = Client::withTrashed()->where('id', $id)->first();
+        return view('cabinets.cabinetsEdit', [
+            'client' => $client,
+            'id' => $id
+        ]);
+    }
 }

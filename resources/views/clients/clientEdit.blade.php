@@ -6,7 +6,8 @@
     <div class="row justify-content-center cont-m">
         <div class="col-md-12">
             <h2>{{ $title }}</h2>
-            <form class="form-horizontal" method="POST" action="{{ route('auth.clients.store') }}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="/clients/{{ $id }}" enctype="multipart/form-data">
+                {{ method_field('PATCH') }}
                 {{ csrf_field() }}
             
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -15,7 +16,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required maxlength="191" placeholder=" Иванов Иван">
+                        <input id="name" type="text" class="form-control" name="name" value="{{ $client->name }}" required maxlength="191" placeholder=" Иванов Иван">
             
                         @if ($errors->has('name'))
                             <span class="help-block">
@@ -31,7 +32,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="birthday" type="date" class="form-control" name="birthday" value="{{ old('birthday') }}" required maxlength="191">
+                        <input id="birthday" type="date" class="form-control" name="birthday" value="{{ $client->birthday }}" required maxlength="191">
             
                         @if ($errors->has('birthday'))
                             <span class="help-block">
@@ -47,7 +48,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}" required maxlength="191">
+                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ $client->phone }}" required maxlength="191">
             
                         @if ($errors->has('phone'))
                             <span class="help-block">
@@ -63,7 +64,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required maxlength="191">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ $client->email }}" required maxlength="191">
             
                         @if ($errors->has('email'))
                             <span class="help-block">
@@ -79,7 +80,7 @@
                     </div>
             
                     <div class="col-xs-12 col-sm-10">
-                        <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required maxlength="191">
+                        <input id="password" type="password" class="form-control" name="password" value="{{ $client->password }}" required maxlength="191">
             
                         @if ($errors->has('password'))
                             <span class="help-block">
