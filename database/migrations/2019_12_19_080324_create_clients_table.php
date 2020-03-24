@@ -26,6 +26,7 @@ class CreateClientsTable extends Migration
             $table->rememberToken();
             $table->text('device_token')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
