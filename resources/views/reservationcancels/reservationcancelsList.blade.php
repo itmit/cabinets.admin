@@ -42,7 +42,7 @@
                     <table class="table policy-table">
                         <thead>
                         <tr>
-                            th scope="col">Дата бронирования</th>
+                            <th scope="col">Дата бронирования</th>
                             <th scope="col">Дата отмены</th>
                             <th scope="col">Кабинет</th>
                             <th scope="col">Клиент</th>
