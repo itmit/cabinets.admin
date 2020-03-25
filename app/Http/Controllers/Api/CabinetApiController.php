@@ -21,7 +21,7 @@ class CabinetApiController extends ApiBaseController
 
     public function getListOfCabinets()
     {
-        $cabinets = Cabinets::all()->sortByDesc('name');
+        $cabinets = Cabinets::all()->sortBy('name');
         $list = [];
         foreach ($cabinets as $item) {
             if($item->color_html == 'bold blue') $item->color_html = 'darkblue';

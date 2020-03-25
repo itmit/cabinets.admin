@@ -29,8 +29,8 @@
                         @foreach($reservations1 as $reservation1)
                         <?php $client = $reservation1->getClient()?>
                             <tr>
-                                <td>{{ date('d.m.y', strtotime($reservation1->date)) }}</td>
-                                <td>{{ date('d.m.y', strtotime($reservation1->deleted_at)) }}</td>
+                                <td>{{ date('d.m.Y', strtotime($reservation1->date)) }}</td>
+                                <td>{{ date('d.m.Y', strtotime($reservation1->deleted_at)) }}</td>
                                 <td>{{ $reservation1->getCabinet()->name }}</td>
                                 <td><a href="../clients/{{ $client->id }}">{{ $client->name }}</a></td>
                             </tr>
@@ -52,8 +52,8 @@
                         @foreach($reservations2 as $reservation2)
                         <?php $client = $reservation2->getClient()?>
                             <tr>
-                                {{-- <td>{{ date('d.m.y', $reservation2->date) }}</td>
-                                <td>{{ date('d.m.y', $reservation1->deleted_at) }}</td> --}}
+                                <td>{{ date('d.m.Y', strtotime($reservation2->date)) }}</td>
+                                <td>{{ date('d.m.Y', strtotime($reservation1->deleted_at)) }}</td>
                                 <td>{{ $reservation2->getCabinet()->name }}</td>
                                 <td><a href="../clients/{{ $client->id }}">{{ $client->name }}</a></td>
                             </tr>
