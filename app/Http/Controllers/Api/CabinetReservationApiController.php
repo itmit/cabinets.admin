@@ -267,6 +267,9 @@ class CabinetReservationApiController extends ApiBaseController
                     $event->delete();
                     $CabinetReservationTime->delete();
                 }
+                CabinetReservation::where('uuid', '=', $request->uuid)->update([
+                    'is_cancel' => 1,
+                ]);
                 CabinetReservation::where('uuid', '=', $request->uuid)->delete();
             });
         } catch (\Throwable $th) {

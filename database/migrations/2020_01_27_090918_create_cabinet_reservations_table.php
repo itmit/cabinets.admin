@@ -21,6 +21,7 @@ class CreateCabinetReservationsTable extends Migration
             $table->date('date');
             $table->integer('total_amount')->unsigned()->default(0);
             $table->boolean('is_paid')->default(0);
+            $table->boolean('is_cancel')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
