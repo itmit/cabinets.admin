@@ -8,7 +8,7 @@
             <h2>{{ $title }}</h2>
             <ul class="nav nav-tabs" id="myTab">
                 <li data-type="cancel" class="active"><a href="#">Отменены</a></li>
-                <li data-type="cancel2"><a href="#">Отменены менее чем за 24ч</a></li>
+                <li data-type="cancel2"><a href="#">Отменены менее чем за 24 ч</a></li>
             </ul>
             <table class="table policy-table">
                 <thead>
@@ -36,5 +36,9 @@
 // $("tr").click(function() {
 //     window.location.href = 'reservationcancels/'+$(this).data('c');
 // });
-// </script>
+$('#myTab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
 @endsection
