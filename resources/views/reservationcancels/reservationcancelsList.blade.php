@@ -8,14 +8,14 @@
             <h2>{{ $title }}</h2>
             <ul class="nav nav-tabs">
             <li class="active">
-                <a data-toggle="tab" href="#description">Отменены</a>
+                <a data-toggle="tab" href="#c1">Отменены</a>
             </li>
             <li>
-                <a data-toggle="tab" href="#characteristics">Отменены менее чем за 24 ч</a>
+                <a data-toggle="tab" href="#c2">Отменены менее чем за 24 ч</a>
             </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="description">
+                <div class="tab-pane active" id="c1">
                     <table class="table policy-table">
                         <thead>
                         <tr>
@@ -35,8 +35,25 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane" id="characteristics">
-                    222
+                <div class="tab-pane" id="c2">
+                    <table class="table policy-table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Кабинет</th>
+                            <th scope="col">Клиент</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($reservations2 as $reservation2)
+                            <tr>
+                                <td>{{ $reservation2->date }}</td>
+                                <td>{{ $reservation2->getCabinet()->name }}</td>
+                                <td>{{ $reservation2->getClient()->name }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

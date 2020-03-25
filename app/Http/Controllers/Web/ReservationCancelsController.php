@@ -29,7 +29,7 @@ class ReservationCancelsController extends Controller
         return view('reservationcancels.reservationcancelsList', [
             'title' => 'Список отмененных бронирований',
             'reservations1' => CabinetReservation::withTrashed()->where('is_cancel', 1)->get(),
-            'reservations2' => CabinetReservation::withTrashed()->where('is_cancel', 1)->get(),
+            'reservations2' => CabinetReservation::withTrashed()->where('is_cancel', 1)->whereRaw('DATEDIFF(date,created_at) < 1')->get(),
         ]);
     }
 
