@@ -203,10 +203,9 @@ class ClientWebController extends Controller
         $this->password = $request->password;
         $this->password_confirmation = $request->password_confirmation;
 
-        return $this->password . ' ' . $this->password_confirmation;
-
         $validator->after(function ($validator) {
             if ($this->password != null && $this->password_confirmation != null) {
+                return '1';
                 if($this->password != $this->password_confirmation)
                 {
                     $validator->errors()->add('password', 'Пароли должны совпадать');
@@ -221,6 +220,8 @@ class ClientWebController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        return $this->password . ' ' . $this->password_confirmation;
 
         try {
             DB::transaction(function () use ($request, $id) {
