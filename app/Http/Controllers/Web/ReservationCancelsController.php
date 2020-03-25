@@ -28,8 +28,8 @@ class ReservationCancelsController extends Controller
     {
         return view('reservationcancels.reservationcancelsList', [
             'title' => 'Список отмененных бронирований',
-            // 'cabinets' => Cabinets::get(),
-            // 'clients' => Client::get()
+            'reservations1' => CabinetReservation::withTrashed()->where('is_cancel', 1)->get(),
+            'reservations2' => CabinetReservation::withTrashed()->where('is_cancel', 1)->get(),
         ]);
     }
 
