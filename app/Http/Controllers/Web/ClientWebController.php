@@ -207,25 +207,12 @@ class ClientWebController extends Controller
                 ->withInput();
         }
 
-        $this->password = $request->password;
-        $this->password_confirmation = $request->password_confirmation;
-
-        $validator->after(function ($validator) {
-            if(isset($this->password)) {
-                return '1';
-                if($this->password != $this->password_confirmation)
-                {
-                    $validator->errors()->add('password', 'Пароли должны совпадать');
-                    $validator->errors()->add('password_confirmation', 'Пароли должны совпадать');
-                }
-            }
-        });
-
-        return $this->password . ' ' . $this->password_confirmation;
+        if($request->password) return 'y';
+        else return 'no';
 
         try {
             DB::transaction(function () use ($request, $id) {
-                if($request->password && $request->password_confirmation)
+                if($request->password)
                 {
                     $client = Client::withTrashed()->where('id', $id)->update([
                         'name' => $request->name,
