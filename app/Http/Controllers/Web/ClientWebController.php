@@ -207,9 +207,6 @@ class ClientWebController extends Controller
                 ->withInput();
         }
 
-        if($request->password) return 'y';
-        else return 'no';
-
         try {
             DB::transaction(function () use ($request, $id) {
                 if($request->password)
