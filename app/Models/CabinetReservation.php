@@ -26,7 +26,7 @@ class CabinetReservation extends Model
 
     public function getClient()
     {
-        return $this->belongsTo(Client::class, 'client_id')->first();
+        return $this->belongsTo(Client::class, 'client_id')->withTrashed()->first();
     }
 
     public function getTimes()

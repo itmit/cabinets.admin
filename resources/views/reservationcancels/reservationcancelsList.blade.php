@@ -50,7 +50,7 @@
                         </thead>
                         <tbody>
                         @foreach($reservations2 as $reservation2)
-                        <?php $client = $reservation1->getClient()?>
+                        <?php $client = $reservation2->getClient()?>
                             <tr>
                                 <td>{{ $reservation2->date }}</td>
                                 <td>{{ $reservation1->deleted_at }}</td>
