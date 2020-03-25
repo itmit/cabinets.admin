@@ -7,8 +7,8 @@
         <div class="col-md-12">
             <h2>{{ $title }}</h2>
             <ul class="nav nav-tabs">
-            <li class="active">
-                <a data-toggle="tab" href="#c1">Отменены</a>
+            <li>
+                <a data-toggle="tab" href="#c1" class="active show">Отменены</a>
             </li>
             <li>
                 <a data-toggle="tab" href="#c2">Отменены менее чем за 24 ч</a>
