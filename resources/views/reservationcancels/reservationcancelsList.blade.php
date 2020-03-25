@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{ $reservation1->date }}</td>
                                 <td>{{ $reservation1->getCabinet()->name }}</td>
-                                <td><a href="../clients/{{ $client->id }}"></a>{{ $client->name }}</td>
+                                <td><a href="../clients/{{ $client->id }}">{{ $client->name }}</a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{{ $reservation2->date }}</td>
                                 <td>{{ $reservation2->getCabinet()->name }}</td>
-                                <td><a href="../clients/{{ $client->id }}"></a>{{ $client->name }}</td>
+                                <td><a href="../clients/{{ $client->id }}">{{ $client->name }}</a></td>
                             </tr>
                         @endforeach
                         </tbody>
