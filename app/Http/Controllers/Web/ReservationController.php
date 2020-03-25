@@ -178,7 +178,11 @@ class ReservationController extends Controller
 
     public function reservationcancels()
     {
-        return 'reservationcancels';
+        return view('reservationcancels.reservationcancelsList', [
+            'title' => 'Список отмененных бронирований',
+            // 'cabinets' => Cabinets::get(),
+            // 'clients' => Client::get()
+        ]);
     }
 
     /**
