@@ -176,15 +176,6 @@ class ReservationController extends Controller
         return redirect()->route('auth.reservations.create');
     }
 
-    public function reservationcancels()
-    {
-        return view('reservationcancels.reservationcancelsList', [
-            'title' => 'Список отмененных бронирований',
-            // 'cabinets' => Cabinets::get(),
-            // 'clients' => Client::get()
-        ]);
-    }
-
     /**
      * Display the specified resource.
      *
