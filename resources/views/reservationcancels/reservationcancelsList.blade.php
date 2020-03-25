@@ -19,7 +19,8 @@
                     <table class="table policy-table">
                         <thead>
                         <tr>
-                            <th scope="col">Дата</th>
+                            <th scope="col">Дата бронирования</th>
+                            <th scope="col">Дата отмены</th>
                             <th scope="col">Кабинет</th>
                             <th scope="col">Клиент</th>
                         </tr>
@@ -29,6 +30,7 @@
                         <?php $client = $reservation1->getClient()?>
                             <tr>
                                 <td>{{ $reservation1->date }}</td>
+                                <td>{{ $reservation1->deleted_at }}</td>
                                 <td>{{ $reservation1->getCabinet()->name }}</td>
                                 <td><a href="../clients/{{ $client->id }}">{{ $client->name }}</a></td>
                             </tr>
@@ -40,7 +42,8 @@
                     <table class="table policy-table">
                         <thead>
                         <tr>
-                            <th scope="col">Дата</th>
+                            th scope="col">Дата бронирования</th>
+                            <th scope="col">Дата отмены</th>
                             <th scope="col">Кабинет</th>
                             <th scope="col">Клиент</th>
                         </tr>
@@ -50,6 +53,7 @@
                         <?php $client = $reservation1->getClient()?>
                             <tr>
                                 <td>{{ $reservation2->date }}</td>
+                                <td>{{ $reservation1->deleted_at }}</td>
                                 <td>{{ $reservation2->getCabinet()->name }}</td>
                                 <td><a href="../clients/{{ $client->id }}">{{ $client->name }}</a></td>
                             </tr>
