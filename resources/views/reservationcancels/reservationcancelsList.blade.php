@@ -26,10 +26,11 @@
                         </thead>
                         <tbody>
                         @foreach($reservations1 as $reservation1)
+                        <?php $client = $reservation1->getClient()?>
                             <tr>
                                 <td>{{ $reservation1->date }}</td>
                                 <td>{{ $reservation1->getCabinet()->name }}</td>
-                                <td>{{ $reservation1->getClient()->name }}</td>
+                                <td><a href="../clients/{{ $client->id }}"></a>{{ $client->name }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,10 +47,11 @@
                         </thead>
                         <tbody>
                         @foreach($reservations2 as $reservation2)
+                        <?php $client = $reservation1->getClient()?>
                             <tr>
                                 <td>{{ $reservation2->date }}</td>
                                 <td>{{ $reservation2->getCabinet()->name }}</td>
-                                <td>{{ $reservation2->getClient()->name }}</td>
+                                <td><a href="../clients/{{ $client->id }}"></a>{{ $client->name }}</td>
                             </tr>
                         @endforeach
                         </tbody>
