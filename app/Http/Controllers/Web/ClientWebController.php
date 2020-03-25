@@ -203,6 +203,8 @@ class ClientWebController extends Controller
         $this->password = $request->password;
         $this->password_confirmation = $request->password_confirmation;
 
+        return $this->password . ' ' . $this->password_confirmation;
+
         $validator->after(function ($validator) {
             if ($this->password != null && $this->password_confirmation != null) {
                 if($this->password != $this->password_confirmation)
