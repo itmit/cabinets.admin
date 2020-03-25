@@ -200,6 +200,13 @@ class ClientWebController extends Controller
             'email' => 'required',
         ]);
 
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.cabinets.edit', ['id' => $id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $this->password = $request->password;
         $this->password_confirmation = $request->password_confirmation;
 
@@ -213,13 +220,6 @@ class ClientWebController extends Controller
                 }
             }
         });
-
-        if ($validator->fails()) {
-            return redirect()
-                ->route('auth.cabinets.edit', ['id' => $id])
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         return $this->password . ' ' . $this->password_confirmation;
 
