@@ -207,14 +207,37 @@ class ClientWebController extends Controller
                 ->withInput();
         }
 
+        $this->password = $request->password;
+        $this->password_confirmation = $request->password_confirmation;
+
+        $validator->after(function ($validator) {
+            if ($this->password != null && $this->password != $this->password_confirmation) {
+                $validator->errors()->add('password', 'Пароли должны совпадать');
+                $validator->errors()->add('password_confirmation', 'Пароли должны совпадать');
+            }
+        });
+
         try {
             DB::transaction(function () use ($request, $id) {
-                $client = Client::withTrashed()->where('id', $id)->update([
-                    'name' => $request->name,
-                    'birthday' => $request->birthday,
-                    'phone' => $request->phone,
-                    'email' => $request->email,
-                ]);
+                if($request->password)
+                {
+                    $client = Client::withTrashed()->where('id', $id)->update([
+                        'name' => $request->name,
+                        'birthday' => $request->birthday,
+                        'phone' => $request->phone,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                    ]);
+                }
+                else
+                {
+                    $client = Client::withTrashed()->where('id', $id)->update([
+                        'name' => $request->name,
+                        'birthday' => $request->birthday,
+                        'phone' => $request->phone,
+                        'email' => $request->email,
+                    ]);
+                }
             });
         } catch (\Throwable $th) {
             return $th;
