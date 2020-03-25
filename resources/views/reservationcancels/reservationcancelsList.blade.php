@@ -6,10 +6,16 @@
     <div class="row justify-content-center cont-m">
         <div class="col-md-12">
             <h2>{{ $title }}</h2>
-            <ul class="nav nav-tabs" id="myTab">
-                <li data-type="cancel" class="active"><a href="#">Отменены</a></li>
-                <li data-type="cancel2"><a href="#">Отменены менее чем за 24 ч</a></li>
-            </ul>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Отменены</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Отменены менее чем за 24 ч</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+              </div>
             <table class="table policy-table">
                 <thead>
                 <tr>
