@@ -200,6 +200,19 @@ class ClientWebController extends Controller
             'email' => 'required',
         ]);
 
+        $this->password = $request->password;
+        $this->password_confirmation = $request->password_confirmation;
+
+        $validator->after(function ($validator) {
+            if ($this->password != null && $this->password_confirmation != null) {
+                if($this->password != $this->password_confirmation)
+                {
+                    $validator->errors()->add('password', 'Пароли должны совпадать');
+                    $validator->errors()->add('password_confirmation', 'Пароли должны совпадать');
+                }
+            }
+        });
+
         if ($validator->fails()) {
             return redirect()
                 ->route('auth.cabinets.edit', ['id' => $id])
@@ -207,19 +220,9 @@ class ClientWebController extends Controller
                 ->withInput();
         }
 
-        $this->password = $request->password;
-        $this->password_confirmation = $request->password_confirmation;
-
-        $validator->after(function ($validator) {
-            if ($this->password != null && $this->password != $this->password_confirmation) {
-                $validator->errors()->add('password', 'Пароли должны совпадать');
-                $validator->errors()->add('password_confirmation', 'Пароли должны совпадать');
-            }
-        });
-
         try {
             DB::transaction(function () use ($request, $id) {
-                if($request->password)
+                if($request->password && $request->password_confirmation)
                 {
                     $client = Client::withTrashed()->where('id', $id)->update([
                         'name' => $request->name,
